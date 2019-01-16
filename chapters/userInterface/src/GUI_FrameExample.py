@@ -2,10 +2,8 @@
 # Beispiel eines Fensters mit Frames
 
 from tkinter import *
-import tkinter
 
 root = Tk()
-root.title('tkinter Example - Frames')
 root.minsize(400,400)
 
 headFrame = Frame(root, bg="red")

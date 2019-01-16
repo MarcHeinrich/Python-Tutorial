@@ -1,12 +1,13 @@
 % !TeX root = ../../pythonTutorial.tex
 
 \section{Elementare Datentypen}
-\label{grundlagen:sec:ElementareDatentypen}
+\label{basicdatatypes:sec:ElementareDatentypen}
 
 Ähnlich wie bei Java und C oder C++ gibt es auch in Python Variablen. Allerdings gibt es dabei immense Unterschiede zu den anderen Programmiersprachen, weshalb sich ein genauerer Blick auf die einzelnen Datentypen in jedem Fall lohnt. Bei vielen bekannten Sprachen wird einer Variablen ein bestimmter Datentyp zugeordnet (deklariert). Der Datentyp kann darauf folgend zur Laufzeit nicht wieder geändert werden, der Wert innerhalb des Datentyps allerdings schon. So lassen sich in eine Variable des Typ Integer beispielsweise keine String-Werte speichern. In Python hingegen ist dies ohne weiteres möglich. Hier wird gänzlich auf eine explizite Typdeklaration verzichtet. Zeigt eine Variable beispielsweise auf eine ganze Zahl, so wird diese als ein Objekt vom Typ Integer interpretiert. Allerdings ist es möglich, diese im nächsten Schritt einfach auf ein String-Objekt zeigen zu lassen. Dies ist in Python möglich, weil eine Variable ein Objekt lediglich referenziert und dadurch keinem Typ zugewiesen wird.\\
 Betrachten wir nun die Datentypen etwas genauer.
 
 \subsection{Zahlenoperatoren}
+\label{basicdatatypes:sec:Zahlenoperatoren}
 
 Da in Python auf Typdeklaration verzichtet wird, muss dies beim Anlegen von Variablen nicht berücksichtigt werden. Wird eine ganze Zahl (Integer) benötigt, kann diese, falls nötig, auch in eine Gleitkommazahl (float) umgewandelt werden, ohne viel am Code zu ändern. Python deklariert im Hintergrund selbst und spart so unnötige Komplexitäten und Fehlerquellen. (Beispiel \ref{refzahl})
 
@@ -55,6 +56,7 @@ print(len(i))
 \end{lstlisting}
 
 \subsection{ENUMs}
+\label{basicdatatypes:sec:Enums}
 
 Enums dienen in den objektorientierten Programmiersprachen zur Aufzählung von Ausdrücken einer endlichen Menge. So werden zum Beispiel Jahreszeiten, Monate oder Farben oft als Enums umgesetzt (vgl. Listing \ref{refenum}). 
 
@@ -70,7 +72,7 @@ class Color(Enum):
 \end{lstlisting}
 
 \subsection{NULL oder NONE}
-
+\label{basicdatatypes:sec:NullNone}
 Das Schlüsselwort \textit{NULL} wird in vielen Programmiersprachen genutzt. Die Idee dahinter ist einer Variable ein neutrales Verhalten zu geben. Das Äquivalent zu \textit{NULL} in Python ist \textit{NONE}. Der Vorteil ist, dass \textit{NONE} exakt der Aufgabe des Schlüsselworts entspricht. Ein Anwendungsfall für \textit{NONE} wäre beispielsweise um zu Überprüfen, ob die Verbindung zu einer Datenbank aufgebaut werden konnte oder nicht (Siehe Beispiel \ref{refnone}).
 
 \begin{lstlisting}[label=refnone]
@@ -88,10 +90,19 @@ if database_connection is None:
     print('The database could not connect')
 else:
     print('The database could connect')
+    
 \end{lstlisting}
 
 \subsection{Referenz, Identität und Kopie}
+\label{basicdatatypes:sec:Referenzen}
 
-Wie bereits erwähnt wurde, wird in Python eine Variable keinem Typ zugewiesen. Zeigt eine Variable jedoch ständig auf ein neues Objekt, sind Verwechslungen innerhalb des Codes möglich. Um dies zu vermeiden bietet sich die Identitätsfunktion id() an. Diese hilft uns dabei, die verschiedenen Instanzen voneinander zu unterscheiden. Jede Instanz hat dabei unabhängig von ihrem Wert und ihrem Typ eine eindeutige Identität. 
+Wie bereits erwähnt wurde, wird in Python eine Variable keinem Typ zugewiesen. Zeigt eine Variable jedoch ständig auf ein neues Objekt, sind Verwechslungen innerhalb des Codes möglich. Um dies zu vermeiden bietet sich die Identitätsfunktion id() an. Diese hilft uns dabei, die verschiedenen Instanzen voneinander zu unterscheiden. Jede Instanz hat dabei unabhängig von ihrem Wert und ihrem Typ eine eindeutige Identität. \\
 
 Dies ist in Python möglich, weil eine Variable ein Objekt lediglich referenziert und dadurch keinem Typ zugewiesen wird.
+
+\newpage
+
+\uebung
+\aufgabe{DatatypesAufgabe1}
+\aufgabe{ifelseAufgabe1}
+\aufgabe{KontrollstrukturenAufgabe1}

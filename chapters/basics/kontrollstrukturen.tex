@@ -1,10 +1,12 @@
 % !TeX root = ../../pythonTutorial.tex
 
 \section{Kontrollstrukturen}
+\label{kontrollstrukturen:sec:Kontrollstrukturen}
 
 Die Kontrollstrukturen in Python haben einen formalen Unterschied zu Java oder C++, funktional allerdings sind sie identisch. In Python werden keine geschweiften Klammern genutzt, um die Blöcke der einzelnen Abfragen abzugrenzen. Dazu genügt das Einrücken der Anweisung. Dies gilt sowohl für Bedingungen und Conditional Expressions, als auch für Schleifen. Im Folgenden schauen wir uns die einzelnen Strukturen im Detail und mit Beispielen an.
 
 \subsection{If-then-else}
+\label{kontrollstrukturen:sec:ifthenelse}
 
 Die if-then-else-Struktur ermöglicht es, wie wir es bereits kennen, simple wenn-dann Abfragen zu tätigen.\\
 Mehrere Abfragemöglichkeiten werden mit elif markiert. Vergleich hierzu Listing \ref{kontrollstrukturen:lst:refif}.
@@ -40,6 +42,7 @@ x = ("los" if wort == "start" else "halt")
 
 
 \subsection{Schleifen}
+\label{kontrollstrukturen:sec:Schleifen}
 
 Python hat sowohl bedingte, als auch Zähler-Schleifen, welche wir uns beide im Folgenden genauer ansehen werden (vgl. Listing \ref{kontrollstrukture:lst:refwhile} und \ref{kontrollstrukture:lst:reffor}). Schleifen bestehen aus einer Anweisung und einem Kontrollblock, welcher solange durchlaufen wird, bis die Anweisung oder ein Abbruchkriterium erfüllt wurde. Schleifen, die niemals ein Abbruchkriterium erfüllen und so endlos durchlaufen werden, heißen Endlosschleifen. Diese führen dazu, dass der Interpreter irgendwann aufgibt und abbricht.
 
@@ -58,7 +61,7 @@ while Bedingung:
 \end{lstlisting}
 
 \begin{lstlisting}[label=kontrollstrukture:lst:reffor]
-# While-Schleife
+# For-Schleife
 for Variable in Objekt:
 	Anweisungsblock
 	if Bedingung:
@@ -75,6 +78,7 @@ for Variable in Objekt:
 
 
 \subsection{Ausdrücke und Operatoren}
+\label{grundlagen:sec:AusdrückeundOperationen}
 
 Die meisten Operatoren für Zahlenwerte sind in Python ähnlich wie bei anderen Programmiersprachen. Im folgenden wird eine Übersicht gegeben.
 
