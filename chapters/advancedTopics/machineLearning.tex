@@ -5,9 +5,9 @@ Das Themengebiet des maschinellen Lernens kann verschiedene Komplexitätslevel er
 Sind die Algorithmen bekannt und sollen nun mittels Python angewendet werden, sollte zu Beginn mit einem kleinen Projekt gestartet werden. Hierbei ist es sinnvoll sich bereits am Anfang eine Vorgehensweise zu überlegen, wie auch bei allen anderen Projekten. Python bietet im Bereich des maschinellen Lernens viele unterschiedliche Möglichkeiten an, sodass bereits frühzeitig der Aufbau des Projekts entschieden werden sollte. Grob kann ein Projekt in fünf Schritte aufgeteilt werden, anhand derer später das Ergebnis verifiziert werden kann. \\
 
 \begin{enumerate}
-\item Problem definieren
-\item Daten vorbereiten
-\item Algorithmen evaluieren
+\item zu lösendes Problem definieren
+\item Daten verstehen und vorbereiten
+\item mögliche Algorithmen evaluieren
 \item Ergebnisse verbessern
 \item Ergebnisse darstellen
 \end{enumerate}
@@ -99,7 +99,7 @@ Mit dem Modul \textit{matplotlib}~\cite{matplotlib} \randnotiz{matplotlib} könne
 \aufgabe{machinelearning1}
 
 
-\subsection{Anwendungsbeispiele}\label{maschinelleslernen:anwendungsbeispiele}
+\subsection{Einfaches Anwendungsbeispiel}\label{maschinelleslernen:anwendungsbeispiele}
 Es gibt verschiedene Herangehensweisen, meist bietet es sich an, erst mal einen groben Überblick über die Daten zu erhalten. Für die erste Erläuterung werden Datensätze angenommen, welche in folgender Datenstruktur vorliegen.
 
 \subsubsection*{Daten aus Datei lesen und anzeigen}
@@ -125,5 +125,22 @@ Eine Darstellung in 3D ist ebenfalls möglich. Hierzu wird aus dem DataSet noch e
 
 
 \subsection{knn-Klassifikation}\label{maschinelleslernen:knnklassifikation}
-Der knn-Algorhytmus ist einer der bekanntesten und wird daher im folgenden Beispiel dargestellt.
-\lstinputlisting[language=Python]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample}
+Der knn-Algorithmus ist einer der bekanntesten Algoryhtmus aus dem Bereich Klassifikation und wird daher im folgenden als ein mögliches Codebeispiel dargestellt und erläutert.
+
+Imports
+\lstinputlisting[language=Python,firstline=1,lastline=3]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample1}
+
+Variablen
+\lstinputlisting[language=Python,firstline=5,lastline=13]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample5}
+
+Methode zur Klassifizierung
+\lstinputlisting[language=Python,firstline=15,lastline=52]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample15}
+
+Daten laden und Anzahl der Zeilen bestimmen
+\lstinputlisting[language=Python,firstline=55,lastline=59]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample55}
+
+Aufruf des Klassifikators
+\lstinputlisting[language=Python,firstline=61,lastline=76]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample61}
+
+Fehler ausgeben
+\lstinputlisting[language=Python,firstline=74,lastline=75]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample74}
