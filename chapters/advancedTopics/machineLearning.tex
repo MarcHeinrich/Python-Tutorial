@@ -120,11 +120,16 @@ Eine Darstellung in 3D ist ebenfalls möglich. Hierzu wird aus dem DataSet noch e
 
 \randnotiz{3 Achsen}\lstinputlisting[language=Python]{chapters/advancedTopics/src/machinelearning/defineplot2.py}\label{defineplot2:lst:3dplot}
 
+Daten aus dem IRIS-Paket laden
+\lstinputlisting[language=Python]{chapters/advancedTopics/src/machinelearning/loadiris.py}\label{loadiris:lst:loadiris}
+
+
 \uebung
 \aufgabe{machinelearning2}
 
 
 \subsection{knn-Klassifikation}\label{maschinelleslernen:knnklassifikation}
+%TODO: Beispiel hat sich komplett geändert. Alles anpassen!!!
 Der knn-Algorithmus ist einer der bekanntesten Algoryhtmus aus dem Bereich Klassifikation und wird daher im folgenden als ein mögliches Codebeispiel dargestellt und erläutert.
 
 Imports
@@ -150,10 +155,26 @@ Fehler ausgeben
 Ein weiters Beispiel aus dem Bereich Klassifikation im maschinellen Lernen ist der Naive Bayes Algorithmus.
 
 Folgende Imports sind nötig:
-\lstinputlisting[language=Python,firstline=1,lastline=3]{chapters/advancedTopics/src/machinelearning/bayessample.py}\label{knnsample:lst:bayessample1}
+\lstinputlisting[language=Python,firstline=3,lastline=5]{chapters/advancedTopics/src/machinelearning/bayessample.py}\label{knnsample:lst:bayessample3}
 
 Festlegen von Beispieldaten:
-\lstinputlisting[language=Python,firstline=5,lastline=9]{chapters/advancedTopics/src/machinelearning/bayessample.py}\label{knnsample:lst:bayessample5}
+\lstinputlisting[language=Python,firstline=7,lastline=11]{chapters/advancedTopics/src/machinelearning/bayessample.py}\label{knnsample:lst:bayessample7}
 
 Modell erzeugen, mit den Daten trainieren, Daten vorhersagen, Ergebnisse anzeigen
-\lstinputlisting[language=Python,firstline=11,lastline=20]{chapters/advancedTopics/src/machinelearning/bayessample.py}\label{knnsample:lst:bayessample11}
+\lstinputlisting[language=Python,firstline=13,lastline=21]{chapters/advancedTopics/src/machinelearning/bayessample.py}\label{knnsample:lst:bayessample13}
+
+
+\subsection{Lineare Regression}\label{maschinelleslernen:linregress}
+Beispiels aus dem Bereich Regression
+
+Importe
+\lstinputlisting[language=Python,firstline=1,lastline=5]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress1}
+
+Daten laden
+\lstinputlisting[language=Python,firstline=7,lastline=10]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress7}
+
+Berechnung
+\lstinputlisting[language=Python,firstline=12,lastline=13]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress12}
+
+Plot
+\lstinputlisting[language=Python,firstline=15,lastline=27]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress15}

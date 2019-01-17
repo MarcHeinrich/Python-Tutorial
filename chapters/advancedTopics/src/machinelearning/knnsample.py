@@ -1,74 +1,66 @@
-import numpy as numpy
-from sklearn import datasets
+# https://stackabuse.com/k-nearest-neighbors-algorithm-in-
+# python-and-scikit-learn/
+
+# Importing Libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report, confusion_matrix
+
+# Importing the Dataset
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+
+# Assign colum names to the dataset
+names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'Class']
+
+# Read dataset to pandas dataframe
+dataset = pd.read_csv(url, names=names)
+
+# Preprocessing
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, 4].values
+
+# training and test splits
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
+
+# feature scaling:
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
+
+# training und predictions
+classifier = KNeighborsClassifier(n_neighbors=5)
+classifier.fit(X_train, y_train)
+
+# make predictions
+y_pred = classifier.predict(X_test)
+
+# Evaluating the Algorithm
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
 
 
-# Label festlegen
-classLabelVector = ["label1", "label2", "label3"]
-errorCount = 0
-# k-Eingrenzung (hier: auf 3 Nachbarn einschränken)
-k = 3
-# Datensätze 0 - 29 werden zum testen von k, die 
-# Datensätze ab Zeile 30 werden zur Klassifikation verwendet
-numTestVectors = 30
+error = []
+
+# calculate the mean of error for all the predicted
+# values where K ranges from 1 and 40
+# Calculating error for K values between 1 and 40
+for i in range(1, 40):
+    knn = KNeighborsClassifier(n_neighbors=i)
+    knn.fit(X_train, y_train)
+    pred_i = knn.predict(X_test)
+    error.append(np.mean(pred_i != y_test))
 
 
-def classify(inX, dataSet, labels, k):
-    # Anzahl an Zeilen bestimmen
-    rowCount = dataSet.shape[0]
-
-    # Berechnung der Katheten
-    diffMat = numpy.tile(inX, (rowCount, 1)) - dataSet
-    # Quadrat der Katheten
-    sqDiffMat = diffMat ** 2
-    # Aufsummieren der Differenzpaare
-    sqDistances = sqDiffMat.sum(axis=1)
-    # Quadratwurzel über alle Werte
-    distances = sqDistances ** 0.5
-    # Aufsteigende Sortierung
-    sortedDistIndicies = distances.argsort()
-
-    classCount = {}
-
-    # print("inX = %s, k = %s" % (inX, k))
-    # print(sortedDistIndicies)
-
-    # Eingrenzung auf k-Werte in der sortierten Liste
-    for i in range(k):
-        # Label (Kategorie mit Sortierung aufnehmen)
-        closest = labels[sortedDistIndicies[i]]
-        # Aufbau eines Dictionary
-        classCount[closest] = classCount.get(closest, 0) + 1
-
-    # Absteigende Sortierung der Labels in k-Reichweite
-    # wobei die Sortierung über den Count (Value) erfolgt
-    sortedClassCount = sorted(classCount, 
-			key=classCount.get, reverse=True)
-
-    # print(classCount)
-    # print(sortedClassCount[0])
-
-    # Liefere das erste Label zurück, also das Label
-	# mit der höchsten Anzahl innerhalb der k-Reichweite
-    return sortedClassCount[0]
-
-
-# Daten laden
-dataSet = dt = datasets.load_iris()
-
-# Anzahl Zeilen
-rowCount = dataSet.size
-
-# Aufruf des Klassifikators von 0 bis 29
-for i in range(0, numTestVectors):
-    result = classify.classify(dataSet[i, :], 
-		dataSet[numTestVectors:rowCount, :],
-		classLabelVector[numTestVectors:rowCount], k)
-
-    print("%s - the classifier came back with: %s, " +
-		"the real answer is: %s" %
-          (i, result, classLabelVector[i]))
-
-    if result != classLabelVector[i]:
-        errorCount += 1.0
-
-print("Error Count: %d" % errorCount)
+# plot the error values against K values
+plt.figure(figsize=(12, 6))
+plt.plot(range(1, 40), error, color='red', linestyle='dashed', marker='o',
+         markerfacecolor='blue', markersize=10)
+plt.title('Error Rate K Value')
+plt.xlabel('K Value')
+plt.ylabel('Mean Error')
+plt.show()

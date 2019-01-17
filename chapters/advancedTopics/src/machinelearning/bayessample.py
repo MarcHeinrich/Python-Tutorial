@@ -1,3 +1,5 @@
+# https://www.analyticsvidhya.com/blog/2017/09/naive-bayes-explained/
+
 # Import Library of Gaussian Naive Bayes model
 from sklearn.naive_bayes import GaussianNB
 import numpy as np
@@ -17,6 +19,3 @@ model.fit(x, y)
 # Predict Output
 predicted = model.predict([[1, 2], [3, 4]])
 print(predicted)
-
-
-# https://www.analyticsvidhya.com/blog/2017/09/naive-bayes-explained/
