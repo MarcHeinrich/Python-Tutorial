@@ -24,7 +24,8 @@ X = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, 4].values
 
 # training and test splits
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
+X_train, X_test, y_train, y_test = 
+	train_test_split(X, y, test_size=0.20)
 
 # feature scaling:
 scaler = StandardScaler()
@@ -39,10 +40,10 @@ classifier.fit(X_train, y_train)
 # make predictions
 y_pred = classifier.predict(X_test)
 
-# Evaluating the Algorithm
+# print matrix
 print(confusion_matrix(y_test, y_pred))
+# print report
 print(classification_report(y_test, y_pred))
-
 
 error = []
 
@@ -58,7 +59,8 @@ for i in range(1, 40):
 
 # plot the error values against K values
 plt.figure(figsize=(12, 6))
-plt.plot(range(1, 40), error, color='red', linestyle='dashed', marker='o',
+plt.plot(range(1, 40), error, color='red', 
+		 linestyle='dashed', marker='o',
          markerfacecolor='blue', markersize=10)
 plt.title('Error Rate K Value')
 plt.xlabel('K Value')

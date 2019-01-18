@@ -133,23 +133,60 @@ Daten aus dem IRIS-Paket laden
 Der knn-Algorithmus ist einer der bekanntesten Algoryhtmus aus dem Bereich Klassifikation und wird daher im folgenden als ein mögliches Codebeispiel dargestellt und erläutert.
 
 Imports
-\lstinputlisting[language=Python,firstline=1,lastline=3]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample1}
+\lstinputlisting[language=Python,firstline=1,lastline=10]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample1}
 
 Variablen
-\lstinputlisting[language=Python,firstline=5,lastline=13]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample5}
+\lstinputlisting[language=Python,firstline=12,lastline=16]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample12}
 
-Methode zur Klassifizierung
-\lstinputlisting[language=Python,firstline=15,lastline=52]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample15}
+Daten lesen
+\lstinputlisting[language=Python,firstline=19,lastline=20]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample19}
 
-Daten laden und Anzahl der Zeilen bestimmen
-\lstinputlisting[language=Python,firstline=55,lastline=59]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample55}
+Daten vorbereiten
+\lstinputlisting[language=Python,firstline=22,lastline=28]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample22}
 
-Aufruf des Klassifikators
-\lstinputlisting[language=Python,firstline=61,lastline=76]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample61}
+Scaling
+\lstinputlisting[language=Python,firstline=30,lastline=34]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample30}
+
+KNN-Algorithmus anwenden
+\lstinputlisting[language=Python,firstline=36,lastline=42]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample36}
+
+Ausgabe der Matrix
+\lstinputlisting[language=Python,firstline=43,lastline=44]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample43}
+\begin{lstlisting}
+[[ 9  0  0]
+ [ 0 12  1]
+ [ 0  1  7]]
+\end{lstlisting} 
+ 
+Ausgabe des Reports
+\lstinputlisting[language=Python,firstline=45,lastline=46]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample45}
+\begin{lstlisting} 
+                  precision    recall  f1-score   support
+ 
+     Iris-setosa       1.00      1.00      1.00         9
+ Iris-versicolor       0.92      0.92      0.92        13
+  Iris-virginica       0.88      0.88      0.88         8
+ 
+       micro avg       0.93      0.93      0.93        30
+       macro avg       0.93      0.93      0.93        30
+    weighted avg       0.93      0.93      0.93        30
+\end{lstlisting}
+
+
 
 Fehler ausgeben
-\lstinputlisting[language=Python,firstline=74,lastline=75]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample74}
+\lstinputlisting[language=Python,firstline=48,lastline=57]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample48}
 
+
+Fehler-Plot erzeugen
+\lstinputlisting[language=Python,firstline=59,lastline=67]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample59}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=1\textwidth]{images/PlotKNN.png}
+	\caption{Ergebnis-Plot der Fehler nach Ausführung KNN}
+	\label{ml:samples:plotknn}
+\end{figure}
 
 \subsection{Naive Bayes}\label{maschinelleslernen:naivebayes}
 Ein weiters Beispiel aus dem Bereich Klassifikation im maschinellen Lernen ist der Naive Bayes Algorithmus.
@@ -163,6 +200,10 @@ Festlegen von Beispieldaten:
 Modell erzeugen, mit den Daten trainieren, Daten vorhersagen, Ergebnisse anzeigen
 \lstinputlisting[language=Python,firstline=13,lastline=21]{chapters/advancedTopics/src/machinelearning/bayessample.py}\label{knnsample:lst:bayessample13}
 
+Die Ausgabe lautet:
+\begin{lstlisting}
+[3 4]
+\end{lstlisting}
 
 \subsection{Lineare Regression}\label{maschinelleslernen:linregress}
 Beispiels aus dem Bereich Regression
@@ -178,3 +219,12 @@ Berechnung
 
 Plot
 \lstinputlisting[language=Python,firstline=15,lastline=27]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress15}
+
+
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/PlotLinRegress.png}
+	\caption{Ergebnis-Plot der linearen Regression}
+	\label{ml:samples:plotlinregress}
+\end{figure}
