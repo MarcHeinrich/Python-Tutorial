@@ -1,0 +1,74 @@
+\subsection{Bibliotheken}\label{maschinelleslernen:bibliotheken}
+Im Bereich maschinelles Lernen sind schon viele Bibliotheken vorhanden, die unterschiedliche Schwerpunkte in dem Bereich bedienen. Aus diesem Grund erfolgt zuerst eine Übersicht über verbreitete Bibliotheken.
+
+Alle Bibliotheken\randnotiz{Download und Installation} die genutzt werden sollen müssen zuerst installiert werden. Hierfür gibt es je nach Bibliothek und teilweise je nach Betriebssystem mehrere Wege. Es wird empfohlen hier aus der jeweiligen Webseite die geeignetsten Variante zu wählen und auszuführen.
+
+Nach der Installation\randnotiz{Versionen und Kompatibilität} sollten alle Versionen ausgelesen und abgeglichen werden. Die Kompatibilität ist nicht durchgehend gewährleistet, das betrifft vor allem die unterschiedlichen Python-Versionen.
+
+Der folgende Codeausschnitt zeigt ein Beispiel. Dieser kann entweder direkt in der Eingabeaufforderung bzw. Konsole nach Start von Python ausgeführt werden oder innerhalb einer geeigneten Entwicklungsumgebung.
+
+\begin{lstlisting}
+# Python version
+import sys
+print("Pyton: {}".format(sys.version))
+
+# numpy version
+import numpy
+print("numpy: {}".format(numpy.__version__))
+
+# pandas version
+import pandas
+print("pandas: {}".format(pandas.__version__))
+
+# rpy2 version
+import rpy2
+print("rpy2: {}".format(rpy2.__version__))
+\end{lstlisting}\label{maschinelleslernen:lst:printversions}
+
+Die Ausgabe ist beispielsweise die Folgende:
+\begin{lstlisting}
+Pyton: 3.6.1 (v3.6.1:69c0db5, Mar 21 2017, 17:54:52) 
+	[MSC v.1900 32 bit (Intel)]
+
+numpy: 1.13.3 
+pandas: 0.21.0
+rpy2: 2.8.6
+\end{lstlisting}\label{maschinelleslernen:lst:versions}
+
+Auf diese Art und Weise sollten alle Bibliotheken geprüft werden, da so eventuelle Kompatibilitätsprobleme oder fehlerhafte Installation frühzeitig erkannt werden können.
+
+\subsubsection{Bekannte Bibliotheken}\label{maschinelleslernen:bekanntebibliotheken}
+Grob kann man zwischen Datenanalyse und Visualisierung unterscheiden. Zwei bekannte Bibliotheken aus dem Bereich Datenanalyse sind \textit{numpy} und \textit{pandas}, mit denen beispielsweise Gleichungen und Optimierungsprobleme gelöst werden können. Ergebnisse solcher Berechnungen können beispielsweise mithilfe des Moduls \textit{matplotlib} visualisiert werden.~\cite{Python3}
+
+
+
+In der Bibliothek \textit{numpy}~\cite{numpyreference} \randnotiz{numpy} wird ein flexibler Datentyp für mehrdimensionale Arrays zur Verfügung gestellt. Dies ermöglicht eine effiziente Durchführung von komplexen Rechnungen.
+
+Außerdem lassen sich Integrale berechnen, statistische Berechnungen durchführen und auch simulieren. All das wird für maschinelles Lernen benötigt. Da die Berechnungen mit Routinen nah an der Hardware durchgeführt werden, lassen sich bei entsprechender Programmierung effiziente Programme schreiben.
+
+Die Arrays in \textit{numpy} sind dreidimensional und können so eine Vielzahl von Anwendungsfällen abbilden. Der Fokus von \textit{numpy} liegt in der Datenhaltung und Manipulation von Daten. Hier speziell die numerische Manipulation aus dem Bereich der linearen Algebra. Mit den Matrizen können beispielsweise Multiplikationen und Dekompositionen durchgeführt werden. Aus diesem Grund sind \textit{numpy}-Array oft die Datenstruktur, mit der weiterführende Bibliotheken arbeiten können.
+
+
+
+Die Webseite zu \textit{pandas}~\cite{pandas} \randnotiz{pandas} beschreibt dieses als gute Wahl zur schnellen und flexiblen Aufbereitung von Daten. \textit{pandas} bietet verschiedene Möglichkeiten, um schnell auf Einträge zuzugreifen. Dies ist möglich, da mittels \textit{pandas} Serien und Dataframes erzeugt werden können, die im Gegensatz zu einem Array in Python auch Spaltentitel und Indizes anbieten.
+
+Die \textit{describe()}-Methode bietet hierbei einen ersten Überblick über die im Dataframe enthalten Daten. Ohne weitere Programmierung werden Informationen wie Maximalwert, Minimalwert und Durchschnitt für jede Spalte berechnet und angezeigt. 
+
+Spalten und Zeilen können mittels \textit{pandas} gefiltert, erweitert und verändert werden, sodass Pandas oft im ersten Schritt genutzt wird, um die auszuwertenden Daten zu laden und genauer analysieren zu können.
+
+
+Ergänzend bzw. aufbauen auf \textit{numpy} \randnotiz{scipy} werden durch \textit{scipy}~\cite{scipyreference} viele mathematische Operationen bereit gestellt. 
+Das Modul \textit{scipy} ist sehr mächtig und daher nochmal in Untermodule aufgeteilt. Innerhalb der Untermodule werden bestimmte Funktionalitäten gruppiert. Eine Übersicht hierzu gibt die Onlinedokumentation.
+
+
+
+Viele DataMining \randnotiz{scikit-learn} bzw. Machine Learning Funktionalitäten werden bereits durch die \textit{scikit-learn}~\cite{scikit} Bibliothek (manchmal aus sklearn abgekürzt) zur Verfügung gestellt. Die klassischen Algorithmen, wie \textit{k-Means} oder \textit{knn} sind bereits integriert.\\
+Des Weiteren ist auch mit \textit{scikit-learn} eine Aufbereitung der Daten möglich. Hier werden beispielsweise Normalierung und Skalierung unterstützt. Insgesamt handelt es sich um eine sehr mächtige Bibliothek, mit der es möglich ist unterschiedliche Algorithmen zu probieren und verschiedene Test- und Trainingsverfahren zu testen. Es können auch neue Daten anhand der gelernten Modelle klassifiziert und vorhergesagt werden.
+
+
+
+Eine weitere Möglichkeit ist das Einbinden des Pakets \textit{rpy2}~\cite{rpy2} \randnotiz{rpy2}. Hierbei handelt es sich um eine Bibliothek, welche Komponenten aus R zur Verfügung stellt. \textit{rpy2} ist zu sehen wie eine Schnittstelle zwischen Python und R. Es ist möglich R-Pakete mittels Python zu importieren und mit den darin enthaltenen Funktionalitäten zu interagieren.
+
+
+
+Mit dem Modul \textit{matplotlib}~\cite{matplotlib} \randnotiz{matplotlib} können Daten in einem Diagramm dargestellt werden. Hiermit kann ein erstes Verständnis der Daten oder Ergebnisse erreicht werden. Es werden unter anderem Liniendiagramme, Histogramme, Balkendiagramme aber auch Heatmaps unterstützt. Hier können sowohl Achsen, Farben und auch Beschriftungen nach Bedarf angepasst werden. \textit{matplotlib} unterstützt sowohl \textit{pandas} als auch \textit{numpy} und ist daher oft bereits am Anfang von hoher Bedeutung, um einen Überblick über die Daten zu bekommen.

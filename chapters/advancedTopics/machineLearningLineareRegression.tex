@@ -1,0 +1,22 @@
+\subsection{Lineare Regression}\label{maschinelleslernen:linregress}
+Beispiel aus dem Bereich Regression. Konkret wird hier eine lineare Regression dargestellt. 
+
+Es \randnotiz{Importe}sind verschiedene Importe für nötig. Die werden im ersten Schritt importiert.
+\lstinputlisting[language=Python,firstline=1,lastline=5]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress1}
+
+Daten \randnotiz{Daten laden}aus boston-Datensatz auslesen und in numpy-array überführen.
+\lstinputlisting[language=Python,firstline=7,lastline=10]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress7}
+
+Die \randnotiz{Berechnung durchführen}Berechnung der linearen Regression kann direkt aus dem scipy-Paket erfolgen. Die nötigen Daten müssen mitgegeben werden.
+\lstinputlisting[language=Python,firstline=12,lastline=13]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress12}
+
+Nun \randnotiz{Plot erzeugen}kann der Plot für die berechneten Werte erzeugt werden.
+\lstinputlisting[language=Python,firstline=15,lastline=27]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress15}
+
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/PlotLinRegress.png}
+	\caption{Ergebnis-Plot der linearen Regression}
+	\label{ml:samples:plotlinregress}
+\end{figure}
