@@ -99,7 +99,7 @@ Mit dem Modul \textit{matplotlib}~\cite{matplotlib} \randnotiz{matplotlib} könne
 \aufgabe{machinelearning1}
 
 
-\subsection{Einfaches Anwendungsbeispiel}\label{maschinelleslernen:anwendungsbeispiele}
+\subsection{Einfache Anwendungsbeispiele}\label{maschinelleslernen:anwendungsbeispiele}
 Es gibt verschiedene Herangehensweisen, meist bietet es sich an, erst mal einen groben Überblick über die Daten zu erhalten. Für die erste Erläuterung werden Datensätze angenommen, welche in folgender Datenstruktur vorliegen.
 
 \subsubsection*{Daten aus Datei lesen und anzeigen}
@@ -110,56 +110,57 @@ Maschinelles Lernen \randnotiz{Beispieldaten} macht nur Sinn mit entsprechenden 
 Nun kann mit der Entwicklung begonnen werden. Um den Datentyp \randnotiz{Datei lesen} mit Daten zu versorgen findet sich im Folgenden ein kleiner Codeausschnitt:
 \lstinputlisting{chapters/advancedTopics/src/machinelearning/readdatafromfile.py}\label{readdatafromfile:lst:readdata}
 
-Die aufbereiteten Daten können im nächsten Schritt visualisiert werden. Hier bietet sich ein Scatterplot an.
+Die aufbereiteten Daten können im nächsten Schritt visualisiert werden. Vorher noch eine weitere Variante wie Daten geladen werden können.
+
+\subsubsection*{Daten aus Paket laden}
+Eine\randnotiz{iris-Dataset laden} weitere Möglichkeit ist das Laden von Daten aus Paketen. Hier wird beispielhaft das Lesen aus dem Paket \lstinline$iris$ vorgestellt.
+\lstinputlisting[language=Python,firstline=3,lastline=19]{chapters/advancedTopics/src/machinelearning/loadiris.py}\label{loadiris:lst:loadiris}
+
+Nun kann es an die Darstellung der Daten gehen.
+
+\subsubsection*{Plots erzeugen}
+Aus den oben gelesen Daten kann nun ein Plot erzeugt werden. Für das Beispiel oben bietet sich die Darstellung in einem Scatterplot an.
 
 
-Aus den oben gelesen Daten kann nun ein Plot erzeugt werden.
 \randnotiz{Plot erzeugen}\lstinputlisting[language=Python]{chapters/advancedTopics/src/machinelearning/defineplot1.py}\label{defineplot1:lst:2dplot}
 
 Eine Darstellung in 3D ist ebenfalls möglich. Hierzu wird aus dem DataSet noch eine dritte Dimension ausgelesen.
 
 \randnotiz{3 Achsen}\lstinputlisting[language=Python]{chapters/advancedTopics/src/machinelearning/defineplot2.py}\label{defineplot2:lst:3dplot}
 
-Daten aus dem IRIS-Paket laden
-\lstinputlisting[language=Python]{chapters/advancedTopics/src/machinelearning/loadiris.py}\label{loadiris:lst:loadiris}
-
-
-\uebung
-\aufgabe{machinelearning2}
-
 
 \subsection{knn-Klassifikation}\label{maschinelleslernen:knnklassifikation}
-%TODO: Beispiel hat sich komplett geändert. Alles anpassen!!!
-Der knn-Algorithmus ist einer der bekanntesten Algoryhtmus aus dem Bereich Klassifikation und wird daher im folgenden als ein mögliches Codebeispiel dargestellt und erläutert.
+Der knn-Algorithmus ist einer der bekanntesten Algorithmus aus dem Bereich Klassifikation und wird daher hier als Codebeispiel dargestellt und erläutert.
 
-Imports
-\lstinputlisting[language=Python,firstline=1,lastline=10]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample1}
+Folgende Imports\randnotiz{Imports} sind nötig:
+\lstinputlisting[language=Python,firstline=4,lastline=11]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample4}
 
-Variablen
-\lstinputlisting[language=Python,firstline=12,lastline=16]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample12}
+Anschließend können die Daten\randnotiz{Daten laden} geladen und die Spaltennamen definiert werden.
+\lstinputlisting[language=Python,firstline=14,lastline=20]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample14}
 
-Daten lesen
-\lstinputlisting[language=Python,firstline=19,lastline=20]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample19}
-
-Daten vorbereiten
+Jetzt werden die Daten gelesen\randnotiz{Daten lesen und vorbereiten} und vorbereitet.
 \lstinputlisting[language=Python,firstline=22,lastline=28]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample22}
 
-Scaling
-\lstinputlisting[language=Python,firstline=30,lastline=34]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample30}
+Zur Berechnung müssen die Daten\randnotiz{Daten skalieren} skaliert werden.
+\lstinputlisting[language=Python,firstline=33,lastline=37]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample33}
 
-KNN-Algorithmus anwenden
-\lstinputlisting[language=Python,firstline=36,lastline=42]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample36}
+Nun kann der KNN-Algorithmus\randnotiz{Algorithmus anwenden} angewendet werden.
+\lstinputlisting[language=Python,firstline=39,lastline=44]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample39}
 
-Ausgabe der Matrix
-\lstinputlisting[language=Python,firstline=43,lastline=44]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample43}
+Jetzt können wir die Daten-Matrix\randnotiz{Matrix ausgeben} ausgeben.
+\lstinputlisting[language=Python,firstline=46,lastline=47]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample46}
+
+Als Ausgabe wird Folgendes angezeigt
 \begin{lstlisting}
 [[ 9  0  0]
  [ 0 12  1]
  [ 0  1  7]]
 \end{lstlisting} 
  
-Ausgabe des Reports
-\lstinputlisting[language=Python,firstline=45,lastline=46]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample45}
+Zusätzlich\randnotiz{Report ausgeben} kann ein Report angezeigt werden, welcher eine gute Übersicht über die klassifizierten Daten gibt.
+\lstinputlisting[language=Python,firstline=48,lastline=49]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample49}
+
+Die Ausgabe ist die folgende:
 \begin{lstlisting} 
                   precision    recall  f1-score   support
  
@@ -174,12 +175,12 @@ Ausgabe des Reports
 
 
 
-Fehler ausgeben
-\lstinputlisting[language=Python,firstline=48,lastline=57]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample48}
+Um \randnotiz{Fehler ausgeben}ein abschließendes Bild über die Klassifikation zu erhalten können nun noch die Fehler ausgegeben werden.
+\lstinputlisting[language=Python,firstline=51,lastline=61]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample51}
 
 
-Fehler-Plot erzeugen
-\lstinputlisting[language=Python,firstline=59,lastline=67]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample59}
+Aus\randnotiz{Fehler-Plot erzeugen} den berechneten Klassifikationsfehlern kann nun noch ein Plot erzeugt werden.
+\lstinputlisting[language=Python,firstline=64,lastline=72]{chapters/advancedTopics/src/machinelearning/knnsample.py}\label{knnsample:lst:knnsample64}
 
 \begin{figure}[ht]
 	\centering
@@ -189,15 +190,15 @@ Fehler-Plot erzeugen
 \end{figure}
 
 \subsection{Naive Bayes}\label{maschinelleslernen:naivebayes}
-Ein weiters Beispiel aus dem Bereich Klassifikation im maschinellen Lernen ist der Naive Bayes Algorithmus.
+Ein weiteres Beispiel aus dem Bereich Klassifikation im maschinellen Lernen ist der Naive Bayes Algorithmus.
 
-Folgende Imports sind nötig:
+Es \randnotiz{Importe}sind wieder einige Importe nötig.
 \lstinputlisting[language=Python,firstline=3,lastline=5]{chapters/advancedTopics/src/machinelearning/bayessample.py}\label{knnsample:lst:bayessample3}
 
-Festlegen von Beispieldaten:
+Die \randnotiz{Daten laden}Beispieldaten müssen definiert werden.
 \lstinputlisting[language=Python,firstline=7,lastline=11]{chapters/advancedTopics/src/machinelearning/bayessample.py}\label{knnsample:lst:bayessample7}
 
-Modell erzeugen, mit den Daten trainieren, Daten vorhersagen, Ergebnisse anzeigen
+Nun kann das Modell erzeugt werden um mit den Daten zu trainieren. Anschließend können die Daten vorhergesagt und die Ergebnisse anzeigt werden.
 \lstinputlisting[language=Python,firstline=13,lastline=21]{chapters/advancedTopics/src/machinelearning/bayessample.py}\label{knnsample:lst:bayessample13}
 
 Die Ausgabe lautet:
@@ -206,20 +207,19 @@ Die Ausgabe lautet:
 \end{lstlisting}
 
 \subsection{Lineare Regression}\label{maschinelleslernen:linregress}
-Beispiels aus dem Bereich Regression
+Beispiel aus dem Bereich Regression. Konkret wird hier eine lineare Regression dargestellt. 
 
-Importe
+Es \randnotiz{Importe}sind verschiedene Importe für nötig. Die werden im ersten Schritt importiert.
 \lstinputlisting[language=Python,firstline=1,lastline=5]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress1}
 
-Daten laden
+Daten \randnotiz{Daten laden}aus boston-Datensatz auslesen und in numpy-array überführen.
 \lstinputlisting[language=Python,firstline=7,lastline=10]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress7}
 
-Berechnung
+Die \randnotiz{Berechnung durchführen}Berechnung der linearen Regression kann direkt aus dem scipy-Paket erfolgen. Die nötigen Daten müssen mitgegeben werden.
 \lstinputlisting[language=Python,firstline=12,lastline=13]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress12}
 
-Plot
+Nun \randnotiz{Plot erzeugen}kann der Plot für die berechneten Werte erzeugt werden.
 \lstinputlisting[language=Python,firstline=15,lastline=27]{chapters/advancedTopics/src/machinelearning/linregress.py}\label{knnsample:lst:lingress15}
-
 
 
 \begin{figure}[ht]
@@ -228,3 +228,7 @@ Plot
 	\caption{Ergebnis-Plot der linearen Regression}
 	\label{ml:samples:plotlinregress}
 \end{figure}
+
+
+\uebung
+\aufgabe{machinelearning2}

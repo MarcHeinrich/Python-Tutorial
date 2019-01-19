@@ -8,13 +8,16 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.metrics import classification_report, 
+	confusion_matrix
 
 # Importing the Dataset
-url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+url = "https://archive.ics.uci.edu/ml/machine-learning-
+	databases/iris/iris.data"
 
 # Assign colum names to the dataset
-names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'Class']
+names = ['sepal-length', 'sepal-width', 'petal-length', 
+	'petal-width', 'Class']
 
 # Read dataset to pandas dataframe
 dataset = pd.read_csv(url, names=names)
@@ -45,6 +48,7 @@ print(confusion_matrix(y_test, y_pred))
 # print report
 print(classification_report(y_test, y_pred))
 
+# define error array
 error = []
 
 # calculate the mean of error for all the predicted
