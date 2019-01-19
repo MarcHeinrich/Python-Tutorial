@@ -1,4 +1,3 @@
-# Importe
 import numpy as numpy
 from sklearn import datasets
 from scipy.stats import linregress
@@ -16,8 +15,9 @@ b, a, r, p, std = linregress(datasetny[2,], datasetny[1,])
 plt.scatter(datasetny[2,], datasetny[1,])
 plt.plot([0, 130], [a, a + 130 * b], c="red", alpha=0.5)
 plt.plot()
-plt.xlim(0, 130)
-plt.ylim(0, 1100)
+plt.title("LinRegress")
+plt.xlim(0, 120)
+plt.ylim(0, 800)
 plt.xlabel("X-Label")
 plt.ylabel("Y-Label")
 plt.grid(alpha=0.4)
