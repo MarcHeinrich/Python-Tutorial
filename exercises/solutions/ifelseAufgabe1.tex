@@ -1,37 +1,39 @@
 \begin{enumerate}
-  
+
 \item \begin{lstlisting}[label=ifelseSolutionA]
-	if a == 1:
-     	print ("eins")
-	elif a == 2:
-   		 print ("zwei")
-	else: 
-   		 print ("weder eins, noch zwei")
-\end{lstlisting} 
+    if a == 1:
+        print ("eins")
+    elif a == 2:
+         print ("zwei")
+    else:
+         print ("weder eins, noch zwei")
+\end{lstlisting}
 
 \item \begin{lstlisting}[label=ifelseSolutionB]
-	if a < b:
-   		print ("b ist größer als a")
-	elif a > b:
-    	print ("a ist größer als b")
-	else: 
-   		print ("die Zahlen sind gleich groß")
-\end{lstlisting} 
+    if a < b:
+        print ("b ist größer als a")
+    elif a > b:
+        print ("a ist größer als b")
+    else:
+        print ("die Zahlen sind gleich groß")
+\end{lstlisting}
 
 \item \begin{lstlisting}[label=ifelseSolutionC]
-x = ("b ist größer als a" if a < b else "a ist größer als b")
-\end{lstlisting} 
+x = ("b ist größer als a" if a < b 
+                   else "a ist größer als b")
+\end{lstlisting}
 
 \item \begin{lstlisting}[label=ifelseSolutionD]
-if c > a & b: 
+if c > a & b:
     print ("C ist Maximum")
 elif b > a & c:
     print ("B ist Maximum")
 elif a > b & c:
     print ("A ist Maximum")
-else: 
-    print ("Es gibt kein Maximum, mindestens zwei Zahlen sind gleich groß")
-\end{lstlisting} 
+else:
+    print ("Es gibt kein Maximum, 
+    mindestens zwei Zahlen sind gleich groß")
+\end{lstlisting}
 
 \end{enumerate}
 
