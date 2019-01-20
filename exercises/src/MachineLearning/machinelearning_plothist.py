@@ -3,11 +3,11 @@ from sklearn import datasets
 
 # Daten laden
 dt_bc = datasets.load_breast_cancer()
-bc = dt_bc.data[:20, :2]
+bc = dt_bc.data[:, :2]
 
 # Plot definieren
-pyplot.plot(bc)
-pyplot.title("Plot from dataset breast_cancer")
+pyplot.hist(bc)
+pyplot.title("Histogram of breast_cancer daatset")
 pyplot.xlabel("X-Label")
 pyplot.ylabel("Y-Label")
 
