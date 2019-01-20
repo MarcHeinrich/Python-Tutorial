@@ -42,7 +42,7 @@ Grob kann man zwischen Datenanalyse und Visualisierung unterscheiden. Zwei bekan
 
 
 
-In der Bibliothek \textit{numpy}~\cite{numpyreference} \randnotiz{numpy} wird ein flexibler Datentyp für mehrdimensionale Arrays zur Verfügung gestellt. Dies ermöglicht eine effiziente Durchführung von komplexen Rechnungen.
+In der Bibliothek \textit{numpy}~\cite{numpyreference} \randnotiz{Bibliothek numpy} wird ein flexibler Datentyp für mehrdimensionale Arrays zur Verfügung gestellt. Dies ermöglicht eine effiziente Durchführung von komplexen Rechnungen.
 
 Außerdem lassen sich Integrale berechnen, statistische Berechnungen durchführen und auch simulieren. All das wird für maschinelles Lernen benötigt. Da die Berechnungen mit Routinen nah an der Hardware durchgeführt werden, lassen sich bei entsprechender Programmierung effiziente Programme schreiben.
 
@@ -50,25 +50,28 @@ Die Arrays in \textit{numpy} sind dreidimensional und können so eine Vielzahl vo
 
 
 
-Die Webseite zu \textit{pandas}~\cite{pandas} \randnotiz{pandas} beschreibt dieses als gute Wahl zur schnellen und flexiblen Aufbereitung von Daten. \textit{pandas} bietet verschiedene Möglichkeiten, um schnell auf Einträge zuzugreifen. Dies ist möglich, da mittels \textit{pandas} Serien und Dataframes erzeugt werden können, die im Gegensatz zu einem Array in Python auch Spaltentitel und Indizes anbieten.
+Die Webseite zu \textit{pandas}~\cite{pandas} \randnotiz{Bibliothek pandas} beschreibt dieses als gute Wahl zur schnellen und flexiblen Aufbereitung von Daten. \textit{pandas} bietet verschiedene Möglichkeiten, um schnell auf Einträge zuzugreifen. Dies ist möglich, da mittels \textit{pandas} Serien und Dataframes erzeugt werden können, die im Gegensatz zu einem Array in Python auch Spaltentitel und Indizes anbieten.
 
 Die \textit{describe()}-Methode bietet hierbei einen ersten Überblick über die im Dataframe enthalten Daten. Ohne weitere Programmierung werden Informationen wie Maximalwert, Minimalwert und Durchschnitt für jede Spalte berechnet und angezeigt. 
 
 Spalten und Zeilen können mittels \textit{pandas} gefiltert, erweitert und verändert werden, sodass Pandas oft im ersten Schritt genutzt wird, um die auszuwertenden Daten zu laden und genauer analysieren zu können.
 
 
-Ergänzend bzw. aufbauen auf \textit{numpy} \randnotiz{scipy} werden durch \textit{scipy}~\cite{scipyreference} viele mathematische Operationen bereit gestellt. 
+Ergänzend bzw. aufbauen auf \textit{numpy} \randnotiz{Bibliothek scipy} werden durch \textit{scipy}~\cite{scipyreference} viele mathematische Operationen bereit gestellt. 
 Das Modul \textit{scipy} ist sehr mächtig und daher nochmal in Untermodule aufgeteilt. Innerhalb der Untermodule werden bestimmte Funktionalitäten gruppiert. Eine Übersicht hierzu gibt die Onlinedokumentation.
 
 
 
-Viele DataMining \randnotiz{scikit-learn} bzw. Machine Learning Funktionalitäten werden bereits durch die \textit{scikit-learn}~\cite{scikit} Bibliothek (manchmal aus sklearn abgekürzt) zur Verfügung gestellt. Die klassischen Algorithmen, wie \textit{k-Means} oder \textit{knn} sind bereits integriert.\\
+Viele DataMining \randnotiz{Bibliothek scikit-learn} bzw. Machine Learning Funktionalitäten werden bereits durch die \textit{scikit-learn}~\cite{scikit} Bibliothek (manchmal aus sklearn abgekürzt) zur Verfügung gestellt. Die klassischen Algorithmen, wie \textit{k-Means} oder \textit{knn} sind bereits integriert.\\
 Des Weiteren ist auch mit \textit{scikit-learn} eine Aufbereitung der Daten möglich. Hier werden beispielsweise Normalierung und Skalierung unterstützt. Insgesamt handelt es sich um eine sehr mächtige Bibliothek, mit der es möglich ist unterschiedliche Algorithmen zu probieren und verschiedene Test- und Trainingsverfahren zu testen. Es können auch neue Daten anhand der gelernten Modelle klassifiziert und vorhergesagt werden.
 
 
 
-Eine weitere Möglichkeit ist das Einbinden des Pakets \textit{rpy2}~\cite{rpy2} \randnotiz{rpy2}. Hierbei handelt es sich um eine Bibliothek, welche Komponenten aus R zur Verfügung stellt. \textit{rpy2} ist zu sehen wie eine Schnittstelle zwischen Python und R. Es ist möglich R-Pakete mittels Python zu importieren und mit den darin enthaltenen Funktionalitäten zu interagieren.
+Eine weitere Möglichkeit\randnotiz{Bibliothek rpy2} ist das Einbinden des Pakets \textit{rpy2}~\cite{rpy2}. Hierbei handelt es sich um eine Bibliothek, welche Komponenten aus R zur Verfügung stellt. \textit{rpy2} ist zu sehen wie eine Schnittstelle zwischen Python und R. Es ist möglich R-Pakete mittels Python zu importieren und mit den darin enthaltenen Funktionalitäten zu interagieren.
 
 
 
-Mit dem Modul \textit{matplotlib}~\cite{matplotlib} \randnotiz{matplotlib} können Daten in einem Diagramm dargestellt werden. Hiermit kann ein erstes Verständnis der Daten oder Ergebnisse erreicht werden. Es werden unter anderem Liniendiagramme, Histogramme, Balkendiagramme aber auch Heatmaps unterstützt. Hier können sowohl Achsen, Farben und auch Beschriftungen nach Bedarf angepasst werden. \textit{matplotlib} unterstützt sowohl \textit{pandas} als auch \textit{numpy} und ist daher oft bereits am Anfang von hoher Bedeutung, um einen Überblick über die Daten zu bekommen.
+Mit dem Modul \textit{matplotlib}~\cite{matplotlib} \randnotiz{Bibliothek matplotlib} können Daten in einem Diagramm dargestellt werden. Hiermit kann ein erstes Verständnis der Daten oder Ergebnisse erreicht werden. Es werden unter anderem Liniendiagramme, Histogramme, Balkendiagramme aber auch Heatmaps unterstützt. Hier können sowohl Achsen, Farben und auch Beschriftungen nach Bedarf angepasst werden. \textit{matplotlib} unterstützt sowohl \textit{pandas} als auch \textit{numpy} und ist daher oft bereits am Anfang von hoher Bedeutung, um einen Überblick über die Daten zu bekommen.
+
+\uebung
+\aufgabe{MachineLearning/machinelearning_questions}

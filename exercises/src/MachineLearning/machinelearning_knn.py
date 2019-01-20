@@ -25,7 +25,8 @@ X = np.array(dataset.iloc[:, :-1].values)
 Y = np.array(dataset.iloc[:, 4].values)
 
 # training and test splits
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.20)
+X_train, X_test, y_train, y_test = train_test_split(X, Y, 
+	test_size=0.20)
 
 # feature scaling:
 scaler = StandardScaler()
@@ -51,8 +52,9 @@ for i in range(1, 50):
 
 # Fehler im Plot darstellen
 plt.figure(figsize=(12, 6))
-plt.plot(range(1, 50), error, color='red', linestyle='dashed', 
-         marker='o', markerfacecolor='blue', markersize=10)
+plt.plot(range(1, 50), error, 
+	color='red', linestyle='dashed', marker='o', 
+	markerfacecolor='blue', markersize=10)
 plt.title('Error Rate K Value')
 plt.xlabel('K Value')
 plt.ylabel('Mean Error')

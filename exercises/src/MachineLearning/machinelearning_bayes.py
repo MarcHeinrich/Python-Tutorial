@@ -16,8 +16,8 @@ datasetY = numpy.array(wineY)
 model = GaussianNB()
 
 # Train the model using the training sets
-docs_train, docs_test, y_train, y_test = train_test_split(wineY, 
-	wineY, test_size=0.25, random_state=None)
+docs_train, docs_test, y_train, y_test = train_test_split(
+	wineY, wineY, test_size=0.25, random_state=None)
 model.fit(datasetX, datasetY)
 
 # Vorhersage
