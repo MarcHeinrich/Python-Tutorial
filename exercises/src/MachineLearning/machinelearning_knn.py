@@ -14,7 +14,7 @@ url = "https://archive.ics.uci.edu/ml/machine-learning-" \
       "databases/libras/movement_libras.data"
 
 # Assign colum names to the dataset
-names = ['curved swing', 'horizontal swing', 'vertical swing', 
+names = ['curved swing', 'horizontal swing', 'vertical swing',
          'anti-clockwise arc', 'Class']
 
 # Read dataset to pandas dataframe
@@ -40,22 +40,19 @@ classifier.fit(X_train, y_train)
 
 # make predictions
 y_pred = classifier.predict(X_test)
-
-error = []
-
-# Fehler zwischen 1 und 50
-for i in range(1, 50):
-    knn = KNeighborsClassifier(n_neighbors=i)
-    knn.fit(X_train, y_train)
-    pred_i = knn.predict(X_test)
-    error.append(np.mean(pred_i != y_test))
+y_train = classifier.predict(X_train)
 
 # Fehler im Plot darstellen
 plt.figure(figsize=(12, 6))
-plt.plot(range(1, 50), error, 
-	color='red', linestyle='dashed', marker='o', 
-	markerfacecolor='blue', markersize=10)
-plt.title('Error Rate K Value')
-plt.xlabel('K Value')
-plt.ylabel('Mean Error')
+plt.plot(range(1, 21), y_pred[:20], 
+	color='red', linestyle='dotted', 
+	marker='o', markerfacecolor='blue')
+plt.subplot()
+plt.plot(range(1, 21), y_train[:20], 
+	color='green', linestyle='dotted',
+    marker='o', markerfacecolor='orange')
+	
+plt.title('X and Y predictions')
+plt.xlabel('X-value')
+plt.ylabel('Y-value')
 plt.show()
