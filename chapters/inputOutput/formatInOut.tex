@@ -46,7 +46,7 @@ Mit Hilfe der Syntax der Modulo-Arithmetik können wir dieses Problem lösen.
  
  Mittels Punkt können wir folgend die Präzision einstellen, was bei einem \emph{Float}-Datentyp die Nachkommastellen bestimmt. Alle Zahlen werden zu der angegebenen Nachkommastelle aufgerundet!
  
-  \begin{lstlisting}[language=Python, label=formatInOut:lst:precision]
+ \begin{lstlisting}[language=Python, label=formatInOut:lst:precision]
  # Modulo-Arithmetik Präzision
  
 print("Eine Zahl %f" % (1.234))
@@ -55,8 +55,63 @@ print("Eine gerundete Zahl %.2f)
 # Ausgabe:
 # Eine Zahl 1.234
 # Eine gerundete Zahl 1.23
- \end{lstlisting}
+\end{lstlisting}
  
+\subsection{Formatierung mit format()}
+
+Python bietet uns für die Formatierung von String-Elementen die Methode \emph{format()}.
+
+ \begin{lstlisting}[language=Python, label=formatInOut:lst:formatMethod]
+# Syntax der format()-Methode 
+
+string.format(par0, par1, ..., key0=val0, key1=val1, ...)
+\end{lstlisting}
+
+\emph{format()} ersetzt markierte Stellen im gegebenen String durch angegebene Werte (Parameter in \emph{format()}) und liefert diesen zurück.
+Die Stellen werden durch geschweifte Klammern markiert und mittels Modulo-Arithmetik präzisiert. In der geschweiften Klammer geben wir als erstes den Index (oder das Schlüsselwort) des Parameters an.
+
+ \begin{lstlisting}[language=Python, label=formatInOut:lst:formatString]
+# format() mit gegebenem String 
+
+str = "Hallo, {0:s} und {1:s}"
+print(str.format("Rainer", "Denis"))
+# Ausgabe: 
+# Hallo, Rainer und Denis
+
+print(str)
+# Ausgabe:
+# Hallo, {0:s} und {1:s}
+
+# format() verändert den String nicht,
+# sondern liefert den veränderten Wert zurück
+
+str = str.format("Rainer", "Denis")
+print(str)
+# Ausgabe: 
+# Hallo, Rainer und Denis
+
+# der Wert von 'str' wurde durch den Rückgabewert
+# von format() überschrieben!
+
+str = "Hallo, {1:s} und {0:s}"
+str.format("Rainer", "Denis")
+print(str)
+# Ausgabe:
+# Hallo, Denis und Rainer
+
+# in 'str' wurde der angegebene Index vertauscht
+
+str = "Hallo, {r:s} und {d:s}"
+print(str.format(r = "Rainer", d ="Denis"))
+# Ausgabe: 
+# Hallo, Rainer und Denis
+
+# Angabe von Schlüsselwort-Parametern
+\end{lstlisting}
+
+\warning{Möchte man geschweifte Klammern ausgeben, dann werden diese doppelt geschrieben ("'\{\{"' und "'\}\}"')}
+
+Die \emph{format()}-Methode bietet uns außerdem Ausrichtungsoptionen, was zu besserer Lesbarkeit beitragen kann. Somit können wir bspw. Werte links- oder rechtsbündig ausgeben. Hierfür gibt man die Formatierungsanweisung an und den Wert des Abstandes bzw. der Größe des Platzhalters. Ist das Wort zu kurz, wird der restliche Platz mit Leerzeichen aufgefüllt.
 
 \begin{tabular}{|c | p{8cm}|}
 	\hline
@@ -66,4 +121,53 @@ print("Eine gerundete Zahl %.2f)
 	> & Text wird rechtsbündig ausgelegt \\
 	\hline
 \end{tabular}
+
+
+\begin{lstlisting}[language=Python, label=formatInOut:lst:formatAlignment]
+# Ausrichtung mit Formatierungsanweisung
+
+# linksbündig
+str = "{0:<10s} {1:d}"
+print(str.format("Viereck", 4))
+print(str.format("Fünfeck", 5))
+print(str.format("Sechseck", 6))
+
+# Ausgabe:
+# Viereck    4
+# Fünfeck    5
+# Sechseck   6
+
+
+# rechtsbünding
+str = "{0:>10s} {1:d}"
+print(str.format("Viereck", 4))
+print(str.format("Fünfeck", 5))
+print(str.format("Sechseck", 6))
+
+# Ausgabe:
+#    Viereck 4
+#    Fünfeck 5
+#   Sechseck 6
+\end{lstlisting}
+
+Python bietet uns für \lstinline{Dictionaries} einen einfachen Weg, diese mittels \emph{format()} und der Nutzung von Schlüsselwort-Parametern, auszugeben. 
+	
+\begin{lstlisting}[language=Python, label=formatInOut:lst:formatDict]
+# Formatierung eines Dictionarys
+
+dictMath = {"Dreieck" : "3", 
+	   "Viereck" : "4", 
+	   "Fünfeck" : "5",
+
+str = "{body}: {corners}"
+
+for geoBody in dictMath
+    print(str.format(body=geoBody, 
+                     corners=dictMath[geoBody]))
+    
+# Ausgabe:
+# Dreieck: 3
+# Viereck: 4
+# Fünfeck: 5
+\end{lstlisting}
 
