@@ -25,6 +25,12 @@ print("Hallo, " + userName)
 \warning{Der Eingabewert des Nutzer liefert immer einen String zurück.
 Bei gewünschtem Datentyp, muss \emph{gecasted} werden!}
 
+\kontrollfrage{
+	\item[\kontroll] Wie verhält sich das Programm bei Aufruf der \emph{input()}-Methode?
+	\item[\kontroll] Welchen Wert liefert \emph{input()} zurück? Um was für einen Datentyp handelt es sich?
+	\item [\kontroll] Welchen Effekt hat die Angabe des \lstinline{prompt}-Parameters?
+}
+
 Bei primitiven Datentypen ist das Umwandeln recht einfach. Bei nicht-primitiven kann es jedoch zu Überraschungen kommen.
 
 \begin{lstlisting}[language=Python, label=printInOut:lst:inputCast]
@@ -65,4 +71,7 @@ print(geoKoerper)
 \end{lstlisting}
 
 
-
+\kontrollfrage{
+	\item[\kontroll] Wie verhält sich der Rückgabewert von \emph{input()}, wenn man ihn zu einer Liste umwandelt?
+	\item[\kontroll] Welche Methode bietet uns Python an, um den Rückgabewert wie gewünscht zu erhalten?
+}
