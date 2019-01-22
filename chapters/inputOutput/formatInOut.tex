@@ -1,0 +1,69 @@
+% !TeX root = ../../pythonTutorial.tex
+\section{Formatierung von Strings}
+\label{formatInOut}
+
+Es wäre sicherlich hilfreich, wenn wir die String-Ausgaben nach belieben formatieren könnten. Bisher haben wir den Seperator von \emph{print()} kennengelernt - dieser ist von seiner Funktionsweise jedoch stark beschränkt. Python bietet uns hierfür die \emph{format()}-Methode an, vorher betrachten wir aber die Modulo-Arithmetik und machen uns mit den Formatierungszeichen vertraut.
+ 
+Mittels Modulo-Arithmetik \randnotiz{Modulo-
+Arithmetik} leiten wir ein Formatierungszeichen ein. Dieses gilt als Platzhalter für einen Wert.
+
+\begin{lstlisting}[language=Python, label=formatInOut:lst:modulo]
+# Modulo-Arithmetik
+
+print("Körper: %s , Fläche: %f m" %
+	('Dreieck', 42.6))
+	
+# Ausgabe:
+# Körper: Dreieck , Fläche: 42.6
+\end{lstlisting}
+
+Bei "'Körper"' setzen wir den ersten Platzhalter mit "'\%s"'. Die Reihenfolge der Platzhalter setzt fest, welcher Wert anschließend eingebunden wird. Der erste Platzhalter trägt also den ersten Wert, der nach dem Ausgabetext folgt, der zweite den zweiten und so weiter.
+
+\warning{Die einzusetzenden Werte werden nach dem String mittels Modulo als Tupel festgelegt!}
+
+Das Formatierungszeichen nach dem Modulo bestimmt den Datentyp des Wertes.
+Bei "'s"' handelt es sich um einen String, bei "'f"' um ein \emph{float}.
+In folgender Tabelle sind die möglichen Formatierungszeichen aufgelistet.
+
+\begin{figure}
+	\caption{Formatierungszeichen und ihre Bedeutung \cite{pythonFormat}}
+	\centering
+	\includegraphics[width=\textwidth]{chapters/inputOutput/FormatierungSymbole.png}
+\end{figure}
+
+Was ist jedoch, falls die Ausgabe eine bestimmte Länge haben soll?
+Mit Hilfe der Syntax der Modulo-Arithmetik können wir dieses Problem lösen.
+
+ \begin{lstlisting}[language=Python, label=formatInOut:lst:syntax]
+ # Modulo-Arithmetik Syntax
+ 
+%[Flag][Minimum der Gesamtlänge].[Präzision][Typ]
+ \end{lstlisting}
+ 
+ Das Minium der Gesamtlänge bringt große Vorteile mit sich, wenn wir z.B. einen linksbündigen Text ausgeben wollen. Alle Ausgaben, die kürzer als das vorgegebene Minimum sind, werden mit Leerzeichen aufgefüllt.
+ 
+ \warning{Es handelt sich hierbei um das Minimum der Gesamtlänge. Alle Ausgaben die größer sind, werden nicht beschränkt und in voller Länge ausgegeben!}
+ 
+ Mittels Punkt können wir folgend die Präzision einstellen, was bei einem \emph{Float}-Datentyp die Nachkommastellen bestimmt. Alle Zahlen werden zu der angegebenen Nachkommastelle aufgerundet!
+ 
+  \begin{lstlisting}[language=Python, label=formatInOut:lst:precision]
+ # Modulo-Arithmetik Präzision
+ 
+print("Eine Zahl %f" % (1.234))
+print("Eine gerundete Zahl %.2f)
+
+# Ausgabe:
+# Eine Zahl 1.234
+# Eine gerundete Zahl 1.23
+ \end{lstlisting}
+ 
+
+\begin{tabular}{|c | p{8cm}|}
+	\hline
+	Formatierungsanweisung & Bedeutung \\
+	\hline
+	< & Text wird linksbündig ausgelegt \\
+	> & Text wird rechtsbündig ausgelegt \\
+	\hline
+\end{tabular}
+
