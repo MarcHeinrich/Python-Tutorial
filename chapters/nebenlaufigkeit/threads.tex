@@ -44,7 +44,7 @@ Der Konstruktor  der \lstinline$Thread$-Klasse bietet noch weitere Parameter an:
 
 Es ist anzumerken, dass ein \lstinline$Thread$-Objekt bei seiner Erzeugung noch nicht gestartet wird.
 Hierzu muss explizit die \lstinline$start()$-Methode aufgerufen werden.
-Wurde ein Thread gestartet wird er als ''lebendig'' angesehen. 
+Wurde ein Thread gestartet wird er als \glqq lebendig\grqq{} angesehen. 
 Dies bleibt er solange, bis seine \lstinline$run()$-Methode verlassen wurde.
 Hierbei macht es keinen Unterschied, ob sie regulär verlassen wurde oder Aufgrund einer Exception.
 Der aktuelle Status eines Threads kann mittels der \lstinline$is_alive()$-Methode abgefragt werden.
@@ -450,7 +450,7 @@ Neben \lstinline$parties$ nimmt der Konstruktor von \lstinline$Barrier$ die beid
 \lstinline$timeout$ und \lstinline$action$.
 Durch \lstinline$timeout$ wird der Default-Timeout der \lstinline$wait()$-Methode gesetzt.
 Läuft dieser Timeout ab, bevor alle Threads an der \lstinline$Barrier$ warten, werden die bereits
-wartenden Threads wieder aufgeweckt und die \lstinline$Barrier$ wird in einen ''zerstörten''
+wartenden Threads wieder aufgeweckt und die \lstinline$Barrier$ wird in einen \glqq zerstörten\grqq{}
 Zustand gebracht.
 Der \lstinline$wait()$-Methode kann zudem ebenfalls ein \lstinline$timeout$-Parameter übergeben werden.
 In diesem Fall hat der in \lstinline$wait()$ definierte Timeout vorrang.
@@ -460,10 +460,12 @@ Der Rückgabewert von \lstinline$wait()$ ist ein Integer im Intervall [0, \lstinl
 Hierüber kann zum Beispiel ein Thread ausgewählt werden, um eine Besondere Aufgabe auszuführen.
 Wurde die \lstinline$Barrier$ genutzt, kann sie über \lstinline$reset()$ in ihren Initialzustand versetzt
 werden und erneut verwendet werden.
-Durch Aufruf von \lstinline$abort()$ wird die \lstinline$Barrier$ in einen ''zerstörten'' Zustand überführt.
+Durch Aufruf von \lstinline$abort()$ wird die \lstinline$Barrier$ in einen \glqq zerstörten\grqq{}
+Zustand überführt.
 Es kann jederzeit die Anzahl der Threads, auf die gewartet wird, und die Anzahl der bereits wartenden
 Threads über die Attribute \lstinline$parties$ und \lstinline$n_waiting$ abgefragt werden.
-Das Attribut \lstinline$broken$ gibt an, ob sich die \lstinline$Barrier$ im ''zerstörten'' Zustand befindet.
+Das Attribut \lstinline$broken$ gibt an, ob sich die \lstinline$Barrier$ im \glqq zerstörten\grqq{}
+Zustand befindet.
 
 \tip{
 Tritt in einem Thread ein Problem auf, und er kann nicht ordnugsgemäß fortgesetzt werden, kann
