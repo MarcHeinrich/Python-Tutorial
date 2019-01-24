@@ -1,27 +1,27 @@
-# src/FileHandlingReadWrite.py
+# src/dateienLesenUndSchreiben/FileHandlingReadWrite.py
+
 # Erstellen, Oeffnen und Schliessen der datei.txt
 
 file = open("datei.txt", "x")
+
 file.close()
 
-# src/FileHandlingReadWrite.py
 # datei.txt Text hinzufuegen
 
 file = open("datei.txt", "w")
 file.write("Hallo Welt.")  # eine Zeile hinzufuegen
 file.close()
 
-# src/FileHandlingReadWrite.py
 # datei.txt Text hinzufuegen
 
-textList = ["Hallo Welt.\n", "Das ist ein...\n", "Beispieltext"]
+textList = ["Hallo Welt.\n",
+            "Das ist ein...\n", "Beispieltext"]
 # Ohne \n wuerde der gesamte Inhalt in eine Zeile geschrieben
 
 file = open("datei.txt", "w")
 file.writelines(textList)
 file.close()
 
-# src/FileHandlingReadWrite.py
 # Auslesen und Ausgeben des Inhalts der datei.txt
 
 file = open("datei.txt", "r")
@@ -33,7 +33,21 @@ file.close()
 # Das ist ein
 # Beispieltext
 
-# src/FileHandlingReadWrite.py
+# Code-Beispiel
+
+fileObject = open("datei.txt", "r")
+print(fileObject.readline())
+print(fileObject.readline())
+print(fileObject.readline())
+fileObject.close()
+
+# Ausgabe:
+# Hallo Welt.
+#
+# Das ist ein
+#
+# Beispieltext
+
 # Ausgeben des Inhalts der datei.txt
 
 file = open("datei.txt", "r")
@@ -48,17 +62,17 @@ file.close()
 #
 # Beispieltext
 
-# src/FileHandlingReadWrite.py
 # Auslesen und Ausgeben des Inhalts der datei.txt
 
 file = open("datei.txt", "r")
 print(file.readlines())
 file.close()
 
-# Ausgabe: ['Hallo Welt.\n', 'Das ist ein...\n', 'Beispieltext']
+# Ausgabe: ['Hallo Welt.\n', 'Das ist ein...\n',
+# 'Beispieltext']
 
-# src/FileHandlingReadWrite.py
 # Ausgeben der Zeigerposition
+
 file = open("datei.txt", "r")
 print(file.tell())
 print(file.readlines())
@@ -72,7 +86,6 @@ file.close()
 # 41
 # []
 
-# src/FileHandlingReadWrite.py
 # Zeiger zuruecksetzten
 
 file = open("datei.txt", "r")
@@ -89,7 +102,6 @@ file.close()
 # 0
 # ['Hallo Welt.\n', 'Das ist ein...\n', 'Beispieltext']
 
-# src/FileHandlingReadWrite.py
 # with-Statement zum Oeffnen der Datei
 
 with open("datei.txt", "r") as file:
