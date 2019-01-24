@@ -88,11 +88,50 @@ aus der Listbox entfernt.
 	\label{ui:layoutManager:img:ListboxExampleGUI}
 \end{figure}
 
-%\subsection{Colorpicker}
-%\label{ui:widgets:subsection:colorpicker}
+\subsection{Colorchooser}
+\label{ui:widgets:subsection:colorchooser}
+Das Colorpicker oder Colorchooser-Modul bietet die Möglichkeit Farben auszuwählen.
+Diese kann anschließend über die Methode \lstinline$askcolor()$
+ausgelesen und Beispielsweise einem weiteren Widget übergeben werden. Es handelt
+sich um ein Tupel der Form \lstinline$((99, 222, 170), ‘#63deaa’)$, wobei der erste
+Teil die RGB-Werte und der zweite Teil den hexadezimal Farbcode verkörpert.
+Das Colorchooser-Modul von Tkinter bietet eine Schnittstelle zum nativen Farbauswahl-Widget
+des zugrundeliegenden Systems, weshalb sich das Widget in Optik und Funktion je nach Betriebssystem
+unterscheiden kann. Der Colorchooser wird über \lstinline$tkinter.colorchooser$ importiert.
 
-%\subsection{Canvas}
-%\label{ui:widgets:subsection:canvas}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/ColorchooserGUI.png}
+	\caption{Colorchooser-Widget unter macOS}
+	\label{ui:layoutManager:img:ColorchooserGUI}
+\end{figure}
+
+\subsection{Canvas}
+\label{ui:widgets:subsection:canvas}
+Analog zu dem in HTML 5 eingeführten Canvas-Widget oder Canvas-Element bietet auch
+Tkinter ein Element zur Darstellung verschiedener grafischer Objekte.
+Mithilfe von Canvas können Linien, Kreise oder aufwendige Formen in einem dafür
+vorgesehenen Rahmen angezeigt werden. Dabei stehen mehrere Methoden zum gestalten
+grafischer Objekte zur Verfügung. Mit \lstinline$create_line()$ können Linien,
+mit \lstinline$create_oval()$ oder \lstinline$create_rectangle()$ fertige geometrische
+Formen erstellt und anschließend dem Canvas zum Zeichnen übergeben werden.
+\lstinline$Create_polygon()$ bietet sogar die Möglichkeit ganze Polygonzüge und
+somit uneingeschränkte, zweidimensionale Figuren zu erstellen. Dabei muss als erstes
+Argumt eine Reihe von kartesischen Koordinaten übergeben werden. Im folgenden Beispiel
+wird ein blaues Dreieck erstellt und anschließend gezeichnet:
+
+\lstinline$canvas.create_polygon([120, 120, 220, 220, 220, 120], blue)$
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/CanvasGUI.png}
+	\caption{Ein Mithilfe der Create Polygon Canvas-Methode erstelltes Dreieck}
+	\label{ui:layoutManager:img:CanvasGUI}
+\end{figure}
+
+Um ein gezeichnetes Objekt zu löschen bzw. die Zeichenfläche zu reinigen steht
+die Methode \lstinline$canvas.delete(ALL)$ zur Verfügung. Der Übergabe Parameter
+besagt dabei, alle Objekte die dem Widget übergeben wurden sollen gelöscht werden.
 
 \uebung
 \aufgabe{UI_aufgabe03}
