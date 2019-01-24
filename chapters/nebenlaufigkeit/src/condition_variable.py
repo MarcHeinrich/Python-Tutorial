@@ -1,12 +1,21 @@
+# chapters/nebenlaufigkeit/src/condition_variable.py
+# Beispiel zur Verwendung von Condition-Objekten
+
 import threading
 
 
 class Counter:
     def __init__(self):
         self.count = 0
+        self.cv = threading.Condition(threading.RLock())
 
-    def increment(self):
-        self.count += 1
+    def increment(self, value=1):
+        if 0 >= value:
+            return
+
+        with self.cv:
+            self.count += 1
+            self.increment(value - 1)
 
 
 class IncrementerThread(threading.Thread):

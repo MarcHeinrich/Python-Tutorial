@@ -1,3 +1,6 @@
+# chapters/nebenlaufigkeit/src/parkhaus.py
+# Anschauungsbeispiel: Parkhaus
+
 import threading
 import time
 import random
@@ -37,7 +40,7 @@ class Car(threading.Thread):
 
     def run(self):
         while True:
-            # Fahre eine zufällige Zeit umher
+            # Fahre eine zufï¿½llige Zeit umher
             time.sleep(random.uniform(0, 10))
 
             # Fahren in das Parkhaus
@@ -45,7 +48,7 @@ class Car(threading.Thread):
             self.carPark.enter()
             print("Car", self.id, " entered the car park")
 
-            # Parke eine zufällige Zeit
+            # Parke eine zufï¿½llige Zeit
             print("Car", self.id, " is parking")
             time.sleep(random.uniform(0, 15))
 

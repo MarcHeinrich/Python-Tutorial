@@ -1,3 +1,6 @@
+# chapters/nebenlaufigkeit/src/lock_aquire_release.py
+# Beispiel zur Verwendung von Lock-Objekten
+
 import threading
 
 lock = threading.Lock()

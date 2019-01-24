@@ -1,3 +1,6 @@
+# chapters/nebenlaufigkeit/src/thread_erzeugung.py
+# Beispiel zur Threaderzeugung
+
 import threading
 
 
