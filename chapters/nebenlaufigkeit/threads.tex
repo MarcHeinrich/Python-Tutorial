@@ -24,12 +24,12 @@ Es gibt zwei Möglichkeiten einen Thread zu erzeugen. Entweder wird dem Konstrukt
 aufrufbares Objekt übergeben,
 
 \label{threads:lst:thread_erzeugung_callable}
-\lstinputlisting[language=Python,firstline=4,lastline=9]{chapters/nebenlaufigkeit/src/beispiel_thread_erzeugung.py}
+\lstinputlisting[language=Python,linerange={1-2,6-12}]{chapters/nebenlaufigkeit/src/thread_erzeugung.py}
 
 oder die \lstinline$run()$-Methode wird in einer von \lstinline$Thread$ abgeleiteten Klasse überschrieben.
 
 \label{threads:lst:thread_erzeugung_subclass}
-\lstinputlisting[language=Python,firstline=12,lastline=18]{chapters/nebenlaufigkeit/src/beispiel_thread_erzeugung.py}
+\lstinputlisting[language=Python,linerange={1-2,14-21}]{chapters/nebenlaufigkeit/src/thread_erzeugung.py}
 
 Der Konstruktor  der \lstinline$Thread$-Klasse bietet noch weitere Parameter an:
 \begin{itemize}
@@ -103,7 +103,7 @@ Sie besitzt das Attribut \lstinline$count$, welches durch Aufruf von \lstinline$
 in Einerschritten erhöht wird. 
 
 \label{threads:lst:counter_example}
-\lstinputlisting[language=Python,firstline=4,lastline=9]{chapters/nebenlaufigkeit/src/beispiel_synchronisation_fehler.py}
+\lstinputlisting[language=Python,linerange={1-3,7-13}]{chapters/nebenlaufigkeit/src/synchronisation_fehler.py}
 
 Es ist weiterhin die \hyperref[threads:lst:incrementer_thread]{\lstinline$IncrementerThread$-Klasse}
 gegeben, welche bei der Initialisierung ein \lstinline$Counter$-Objekt erwartet.
@@ -111,14 +111,14 @@ Dieser Thread ruft eine Millionen mal die \lstinline$increment()$-Methode des \l
 auf und beendet sich anschließend.
 
 \label{threads:lst:incrementer_thread}
-\lstinputlisting[language=Python,firstline=12,lastline=19]{chapters/nebenlaufigkeit/src/beispiel_synchronisation_fehler.py}
+\lstinputlisting[language=Python,linerange={1-3,15-23}]{chapters/nebenlaufigkeit/src/synchronisation_fehler.py}
 
 Für dieses Beispiel werden nun 10 \lstinline$IncrementerThreads$ erzeugt und gestartet.
 Anschließend wird auf ihre Terminierung gewartet und dann der Wert des \lstinline$count$-Attributs des
 \lstinline$Counters$ ausgegeben:
 
 \label{threads:lst:example_no_locks}
-\lstinputlisting[language=Python,firstline=22]{chapters/nebenlaufigkeit/src/beispiel_synchronisation_fehler.py}
+\lstinputlisting[language=Python,linerange={1-3,25-36}]{chapters/nebenlaufigkeit/src/synchronisation_fehler.py}
 
 \kontrollfrage{
 \item[\kontroll] Welche Ausgabe würde erwartet werden, wenn 10 Threads den Counter eine Millionen
@@ -180,7 +180,7 @@ einen \lstinline$try$-Block zu schreiben und den Aufruf von \lstinline$release()
 \lstinline$finally$-Block zu schreiben:
 
 \label{threads:lst:try_aquire_lock}
-\lstinputlisting[language=Python,firstline=5,lastline=9]{chapters/nebenlaufigkeit/src/beispiel_lock_aquire_release.py}
+\lstinputlisting[language=Python,linerange={1-2,7-12}]{chapters/nebenlaufigkeit/src/lock_aquire_release.py}
 
 Diese Variante ist allerdings etwas lang und unschön.
 Da die \lstinline$Lock$-Klasse das Context-Management-Protokoll unterstützt, kann das Gleiche mit dem
@@ -188,7 +188,7 @@ Da die \lstinline$Lock$-Klasse das Context-Management-Protokoll unterstützt, kan
 Hierbei werden \lstinline$aquire()$ und \lstinline$release()$ automatisch aufgerufen:
 
 \label{threads:lst:with_aquire_lock}
-\lstinputlisting[language=Python,firstline=11,lastline=12]{chapters/nebenlaufigkeit/src/beispiel_lock_aquire_release.py}
+\lstinputlisting[language=Python,linerange={1-2,13-15}]{chapters/nebenlaufigkeit/src/lock_aquire_release.py}
 
 Wird \lstinline$aquire()$ ohne Parameter aufgerufen, blockiert sie solange, bis \lstinline$release()$ 
 aufgerufen wird.
@@ -266,7 +266,7 @@ Die neue \hyperref[threads:lst:counter_condition_variable_example]{\lstinline$Co
 dann wie folgt aus:
 
 \label{threads:lst:counter_condition_variable_example}
-\lstinputlisting[language=Python,firstline=4,lastline=15]{chapters/nebenlaufigkeit/src/beispiel_condition_variable.py}
+\lstinputlisting[language=Python,linerange={1-2,6-18}]{chapters/nebenlaufigkeit/src/condition_variable.py}
 
 Eine Condition Variable kann also wie ein einfaches Lock verwendet werden.
 Die \lstinline$aquire()$- und \lstinline$release()$-Methoden verhalten sich hierbei, wie die des hinterlegten
@@ -331,7 +331,7 @@ Somit wird genau ein Consumer aufgeweckt.
 In diesem Beispiel reicht es vollkommen aus, nur einen Consumer aufzuwecken.
 
 \label{threads:lst:producer_consumer}
-\lstinputlisting[language=Python,firstline=21,lastline=30]{chapters/nebenlaufigkeit/src/beispiel_producer_consumer.py}
+\lstinputlisting[language=Python,linerange={1-2,23-33}]{chapters/nebenlaufigkeit/src/producer_consumer.py}
 
 Der Consumer ruft \lstinline$wait()$ innerhalb der \lstinline$while$-Schleife auf und prüft
 jedes mal seine Bedingung.
@@ -349,7 +349,7 @@ Wird \lstinline$wait_for()$ verwendet, ändert sich das
 folgender Maßen (vgl. \cite{pythondokuthreads}):
 
 \label{threads:lst:producer_consumer_wait_for}
-\lstinputlisting[language=Python,firstline=32,lastline=35]{chapters/nebenlaufigkeit/src/beispiel_producer_consumer.py}
+\lstinputlisting[language=Python,linerange={1-2,34-38}]{chapters/nebenlaufigkeit/src/producer_consumer.py}
 
 \uebung
 \aufgabe{nebenlaufigkeit06}
@@ -363,7 +363,7 @@ Die Klasse \hyperref[threads:lst:parkhaus]{\lstinline$CarPark$} simuliert ein Pa
 eine Condition Variable, um sich vor konkurrierenden Zugriffen zu schützen.
 
 \label{threads:lst:parkhaus}
-\lstinputlisting[language=Python,firstline=6,lastline=29]{chapters/nebenlaufigkeit/src/beispiel_parkhaus.py}
+\lstinputlisting[language=Python,linerange={1-2,8-32}]{chapters/nebenlaufigkeit/src/parkhaus.py}
 
 Ein Auto, dass zuerst eine gewisse Zeit umher fährt, bevor es eine zufällige Zeit parkt, wird durch die
 Klasse \hyperref[threads:lst:auto]{\lstinline$Car$} simuliert.
@@ -371,7 +371,7 @@ Um eine zufällige Zeit im Intervall von \lstinline$x$ bis \lstinline$y$ zu schla
 \lstinline$uniform(x,y)$-Methode aus dem \lstinline$random$-Modul verwendet.
 
 \label{threads:lst:auto}
-\lstinputlisting[language=Python,firstline=32,lastline=54]{chapters/nebenlaufigkeit/src/beispiel_parkhaus.py}
+\lstinputlisting[language=Python,linerange={1-2,34-57}]{chapters/nebenlaufigkeit/src/parkhaus.py}
 
 Es wird nun ein neues \lstinline$CarPark$-Objekt erzeugt, das 5 Parkplätze besitzt.
 Anschließend werden 10 \lstinline$Car$-Objekte initialisiert und gestartet.
@@ -380,7 +380,7 @@ Ausgaben nachvollzogen werden, welches Auto gerade in das Parkhaus einfahren möc
 Parkplatz gefunden hat und wieder ausfährt.
 
 \label{threads:lst:parkhaus_ausführung}
-\lstinputlisting[language=Python,firstline=57,lastline=60]{chapters/nebenlaufigkeit/src/beispiel_parkhaus.py}
+\lstinputlisting[language=Python,linerange={1-2,59-63}]{chapters/nebenlaufigkeit/src/parkhaus.py}
 
 Dieses Beispiel stellt eine vereinfachte Ansicht auf das reale Geschehen.
 Es wird hier nämlich keine Rücksicht auf die Reihenfolge genommen, in der die Autos in das 
@@ -419,14 +419,14 @@ bevorzugt verwendet werden, da andernfalls der Fehler unbemerkt bleibt.
 }
 
 Wie eine \lstinline$Semaphore$ den gleichzeitigen Zugriff auf eine Datenbankverbindung beschränken
-kann ist im folgenden Beispiel gezeigt \cite{pythondokuthreads}.
+kann ist im folgenden Beispiel gezeigt (vgl. \cite{pythondokuthreads}).
 Hier wird eine beschränkung von maximal 5 gleichzeitigen Zugriffen gesetzt.
 Das \lstinline$with$-Statement ruft wieder automatisch \lstinline$aquire()$ und \lstinline$release()$ auf.
 Somit ist garantiert, dass sich immer maximal 5 Threads innerhalb des \lstinline$with$-Statements 
 befinden.
 
 \label{threads:lst:semaphore}
-\lstinputlisting[language=Python,firstline=3,lastline=15]{chapters/nebenlaufigkeit/src/beispiel_semaphore.py}
+\lstinputlisting[language=Python,linerange={1-2,5-18}]{chapters/nebenlaufigkeit/src/semaphore.py}
 
 \uebung
 \aufgabe{nebenlaufigkeit07}

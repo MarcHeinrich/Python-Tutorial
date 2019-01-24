@@ -1,3 +1,6 @@
+# chapters/nebenlaufigkeit/src/producer_consumer.py
+# Producer-Consumer-Pattern mit Condition-Variablen
+
 import threading
 
 

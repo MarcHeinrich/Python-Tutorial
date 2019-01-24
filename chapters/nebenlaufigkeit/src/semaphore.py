@@ -1,3 +1,6 @@
+# chapters/nebenlaufigkeit/src/semaphore.py
+# Beispiel zur Verwendung von Semaphore-Objekten
+
 import threading
 
 # Initialisierung der Semaphore

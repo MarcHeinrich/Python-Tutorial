@@ -1,18 +1,16 @@
+# chapters/nebenlaufigkeit/src/synchronisation_fehler.py
+# Beispiel zum Auftritt von Fehlern ohne
+# Verwendung von Synchronisation
+
 import threading
 
 
 class Counter:
     def __init__(self):
         self.count = 0
-        self.cv = threading.Condition(threading.RLock())
 
-    def increment(self, value=1):
-        if 0 >= value:
-            return
-
-        with self.cv:
-            self.count += 1
-            self.increment(value - 1)
+    def increment(self):
+        self.count += 1
 
 
 class IncrementerThread(threading.Thread):
