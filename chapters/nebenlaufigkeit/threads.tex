@@ -480,6 +480,18 @@ Deadlock zu vermeiden.
 
 Es gibt verschiedene Wege, eine Kommunikation zwischen verschiedenen Threads zu realisieren.
 In Python wurde einer der simpelsten Mechanismen durch die \lstinline$Event$-Klasse implementiert.
+\randnotiz{Events}
 Hierbei warten Threads darauf, dass ein gewisses Ereignis eintritt, welches durch einen anderen Thread
 ausgelöst wird.
-
+Das \lstinline$Event$-Objekt verwaltet hierfür eine interne binäre Variable, welche initial den Wert 
+\lstinline$False$ erhält.
+Sie kann durch \lstinline$set()$ und \lstinline$clear()$ gesetzt und gelöscht werden.
+Die \lstinline$is_set()$-Methode gibt den aktuellen Wert der binären Variable zurück.
+Soll auf das Eintreten des Ereignisses gewartet werden, so kann die \lstinline$wait()$-Methode aufgerufen
+werden.
+Diese blockiert solange, bis \lstinline$set()$ aufgerufen wurde.
+Wurde \lstinline$set()$ bereits vor \lstinline$wait()$ aufgerufen, wird nicht blockiert, und \lstinline$wait()$
+kehrt sofort zurück.
+Es kann wieder der \lstinline$timeout$-Parameter an \lstinline$wait()$ übergeben werden.
+Nur falls dieser Timeout ausläuft, bevor \lstinline$set()$ aufgerufen wurde, gibt \lstinline$False$ zurück.
+Andernfalls ist der Rückgabewert immer \lstinline$True$.
