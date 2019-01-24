@@ -473,3 +473,13 @@ Deadlock zu vermeiden.
 
 \uebung
 \aufgabe{nebenlaufigkeit08}
+
+
+\subsubsection{Thread-Kommunikation}
+\label{threads:subsubsection:thread-kommunikation}
+
+Es gibt verschiedene Wege, eine Kommunikation zwischen verschiedenen Threads zu realisieren.
+In Python wurde einer der simpelsten Mechanismen durch die \lstinline$Event$-Klasse implementiert.
+Hierbei warten Threads darauf, dass ein gewisses Ereignis eintritt, welches durch einen anderen Thread
+ausgelöst wird.
+
