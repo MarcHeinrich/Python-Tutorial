@@ -500,3 +500,83 @@ Andernfalls ist der Rückgabewert immer \lstinline$True$.
 
 \uebung
 \aufgabe{nebenlaufigkeit09}
+
+Eine einfache boolesche Variable ist in sehr vielen Anwendungsfällen nicht als Kommunikationsgrundlage
+geeignet.
+In Python gibt es eine weitere Methode, wie Threads untereinander Informationen sicher austauschen
+können.
+\randnotiz{Queues}
+Im \lstinline$queue$-Modul sind drei Multi-Producer, Multi-Consumer Queues implementiert, welche die
+nötigen Synchronisationssemantiken realisieren.
+Diese drei Queues unterscheiden sich in der Reihenfolge, in welcher die hinzugefügten Elemente wieder
+entnommen werden.
+Durch die \lstinline$Queue$-Klasse wird ein FIFO-Queue realsiert und \lstinline$LifoQueue$ handelt nach
+dem LIFO- Prinzip.
+So kann \lstinline$LifoQueue$ zum Beispiel auch als Stack verwendet werden.
+Der \lstinline$PriorityQueue$ hält seine hinzugefügten Elemente sortiert und gibt zuerst immer das
+niedrigste Element zurück.
+Zur Sortierung wird hierbei der Heap-Queue-Algorithmus, auch bekannt als Priority-Queue-Algorithmus,
+aus dem \lstinline$heapq$-Modul (vgl. \cite{pythondokuheapq}) verwendent.
+Diese drei Klassen nutzen intern \lstinline$Lock$- Objekte, weshalb Threads bei gleichzeitigen zugriffen
+blockiert werden.
+Den Konstruktoren aller Queues kann der optionale Parameter \lstinline$maxsize$ übergeben werden, um 
+die maximale Anzahl an Elementen zu setzen.
+Wird der Parameter nicht angegeben oder Werte kleiner 1 angegeben, so ist die Größe des Queues 
+unbegrenzt.
+
+\kontrollfrage{
+\item[\kontroll] Kennen Sie ein Anwendungsbeispiel, bei dem das Konzept von Queues häufig zum
+Einsatz kommt?
+}
+
+Über die \lstinline$qsize()$-Methode kann die ungefähre Größe der Queues abgefragt werden.
+Durch \lstinline$empty()$ und \lstinline$full()$ kann entsprechend geprüft werden, ob der Queue leer
+oder gefüllt ist.
+Beide geben erwartungsgemäß einen booleschen Wert zurück.
+Um ein Element in den Queue einzufügen, wird \lstinline$put()$ aufgerufen. 
+Der Parameter \lstinline$item$ nimmt hierbei das Element entgegen.
+Ist der Queue bereits voll, blockiert \lstinline$put()$ so lange, bis wieder ein Platz frei geworden ist.
+Durch angebe des optionalen Parameters \lstinline$timeout$ kann eine maximale Zeit angegeben werden,
+nach welcher \lstinline$put()$ zurückkehrt, auch wenn kein Platz freigeworden ist.
+In diesem Fall würde eine \lstinline$Full$-Exception geworfen werden.
+Wird der optionale Parameter \lstinline$block$ auf \lstinline$False$ gesetzt, so kehrt \lstinline$put()$ sofort
+zurück und wirft die \lstinline$Full$-Exception, wenn in der Queue kein Platz frei ist.
+Es wird auch die Methode \lstinline$put_nowait()$ angeboten. 
+Sie verhält sich wie ein Aufruf von \lstinline$put()$, wenn \lstinline$block$ den Wert
+\lstinline$False$ besitzt.
+Um eine Element aus der Queue heraus zu holen, wird \lstinline$get()$ aufgerufen.
+Sollte zum Zeitpunkt des Aufrufs keine Element in der Queue enthalten sein, wird so lange blockiert,
+bei ein anderer Thread eines hinzufügt.
+Es kann wieder ein optionaler Parameter \lstinline$timeout$ angegeben werden.
+Läuft dieser ab, bevor ein Element in den leeren Queue eingefügt wurde, kehrt \lstinline$get()$ zurück
+und wirft die \lstinline$Empty$-Exception.
+Wird der optionale Paramert \lstinline$block$ mit \lstinline$False$ angegeben, wirft \lstinline$get()$ 
+sofort die \lstinline$Empty$-Exception, falls kein Element vorhanden ist.
+Das selbe Verhalten tritt auch beim Aufruf der Methode \lstinline$get_nowait()$ auf.
+Neben dieser grundlegenden Funktionalität für eine Queue implementieren die drei vorgestellten 
+Implementationen noch eine weitere Funktionalität.
+So kann geprüft werden, ob alle Elemente vollständig abgearbeitet wurden.
+Hierfür werden zwei weitere Methoden angeboten.
+Durch den Aufruf von \lstinline$task_done()$ wird den Queues mitgeteilt, dass ein mittels \lstinline$get()$
+erhaltenes Element vollständig abgeabreitet wurde.
+Wird \lstinline$join()$ auf einem Objekt der drei Queues aufgerufen, so blockiert sie so lange, bis 
+\lstinline$task_done()$ so häufig aufgerufen wurde, wie \lstinline$get()$.
+
+\tip{
+Diese Funktionalität kann zum Beispiel dazu verwendet werden, um zu warten, bis alle
+Dämon-Consumer-Threads ihre Elemente bearbeitet haben, bevor das Programm beendet wird.
+}
+
+Neben den bereits vorgestellten Queues gibt es noch eine weitere Implementierung, den
+\lstinline$SimpleQueue$.
+Er stellt, wie auch \lstinline$Queue$, einen FIFO-Queue dar und bietet zusätzliche Garantien an,
+welche auf Kosten von geringerer Funktionalität kommen.
+Für einen \lstinline$SimpleQueue$ kann keine maximale Größe definiert werden, er ist somit immer 
+unbegrenzt Groß.
+Aufrufe von \lstinline$put()$ blockieren garantiert nie.
+Die beiden optionalen Parameter \lstinline$block$ und \lstinline$timeout$ werden ignoriert und werden 
+nur aufgeführt, um kompatibel zur \lstinline$Queue$-Klasse zu sein.
+Die Funktionalität der anderen Klassen, die von \lstinline$SimpleQueue$ nicht unterstützt wird, ist das 
+Warten auf die vollständinge Abarbeitung aller Elemente.
+Die beiden Methoden \lstinline$task_done()$ und \lstinline$join()$ werden von \lstinline$SimpleQueue$ 
+nicht angeboten.
