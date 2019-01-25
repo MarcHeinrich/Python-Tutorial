@@ -44,7 +44,7 @@ Der Konstruktor  der \lstinline$Thread$-Klasse bietet noch weitere Parameter an:
 
 Es ist anzumerken, dass ein \lstinline$Thread$-Objekt bei seiner Erzeugung noch nicht gestartet wird.
 Hierzu muss explizit die \lstinline$start()$-Methode aufgerufen werden.
-Wurde ein Thread gestartet wird er als ''lebendig'' angesehen. 
+Wurde ein Thread gestartet wird er als \glqq lebendig\grqq{} angesehen. 
 Dies bleibt er solange, bis seine \lstinline$run()$-Methode verlassen wurde.
 Hierbei macht es keinen Unterschied, ob sie regulär verlassen wurde oder Aufgrund einer Exception.
 Der aktuelle Status eines Threads kann mittels der \lstinline$is_alive()$-Methode abgefragt werden.
@@ -78,8 +78,8 @@ Wird sie nach dem Starten des Threads geändert, so wird ein \lstinline$RuntimeEr
 	Das heißt, dass ihre Ressourcen wie zum Beispiel geöffnete Dateien oder Datenbanktransaktionen
 	gegebenenfalls nicht ordentlich freigegeben werden.
 	Um dies zu verhindern, sollten die betroffenen Threads nicht die Dämon-Eigenschaft besitzen und
-	es sollten geeignete Signalisierungsmechanismen eingesetzt werden (siehe \lstinline$Event$-Objekte).
-	%ggf. entfernen falls Kapitel nicht in finaler Abgabe
+	es sollten geeignete Signalisierungsmechanismen eingesetzt werden (siehe Abschnitt
+	\ref{threads:subsubsection:thread-kommunikation}).
 }
 
 \uebung
@@ -450,7 +450,7 @@ Neben \lstinline$parties$ nimmt der Konstruktor von \lstinline$Barrier$ die beid
 \lstinline$timeout$ und \lstinline$action$.
 Durch \lstinline$timeout$ wird der Default-Timeout der \lstinline$wait()$-Methode gesetzt.
 Läuft dieser Timeout ab, bevor alle Threads an der \lstinline$Barrier$ warten, werden die bereits
-wartenden Threads wieder aufgeweckt und die \lstinline$Barrier$ wird in einen ''zerstörten''
+wartenden Threads wieder aufgeweckt und die \lstinline$Barrier$ wird in einen \glqq zerstörten\grqq{}
 Zustand gebracht.
 Der \lstinline$wait()$-Methode kann zudem ebenfalls ein \lstinline$timeout$-Parameter übergeben werden.
 In diesem Fall hat der in \lstinline$wait()$ definierte Timeout vorrang.
@@ -460,10 +460,12 @@ Der Rückgabewert von \lstinline$wait()$ ist ein Integer im Intervall [0, \lstinl
 Hierüber kann zum Beispiel ein Thread ausgewählt werden, um eine Besondere Aufgabe auszuführen.
 Wurde die \lstinline$Barrier$ genutzt, kann sie über \lstinline$reset()$ in ihren Initialzustand versetzt
 werden und erneut verwendet werden.
-Durch Aufruf von \lstinline$abort()$ wird die \lstinline$Barrier$ in einen ''zerstörten'' Zustand überführt.
+Durch Aufruf von \lstinline$abort()$ wird die \lstinline$Barrier$ in einen \glqq zerstörten\grqq{}
+Zustand überführt.
 Es kann jederzeit die Anzahl der Threads, auf die gewartet wird, und die Anzahl der bereits wartenden
 Threads über die Attribute \lstinline$parties$ und \lstinline$n_waiting$ abgefragt werden.
-Das Attribut \lstinline$broken$ gibt an, ob sich die \lstinline$Barrier$ im ''zerstörten'' Zustand befindet.
+Das Attribut \lstinline$broken$ gibt an, ob sich die \lstinline$Barrier$ im \glqq zerstörten\grqq{}
+Zustand befindet.
 
 \tip{
 Tritt in einem Thread ein Problem auf, und er kann nicht ordnugsgemäß fortgesetzt werden, kann
@@ -473,3 +475,111 @@ Deadlock zu vermeiden.
 
 \uebung
 \aufgabe{nebenlaufigkeit08}
+
+
+\subsubsection{Thread-Kommunikation}
+\label{threads:subsubsection:thread-kommunikation}
+
+Es gibt verschiedene Wege, eine Kommunikation zwischen verschiedenen Threads zu realisieren.
+In Python wurde einer der simpelsten Mechanismen durch die \lstinline$Event$-Klasse implementiert.
+\randnotiz{Events}
+Hierbei warten Threads darauf, dass ein gewisses Ereignis eintritt, welches durch einen anderen Thread
+ausgelöst wird.
+Das \lstinline$Event$-Objekt verwaltet hierfür eine interne binäre Variable, welche initial den Wert 
+\lstinline$False$ erhält.
+Sie kann durch \lstinline$set()$ und \lstinline$clear()$ gesetzt und gelöscht werden.
+Die \lstinline$is_set()$-Methode gibt den aktuellen Wert der binären Variable zurück.
+Soll auf das Eintreten des Ereignisses gewartet werden, so kann die \lstinline$wait()$-Methode aufgerufen
+werden.
+Diese blockiert solange, bis \lstinline$set()$ aufgerufen wurde.
+Wurde \lstinline$set()$ bereits vor \lstinline$wait()$ aufgerufen, wird nicht blockiert, und \lstinline$wait()$
+kehrt sofort zurück.
+Es kann wieder der \lstinline$timeout$-Parameter an \lstinline$wait()$ übergeben werden.
+Nur falls dieser Timeout ausläuft, bevor \lstinline$set()$ aufgerufen wurde, gibt \lstinline$False$ zurück.
+Andernfalls ist der Rückgabewert immer \lstinline$True$.
+
+\uebung
+\aufgabe{nebenlaufigkeit09}
+
+Eine einfache boolesche Variable ist in sehr vielen Anwendungsfällen nicht als Kommunikationsgrundlage
+geeignet.
+In Python gibt es eine weitere Methode, wie Threads untereinander Informationen sicher austauschen
+können.
+\randnotiz{Queues}
+Im \lstinline$queue$-Modul sind drei Multi-Producer, Multi-Consumer Queues implementiert, welche die
+nötigen Synchronisationssemantiken realisieren.
+Diese drei Queues unterscheiden sich in der Reihenfolge, in welcher die hinzugefügten Elemente wieder
+entnommen werden.
+Durch die \lstinline$Queue$-Klasse wird ein FIFO-Queue realsiert und \lstinline$LifoQueue$ handelt nach
+dem LIFO- Prinzip.
+So kann \lstinline$LifoQueue$ zum Beispiel auch als Stack verwendet werden.
+Der \lstinline$PriorityQueue$ hält seine hinzugefügten Elemente sortiert und gibt zuerst immer das
+niedrigste Element zurück.
+Zur Sortierung wird hierbei der Heap-Queue-Algorithmus, auch bekannt als Priority-Queue-Algorithmus,
+aus dem \lstinline$heapq$-Modul (vgl. \cite{pythondokuheapq}) verwendent.
+Diese drei Klassen nutzen intern \lstinline$Lock$- Objekte, weshalb Threads bei gleichzeitigen zugriffen
+blockiert werden.
+Den Konstruktoren aller Queues kann der optionale Parameter \lstinline$maxsize$ übergeben werden, um 
+die maximale Anzahl an Elementen zu setzen.
+Wird der Parameter nicht angegeben oder Werte kleiner 1 angegeben, so ist die Größe des Queues 
+unbegrenzt.
+
+\kontrollfrage{
+\item[\kontroll] Kennen Sie ein Anwendungsbeispiel, bei dem das Konzept von Queues häufig zum
+Einsatz kommt?
+}
+
+Über die \lstinline$qsize()$-Methode kann die ungefähre Größe der Queues abgefragt werden.
+Durch \lstinline$empty()$ und \lstinline$full()$ kann entsprechend geprüft werden, ob der Queue leer
+oder gefüllt ist.
+Beide geben erwartungsgemäß einen booleschen Wert zurück.
+Um ein Element in den Queue einzufügen, wird \lstinline$put()$ aufgerufen. 
+Der Parameter \lstinline$item$ nimmt hierbei das Element entgegen.
+Ist der Queue bereits voll, blockiert \lstinline$put()$ so lange, bis wieder ein Platz frei geworden ist.
+Durch Angabe des optionalen Parameters \lstinline$timeout$ kann eine maximale Zeit angegeben werden,
+nach welcher \lstinline$put()$ zurückkehrt, auch wenn kein Platz freigeworden ist.
+In diesem Fall würde eine \lstinline$Full$-Exception geworfen werden.
+Wird der optionale Parameter \lstinline$block$ auf \lstinline$False$ gesetzt, so kehrt \lstinline$put()$ sofort
+zurück und wirft die \lstinline$Full$-Exception, wenn in der Queue kein Platz frei ist.
+Es wird auch die Methode \lstinline$put_nowait()$ angeboten. 
+Sie verhält sich wie ein Aufruf von \lstinline$put()$, wenn \lstinline$block$ den Wert
+\lstinline$False$ besitzt.
+Um eine Element aus der Queue heraus zu holen, wird \lstinline$get()$ aufgerufen.
+Sollte zum Zeitpunkt des Aufrufs keine Element in der Queue enthalten sein, wird so lange blockiert,
+bei ein anderer Thread eines hinzufügt.
+Es kann wieder ein optionaler Parameter \lstinline$timeout$ angegeben werden.
+Läuft dieser ab, bevor ein Element in den leeren Queue eingefügt wurde, kehrt \lstinline$get()$ zurück
+und wirft die \lstinline$Empty$-Exception.
+Wird der optionale Paramert \lstinline$block$ mit \lstinline$False$ angegeben, wirft \lstinline$get()$ 
+sofort die \lstinline$Empty$-Exception, falls kein Element vorhanden ist.
+Das selbe Verhalten tritt auch beim Aufruf der Methode \lstinline$get_nowait()$ auf.
+Neben dieser grundlegenden Funktionalität für eine Queue implementieren die drei vorgestellten 
+Implementationen noch eine weitere Funktionalität.
+So kann geprüft werden, ob alle Elemente vollständig abgearbeitet wurden.
+Hierfür werden zwei weitere Methoden angeboten.
+Durch den Aufruf von \lstinline$task_done()$ wird den Queues mitgeteilt, dass ein mittels \lstinline$get()$
+erhaltenes Element vollständig abgeabreitet wurde.
+Wird \lstinline$join()$ auf einem Objekt der drei Queues aufgerufen, so blockiert sie so lange, bis 
+\lstinline$task_done()$ so häufig aufgerufen wurde, wie \lstinline$get()$.
+
+\tip{
+Diese Funktionalität kann zum Beispiel dazu verwendet werden, um zu warten, bis alle
+Dämon-Consumer-Threads ihre Elemente bearbeitet haben, bevor das Programm beendet wird.
+}
+
+Neben den bereits vorgestellten Queues gibt es noch eine weitere Implementierung, den
+\lstinline$SimpleQueue$.
+Er stellt, wie auch \lstinline$Queue$, einen FIFO-Queue dar und bietet zusätzliche Garantien an,
+welche auf Kosten von geringerer Funktionalität kommen.
+Für einen \lstinline$SimpleQueue$ kann keine maximale Größe definiert werden, er ist somit immer 
+unbegrenzt Groß.
+Aufrufe von \lstinline$put()$ blockieren garantiert nie.
+Die beiden optionalen Parameter \lstinline$block$ und \lstinline$timeout$ werden ignoriert und werden 
+nur aufgeführt, um kompatibel zur \lstinline$Queue$-Klasse zu sein.
+Die Funktionalität der anderen Klassen, die von \lstinline$SimpleQueue$ nicht unterstützt wird, ist das 
+Warten auf die vollständinge Abarbeitung aller Elemente.
+Die beiden Methoden \lstinline$task_done()$ und \lstinline$join()$ werden von \lstinline$SimpleQueue$ 
+nicht angeboten.
+
+\uebung
+\aufgabe{nebenlaufigkeit10}
