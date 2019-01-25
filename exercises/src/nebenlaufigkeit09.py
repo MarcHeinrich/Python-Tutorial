@@ -1,6 +1,3 @@
-# chapters/nebenlaufigkeit/src/parkhaus.py
-# Anschauungsbeispiel: Parkhaus
-
 import threading
 import time
 import random
@@ -8,37 +5,33 @@ import random
 
 class CarPark:
     def __init__(self, capacity):
-        self.cv = threading.Condition()
-        self.capacity = capacity
-        self.occupied = 0
+        self.semaphore = threading.BoundedSemaphore(capacity)
 
     def is_free(self):
-        return self.occupied < self.capacity
+        return 0 < self.semaphore._value
 
     def enter(self):
-        with self.cv:
-            self.cv.wait_for(self.is_free)
-            self.occupied += 1
-            self.show()
+        self.semaphore.acquire()
+        self.show()
 
     def exit(self):
-        with self.cv:
-            self.occupied -= 1
-            self.cv.notify()
-            self.show()
-    
+        self.semaphore.release()
+        self.show()
+
     def show(self):
-        currentCapacity = self.capacity - self.occupied
-        print("CarPool capacity is ", currentCapacity)
+        print("CarPool capacity is ", self.semaphore._value)
 
 
 class Car(threading.Thread):
-    def __init__(self, carPark, id):
+    def __init__(self, carPark, id, startEvent):
         threading.Thread.__init__(self)
         self.carPark = carPark
         self.id = id
+        self.startEvent = startEvent
 
     def run(self):
+        self.startEvent.wait()
+
         while True:
             # Fahre eine zufällige Zeit umher
             time.sleep(random.uniform(0, 10))
@@ -58,6 +51,10 @@ class Car(threading.Thread):
 
 
 carPark = CarPark(5)
-for i in range(10):
-    cars = Car(carPark, i)
+
+amountOfCars = 10
+startEvent = threading.Event()
+for i in range(amountOfCars):
+    cars = Car(carPark, i, startEvent)
     cars.start()
+startEvent.set()
