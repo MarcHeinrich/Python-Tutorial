@@ -536,7 +536,7 @@ Beide geben erwartungsgemäß einen booleschen Wert zurück.
 Um ein Element in den Queue einzufügen, wird \lstinline$put()$ aufgerufen. 
 Der Parameter \lstinline$item$ nimmt hierbei das Element entgegen.
 Ist der Queue bereits voll, blockiert \lstinline$put()$ so lange, bis wieder ein Platz frei geworden ist.
-Durch angebe des optionalen Parameters \lstinline$timeout$ kann eine maximale Zeit angegeben werden,
+Durch Angabe des optionalen Parameters \lstinline$timeout$ kann eine maximale Zeit angegeben werden,
 nach welcher \lstinline$put()$ zurückkehrt, auch wenn kein Platz freigeworden ist.
 In diesem Fall würde eine \lstinline$Full$-Exception geworfen werden.
 Wird der optionale Parameter \lstinline$block$ auf \lstinline$False$ gesetzt, so kehrt \lstinline$put()$ sofort
