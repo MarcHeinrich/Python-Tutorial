@@ -1,5 +1,5 @@
-a = range(11) # Laenge 11
-b = range(11,22) # Laenge 11
+a = range(11)  # Laenge 11
+b = range(11, 22)  # Laenge 11
 
 i = 10
 try:
@@ -9,7 +9,7 @@ try:
         file.write("Ergebnis: " + str(b[i]) + " / "
                    + str(a[i]) + " = " + str(res) + "\n")
         i = i - 1
-except (ZeroDivisionError , FileNotFoundError) as e:
+except (ZeroDivisionError, FileNotFoundError) as e:
     print("error message: ", e)
     print("Das Programm wird beendet.")
 finally:
