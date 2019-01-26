@@ -3,10 +3,10 @@ Lediglich bei dem letzten Durchlauf kommt es zu einer Division mit der Zahl null
 Anschließend wird die Textdatei durch die \lstinline$finally$-Anweisung geschlossen und das Programm beendet.
 \\ \\
 Um das gewünschte Resultat zu erhalten, verwenden wir zunächst die \lstinline$range$-Methode um unsere beiden List-Datenstrukturen a und b mit den entsprechenden Werten zu füllen.
-Als Laufvariable wird \lstinline$i$ verwendet und auf den Wert 10 gesetzt, da dies dem letzten Index einer List entspricht. % len() ?
+Als Laufvariable wird \lstinline$i$ verwendet und auf den Wert 10 gesetzt, da dies dem letzten Index einer List entspricht.
 \lstinputlisting[language=Python, firstline=1,lastline=4]{exercises/src/exceptionhandling01.py}
 
-In dem \lstinline$try-Block$ wird zuerst die Datei mit dem Namen \glqq{}result.txt\grqq{} erstellt und geöffnet. % Ich hab den Namen von Textdateien auch mit \lstinline$$ geschrieben.
+In dem \lstinline$try-Block$ wird zuerst die Datei mit dem Namen \lstinline$result.txt$ erstellt und geöffnet.
 Anschließend wird in einer while-Schleife die Division durchgeführt und das Ergebnis in die Textdatei geschrieben. 
 Erst danach wird die Laufvariable dekrementiert und der Vorgang, falls \lstinline$i$ die Bedingung noch erfüllt, ausgeführt.
 \lstinputlisting[language=Python, firstline=5,lastline=11]{exercises/src/exceptionhandling01.py}
