@@ -238,3 +238,65 @@ werden, dass alle Arbeiterprozesse beendet wurden.
 
 \uebung
 \aufgabe{nebenlaufigkeit12}
+
+
+\subsubsection{Prozess-Kommunikation}
+\label{prozesse:subsubsection:prozess-kommunikation}
+
+Um Daten zwischen Prozessen auszutauschen bietet Python die \lstinline$Queue$-Klasse und die
+\lstinline$Pipe$-Funktion an.
+Diese \lstinline$Queue$ aus dem \lstinline$multiprocessing$-Modul ist der bereits bekannten
+\lstinline$Queue$ aus dem \lstinline$queue$-Modul sehr ähnlich.
+Intern wird eine Pipe genutzt, welche durch \lstinline$Locks$ und \lstinline$Semaphoren$ 
+geschützt wird.
+Wird von einem Prozess zum ersten Mal ein Element hinzugefügt, wird ein neuer Thread gestartet, der das
+Element aus einem Puffer in die Pipe schreibt.
+Die \lstinline$Queue$-Klasse implementiert alle bekannten Methoden, bis auf \lstinline$join()$ und 
+\lstinline$task_done()$.
+Darüber hinaus werden auch neue Methoden implementiert.
+Durch \lstinline$close()$  wird der \lstinline$Queue$ signalisiert, dass der aufrufende Prozesse keine neuen
+Daten mehr hinzufügt.
+Sobald alle Elemente aus dem Puffer in die Pipe geschrieben wurden, beendet sich der
+Hintergrundthread.
+Durch den Aufruf von \lstinline$join_thread()$ kann auf dieses Ereignis gewartet warten.
+Es kann auch \lstinline$cancel_join_thread()$ aufgerufen werden, wenn der Prozess sofort beendet 
+werden soll, ohne dass die Elemente aus dem Puffer in die Pipe geschrieben werden.
+Neben \lstinline$Queue$ wird auch ein \lstinline$SimpleQueue$ angeboten.
+Er besitzt nur drei Methoden, \lstinline$empty()$, \lstinline$get()$ und \lstinline$put()$, welche alle
+selbsterklärend sind.
+Darüber hinaus wird die \lstinline$JoinableQueue$-Klasse angeboten.
+Sie erbt von \lstinline$Queue$ und erweitert diese Funktionalität um die beiden Methoden 
+\lstinline$task_done()$ und \lstinline$join()$, welche sich wie die bereits bekannten Methoden verhalten.
+Die \lstinline$Pipe()$-Funktion gibt zwei \lstinline$Connection$-Objekte zurück, welche über eine Pipe
+verbunden sind.
+Jedes Ende der Pipe wird durch eines der beiden \lstinline$Connection$-Objekte repräsentiert.
+Sollten zwei Prozesse oder Threads gleichzeitig versuchen von einem Ende der Pipe zu lesen oder hinein zu
+schreiben, so können die Daten in der Pipe korrupiert werden.
+Die beiden \lstinline$Connection$-Objekte bieten die \lstinline$send()$-Methode an, welche das 
+übergebene Objekt an das andere Ende der \lstinline$Connection$ überträgt.
+Wird auf der anderen Seite \lstinline$recv()$ aufgerufen, wird das übertragene Objekt empfangen.
+Wenn noch keine Objekt gesendet wurde, so blockiert \lstinline$recv()$ bis ein Objekt zum Empfang 
+bereit ist.
+Um eine \lstinline$Connection$ zu schließen, muss \lstinline$close()$ aufgerufen werden.
+Die Methode \lstinline$poll()$ gibt an, ob aktuell Daten zum Empfangen bereit sind.
+Es ist möglich, einen optionalen Timeout anzugeben, blockiert \lstinline$poll()$ maximal die spezifizierte
+Zeit in Sekund.
+Wurde kein Timeout angegeben, kehrt die Methode sofort zurück.
+Sollen Byte-Daten versendet werden, kann die Methode \lstinline$send_bytes()$ aufgerufen werden.
+Sie nimmt ein Objekt entgegen, das das Buffer Protokoll (vgl. \cite{bufferproto} unterstützt,
+und einen optionalen Offset.
+Durch \lstinline$recv_bytes()$ kann ein dieses Objekt empfangen werden.
+Sollte aktuell nichts zu empfangen sein, blockiert \lstinline$recv_bytes()$.
+Es kann optional eine maximale Länge über \lstinline$maxlength$ angegeben werden.
+
+\warning{
+Sollte die empfangene Nachricht allerdings größer sein als die angegebene Länge, wird ein \lstinline
+$OSError$ geworfen und von der \lstinline$Connection$ kann nicht weiter gelesen werden.
+}
+
+Alternativ kann \lstinline$recv_bytes_into()$ genutzt werden.
+Diese Methode gibt die Anzahl der empfangenen Bytes zurück und schreibt sie in das durch den 
+Parameter \lstinline$buffer$ angegebene Objekt.
+Es kann zudem ein optionaler Parameter \lstinline$offset$ angegeben werden, um die Startposition im
+Buffer zu definieren.
+Sollten keine Daten empfangsbereit sein, blockiert \lstinline$recv_bytes_into()$.
