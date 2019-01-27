@@ -172,3 +172,69 @@ ist im folgenden \hyperref[prozesse:lst:prozess_start_methode_context]{Beispiel}
 
 \uebung
 \aufgabe{nebenlaufigkeit11}
+
+Häufig wird eine Aufgabe in kleinere Schritte unterteilt und dann an mehrere Arbeiterprozesse aufgeteilt.
+Ein Beispiel hierfür ist das vorherige \hyperref[prozesse:lst:primzahlen_prozesse]{Zählen von Primzahlen}.
+Für solche Fälle existiert in Python die \lstinline$Pool$-Klasse, welche das Auslagern von Aufgaben an 
+Arbeiterprozesse erleichtert.
+Wird ein neuer \lstinline$Pool$ erzeugt, kann seinem Konstruktor über den Parameter \lstinline$processes$
+die Anzahl der Arbeiterthreads mitgegeben werden.
+Werden die Parameter \lstinline$initializer$ und \lstinline$initargs$ angeben, so wird das Callable-Objekt,
+welches an \lstinline$initializer$ übergeben wurde von jedem der Arbeiterprozesse mit \lstinline$initargs$
+als Parameter aufgerufen, wenn die Arbeiterprozesse gestartet werden.
+Durch \lstinline$maxtasksperchild$ wird die maximale Anzahl an Aufgaben, welche die Arbeiterprozesse 
+abarbeitern, bevor sie beendet und von einem neuen Arbeiterprozess ersetzt werden. 
+Dies hat zur Folge, dass ungenutze Resourcen wieder freigegeben werden.
+Der letzte Parameter ist \lstinline$context$.
+Wird er angegeben, so werden die Arbeiterprozesse mit dem angegebenen \lstinline$Context$-Objekt 
+erzeugt.
+Um den erzeugten Arbeiterprozessen Aufgaben zu übergeben, bietet \lstinline$Pool$ verschiedene
+Methoden an.
+Diese sollten immer nur von dem Prozess aufgerufen werden, der auch den \lstinline$Pool$ erzeugt hat.
+Durch \lstinline$apply()$  wird von einem der Arbeiterprozesse das Callable-Objekt, welches über den
+Parameter \lstinline$func$ angegeben wird, mit den Parametern, welche durch \lstinline$args$ angegeben
+wurden, auf.
+Es ist auch möglich Schlüsselwort-Parameter über \lstinline$kwds$ anzugeben.
+Der Aufruf von \lstinline$apply$ blockiert, bis die Aufgabe abgearbeitet wurde.
+Die beiden Methoden \lstinline$map()$ und \lstinline$imap()$ nehmen ebenfalls ein Callable-Objekt
+mit dem \lstinline$func$ Parameter entgegen.
+Durch den Parameter \lstinline$iterable$ kann ein Iterable-Objekt übergeben werden, welches 
+aufgeteilt wird und den Arbeiterprozessen als seperate Aufgabe übergeben wird.
+Der Aufruf der beiden Methoden bockiert, bis die Aufgaben abgearbeitet wurden.
+Bei sehr langen Iterable-Objekten ist \lstinline$imap()$ effizienter.
+Ist die Reihenfolge der Ergebnisse irrelevant, kann auch \lstinline$imap_unordered()$ genutzt werden,
+welche sich andernfalls genau wie \lstinline$imap()$ verhält.
+Benötigt eine Aufgabe eine Parameterlist, welche größer 1 ist, kann \lstinline$starmap()$ angewendet 
+werden.
+Hierbei wird davon ausgegangen, dass die Elemente des Iterable-Objektes, welches an \lstinline$iterable$
+übergeben wird, ebenfalls Iterable-Objekte sind.
+Diese werden als Parameter für das Callable-Objekte in \lstinline$func$ entpackt.
+Wie die ersten 10 Quadratzahlen mit einem Pool aus 5 Prozessen berechnet werden können, wird im 
+\hyperref[prozesse:lst:prozess_pool]{folgenden Beispiel} gezeigt.
+
+\label{prozesse:lst:prozess_pool}
+\lstinputlisting[language=Python,linerange={1-2,6-14}]{chapters/nebenlaufigkeit/src/prozess_pool.py}
+
+Die Methoden \lstinline$apply_async()$, \lstinline$map_async()$ und \lstinline$startmap_async()$ verhalten
+sich wie ihre normalen Varianten, aber sie blockieren nicht.
+Sie geben ein \lstinline$AsyncResult$-Objekt zurück, über das das Ergebnis der Aufgaben erhalten 
+werden kann, sobald es verfügbar ist.
+Die Methode \lstinline$ready()$ gibt an, ob die Aufgaben bereits abgearbeitet wurden.
+Durch \lstinline$successful()$ kann erfahren werden, ob eine Exception während dem Bearbeiten der 
+Aufgaben geworfen wurde. 
+Wurden noch nicht alle Aufgaben vollständig beabreitet, wird ein \lstinline$AssertionError$ geworfen.
+Soll darauf gewartet werden, dass alle Aufgaben abgearbeitet wurden, kann \lstinline$wait()$ aufgerufen
+werden.
+Um das Ergebnis der Aufgaben zu erhalten, kann \lstinline$get()$ aufgerufen werden.
+Für \lstinline$wait()$ und \lstinline$get()$ kann ein optionaler Timeout angegeben werden.
+Wurden alle Aufgaben an den \lstinline$Pool$ übergeben, kann \lstinline$close()$ aufgerufen werden.
+Nachdem diese Methode aufgerufen wurde, kann dem \lstinline$Pool$ keine neue Aufgabe mehr
+übergeben werden.
+Sobald alle Aufgaben abgearbeitet wurden, werden die Arbeiterprozesse beendet.
+Durch den Aufruf von \lstinline$terminate()$ werden die Arbeiterprozesse sofort beendet, ohne dass sie
+ihre Aufgaben fertig bearbeiten.
+Nachdem einer dieser beiden Methoden aufgerufen wurde, kann durch \lstinline$join()$ darauf gewartet
+werden, dass alle Arbeiterprozesse beendet wurden.
+
+\uebung
+\aufgabe{nebenlaufigkeit12}
