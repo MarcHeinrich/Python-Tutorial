@@ -2,4 +2,67 @@
 \subsection{Prozesse}
 \label{prozesse:subsection:prozesse}
 
+Die bisher betrachteten Beispiele und Aufgabe waren nicht CPU-gebunden, weshalb die Auswirkungen des
+in Abschnit \ref{parallelität_in_python:subsection:parallelität_in_python} angesprochenen GILs nicht
+ersichtlich wurden. 
+Wird nun aber das folgende Beispiel betrachtet, in dem die Anzahl der Primzahlen im Zahlenbereich 1
+bis 10 Millionen gesucht wird, ist dies nicht mehr der Fall:
 
+\label{prozesse:lst:primzahlen_threads}
+\lstinputlisting[language=Python]{chapters/nebenlaufigkeit/src/primzahlen_threads.py}
+
+Jeder Thread bekommt hierbei einen Bereich aus 1 Milliionen Zahlen.
+Es wird auch die Zeit gemessen, die die Threads benötigen, um die Primzahlen zu zählen.
+Wird diese Programm ausgeführt, kann eine mögliche Ausgabe wie folgt aussehen:
+\label{prozesse:lst:thread_ausgabe}
+\begin{lstlisting}
+Found  67883  primes
+Found  78498  primes
+Found  70435  primes
+Found  63799  primes
+Found  65367  primes
+Found  64336  primes
+Found  66330  primes
+Found  62712  primes
+Found  62090  primes
+Found  63129  primes
+Finished in  102.9065528  seconds
+\end{lstlisting}
+
+Um nun den Effekt des GILs zu zeigen, wird die selbe Aufgabe durch mehrere Prozesse gelöst.
+Hierzu bietet Python im \lstinline$multiprocessing$-Modul die Klasse \lstinline$Process$ an.
+Die API, mit der neue Prozesse in Python erzeugt und gestartet werden, ähnelt der des
+\lstinline$threading$-Moduls.
+Demnach muss der Code nur minimal angepasst werden, um Primzahlen von Prozessen zählen zu lassen:
+\label{prozesse:lst:primzahlen_prozesse}
+\lstinputlisting[language=Python,linerange={1-2,25-43}]{chapters/nebenlaufigkeit/src/primzahlen_prozesse.py}
+
+Wird dieses Programm ebenfalls ausgeführt, ist es möglich, die Primzahlen schneller zu zählen.
+Eine mögliche Ausgabe kann wie folgt aussehen:
+\label{prozesse:lst:prozess_ausgabe}
+\begin{lstlisting}
+Found  78498  primes
+Found  70435  primes
+Found  67883  primes
+Found  65367  primes
+Found  66330  primes
+Found  64336  primes
+Found  63129  primes
+Found  63799  primes
+Found  62712  primes
+Found  62090  primes
+Finished in  29.6911255  seconds
+\end{lstlisting}
+
+Beide Varianten erhalten das selbe Ergebniss, allerdings ist die Prozess-Variante kanpp 70
+Sekunden schneller.
+Ein größerer unterschied der beiden Varianten ist die Zeile \lstinline$if __name__ == ''__main__'':$.
+Diese Zeile ist im\hyperref[prozesse:lst:primzahen_prozesse]{Prozess-Beispiel} notwendig, da der
+Programmcode innerhalb des \lstinline$if$-Statements ansonsten jedesmal ausgeführt wird, wenn das
+Modul importiert wird.
+Wird ein neuer Prozess gestartet, lädt der neue Python-Interpreter das Modul ein zweites mal.
+Sobald er nun die Codezeile erreicht, in der der neue Prozess gestartet wurde, wird ein dritter Prozesse
+gestartet, dessen Python-Interpreter das Modul ein drittes mal lädt.
+Somit werden solange Prozesse erzeugt, bis das System keine Ressourcen mehr zur Verfügung hat.
+Durch angabe des \lstinline$if$-Statements ist es garantiert, dass der enthaltene Code nur einmal
+ausgeführt wird, wenn das Programm gestartet wird.
