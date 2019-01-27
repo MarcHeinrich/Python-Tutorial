@@ -54,10 +54,9 @@ Found  62090  primes
 Finished in  29.6911255  seconds
 \end{lstlisting}
 
-Beide Varianten erhalten das selbe Ergebniss, allerdings ist die Prozess-Variante kanpp 70
-Sekunden schneller.
-Ein größerer unterschied der beiden Varianten ist die Zeile \lstinline$if __name__ == ''__main__'':$.
-Diese Zeile ist im\hyperref[prozesse:lst:primzahen_prozesse]{Prozess-Beispiel} notwendig, da der
+Beide Varianten erhalten das selbe Ergebniss, allerdings sind die Prozesse kanpp 70 Sekunden schneller.
+Ein größerer unterschied der beiden Varianten ist die Zeile \lstinline$if __name__ == ''__main__''$.
+Diese Zeile ist im \hyperref[prozesse:lst:primzahen_prozesse]{Prozess-Beispiel} notwendig, da der
 Programmcode innerhalb des \lstinline$if$-Statements ansonsten jedesmal ausgeführt wird, wenn das
 Modul importiert wird.
 Wird ein neuer Prozess gestartet, lädt der neue Python-Interpreter das Modul ein zweites mal.
@@ -66,3 +65,107 @@ gestartet, dessen Python-Interpreter das Modul ein drittes mal lädt.
 Somit werden solange Prozesse erzeugt, bis das System keine Ressourcen mehr zur Verfügung hat.
 Durch angabe des \lstinline$if$-Statements ist es garantiert, dass der enthaltene Code nur einmal
 ausgeführt wird, wenn das Programm gestartet wird.
+
+\subsubsection{Prozess Objekte}
+\label{prozesse:subsubsection:prozess_objekte}
+
+Wie aus dem betrachteten \hyperref[prozesse:lst:primzahen_prozesse]{Prozess-Beispiel} erkenntlich ist,
+ist die Verwendung der \lstinline$Process$-Klasse sehr stark an die der \lstinline$Thread$-Klasse angelehnt.
+Genau genommen gibt es jede Methode von \lstinline$Thread$ auch in \lstinline$Process$.
+Sogar die Konstruktoren sind identisch.
+Der \lstinline$group$-Parameter des \lstinline$Process$-Konstruktors existert allerdings nur zur
+Kompatibilität zum Konstruktor der \lstinline$Thread$-Klasse.
+Der Aufruf von \lstinline$join()$ gibt immer \lstinline$Non$ zurück, auch falls der optionale Timeout
+abgelaufen ist.
+Um zu prüfen, ob der entsprechende Prozess tatsächlich beendet wurde, ist über seinen
+\lstinline$exitcode$
+einsehbar.
+Es ist zu bemerken, dass ein Dämon-Prozess keine weiteren Kindprozesse starten kann.
+Sobald sich sein Elternprozess beendet, wird er terminiert.
+Zusäztlich bietet die \lstinline$Process$-Klasse noch weitere Attribute und Methoden an.
+Über das \lstinline$pid$-Attribut kann die ID des jeweiligen Prozesses abgefragt werden. 
+Durch \lstinline$exitcode$ kann der entsprechende abgefragt werden, mit welchem Status sich der Prozess
+beendet hat.
+Wurde er noch nicht beendet, hat \lstinline$exitcode$ den Wert \lstinline$None$.
+Trägt \lstinline$exitcode$ einen negativen Wert, so bedeutet das, dass der Prozess durch ein Signal
+beendet wurde.
+Ein Wert von \lstinline$-N$ entspricht dann dem Signal \lstinline$N$.
+Beim Attribut \lstinline$authkey$ handelt es sich um einen Byte-String, welcher für gewisse
+Authentifizierungen genutzt wird und standardmäßig den Wert des Elternprozesses übernimmt.
+Genauere Informationen zur Verwendung von \lstinline$authkey$ sind in \cite{pythondokuprozesse}
+ zu finden.
+Die beiden Methoden \lstinline$terminate()$ und \lstinline$kill()$ beenden den jeweiligen Prozess, nicht
+aber dessen Kindprozesse.
+Verwendet der Prozess \lstinline$Locks$, \lstinline$Semaphoren$, \lstinline$Queues$ oder \lstinline$Pipes$,
+so kann ein Aufruf der beiden Methoden dazu führen, dass die verwendeten Objekte unnutzbar werden 
+und andere Prozesse in einen Deadlock geraten.
+Unter Windows wird zum Beenden der Prozesse \lstinline$TerminateProcess()$ aufgerufen.
+Unter Unix-Systemen sendet \lstinline$terminate()$ das \lstinline$SIGTERM$ Signal, während
+\lstinline$kill()$ das Signal \lstinline$SIGKKILL$ sendet.
+Durch Aufruf der \lstinline$close()$-Methode werden alle Resourcen des jeweiligen Prozesses freigegeben,
+falls er bereits beendet ist.
+Andernfalls wird ein \lstinline$ValueError$ geworfen.
+Nachdem \lstinline$close()$ erfolgreich zurückgekehrt ist, wird beim Zugriff auf die meisten Methoden 
+und Attributen von \lstinline$Process$ ebenfalls ein \lstinline$ValueError$ geworfen.
+
+\warning{
+Die Methoden \lstinline$start()$, \lstinline$join()$, \lstinline$is_alive()$, \lstinline$terminate()$ und
+\lstinline$exitcode$ sollten immer nur vom erzeugenden Prozess aufgerufen werden.
+}
+
+Das \lstinline$multiprocessing$-Modul unterstützt, je nach Betriebssystem, drei verschiedene Arten einen
+Prozess zu starten.
+Bei diesen drei Arten handelt es sich um \lstinline$spawn$, \lstinline$fork$ und \lstinline$forkserver$,
+welche sich folgendermaßen unterscheiden:
+
+\begin{enumerate}
+\item \lstinline$spawn$: \newline
+Diese Art der Prozesserzeugung starten einen neuen Python Interpreter. 
+Es werden nur diejenigen Resourcen an den neuen Prozess vererbt, die zum Ausführen seiner 
+\lstinline$run()$-Methode nötig sind.
+Im Vergleich zu den beiden anderen Varianten ist diese eher langsam.
+Sie ist unter Unix und Windows Systemen verfügbar und der Standard unter Windows.
+
+\item \lstinline$fork$: \newline
+Durch diese Startmethode wird ein Fork des aktuellen Python Interpreters durch den Aufruf von 
+\lstinline$os.fork()$ erstellt.
+Das heißt, dass der erzeugte Kindprozess effektiv identisch zum Elternprozess ist. 
+Alle Resourcen werden vom Elternprozess geerbt.
+Werden erzeugen Multithreaded-Prozesse mit dieser Startmethode Kindprozesse, kann es sehr schnell
+problematisch werden.
+Unter Windows ist diese Startmethode nicht verfügbar, unter Unix Systemen ist sie die Standardvariante.
+
+\item \lstinline$forkserver$: \newline
+Wurde beim Starten des Programms diese Variante zum Starten von Prozessen gewählt, wird ein Server 
+gestartet.
+Immer wenn ein neuer Prozess erzeugt werden soll, verbindet sich der erzeugende Prozess mit diesem
+Server und fordert an, einen Fork erstellen zu lassen.
+Hierbei werden nur die notwendigen Resourcen an den Kindprozess vererbt.
+Da es sich bei dem Fork-Server um einen Single-Threaded-Prozess handelt, ist ein Aufruf von 
+\lstinline$os.fork()$ unproblematisch.
+Diese Variante wird nur von Unix Systemen unterstützt, die auch das übergeben von Dateideskriptoren 
+über Unix-Pipes unterstützen.
+\end{enumerate}
+
+Um eine der drei Startmethoden zu wählen kann die \lstinline$set_start_methode()$-Methode aufgerufen 
+werden.
+Sie sollte nur innerhalb von \lstinline$if __name__ ==$ \lstinline$''__main__''$ aufgerufen werden und nie mehrmals
+in einem Programm.
+Die \lstinline$spwan$ Startmethode wird also wie im
+\hyperref[prozesse:lst:prozess_start_methode]{folgenden Beispiel} gezeigt ausgewählt.
+
+\label{prozesse:lst:prozess_start_methode}
+\lstinputlisting[language=Python,linerange={1-2,11-16}]{chapters/nebenlaufigkeit/src/prozess_start_methode.py}
+
+Sollen mehrere Prozesse mit unterschiedlichen Startmethoden gestartet werden, so kann alternativ
+\lstinline$get_context()$ aufgrufen werden, um ein \lstinline$Context$-Objekt zu erhalten.
+Hierbei ist darauf zu achten, dass Objekte, welche mit einem \lstinline$Context$ erzeugt wurden, nicht
+immer kompatibel mit Prozessen sind, welche mit einem anderen \lstinline$Context$ gestartet wurden.
+So ist ein \lstinline$Lock$-Objekt, welches mit einem \lstinline$fork Context$ erzeugt wurde, nicht mit
+Prozessen kompatibel, die mittels der \lstinline$spawn$ oder der \lstinline$forkserver$ Startmethode 
+erzeugt wurde.
+Wie ein Prozess mit einer bestimmten Startmethode durch ein \lstinline$Context$-Objekt erzeugt wird,
+ist im folgenden \hyperref[prozesse:lst:prozess_start_methode_context]{Beispiel} gezeigt.
+
+\label{prozesse:lst:prozess_start_methode_context}
+\lstinputlisting[language=Python,linerange={1-2,17-22}]{chapters/nebenlaufigkeit/src/prozess_start_methode.py}
