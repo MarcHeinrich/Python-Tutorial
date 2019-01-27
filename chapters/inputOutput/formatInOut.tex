@@ -10,7 +10,7 @@ Arithmetik} leiten wir ein Formatierungszeichen ein. Dieses gilt als Platzhalter
 \begin{lstlisting}[language=Python, label=formatInOut:lst:modulo]
 # Modulo-Arithmetik
 
-print("Körper: %s , Fläche: %f m" %
+print("Körper: %s , Fläche: %f" %
 	('Dreieck', 42.6))
 	
 # Ausgabe:
@@ -31,6 +31,11 @@ In Abbildung \ref{formatInOut:fig:formatierungszeichen} sind die möglichen Forma
 	\includegraphics[width=\textwidth]{chapters/inputOutput/FormatierungSymbole.png}
 	\label{formatInOut:fig:formatierungszeichen}
 \end{figure}
+
+\kontrollfrage{
+	\item[\kontroll] Wir errichten einen Platzhalter \%d und geben den einzusetzenden Wert "'2.3'" an. Ausgegeben wird der Wert "'2'", wieso?
+	\item[\kontroll] Wie bestimmen wir, welcher Wert zu welchem Platzhalter gehört?
+}
 
 Was ist jedoch, falls die Ausgabe eine bestimmte Länge haben soll?
 Mit Hilfe der Syntax der Modulo-Arithmetik können wir dieses Problem lösen.
