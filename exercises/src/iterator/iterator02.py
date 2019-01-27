@@ -10,4 +10,5 @@ def reverse(data):
 
 #Test:
 string = 'TestTestTest'      
-for char in reverse(string): print(char)
+for char in reverse(string):
+    print(char)

@@ -10,4 +10,5 @@ def reverse(data):
 
 #Aufruf des Generators und Ausgabe der gelieferten Elemente
 string = 'ILoveTriangles'      
-for char in reverse(string): print(char)
+for char in reverse(string):
+    print(char)
