@@ -225,6 +225,13 @@ Arrays umwandeln, zum Beispiel Tupel und Ranges:
 [1, 2, 3, 4, 5]
 \end{lstlisting}
 
+Numpy kann auch direkt ein Numpy-Array mit den gleichen Paramtern wie von
+\lstinline!range! erzeugen. Die Funktion hierzu heißt \lstinline!np.arange()!:
+\begin{lstlisting}
+>>> np.arange(1,6)
+[1, 2, 3, 4, 5]
+\end{lstlisting}
+
 Ebenso können mehrdimensionale Arrays erzeugt werden:
 \begin{lstlisting}
 >>> a = [[1, 2], [3, 4]]
@@ -417,3 +424,7 @@ abbricht!}
 >>> np.fromiter(even_numbers(), int, count=10)
 [ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18]
 \end{lstlisting}
+
+\uebung
+\aufgabe{numpy_01}
+\aufgabe{numpy_02}
