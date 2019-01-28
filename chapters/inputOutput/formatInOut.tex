@@ -2,7 +2,7 @@
 \section{Formatierung von Strings}
 \label{formatInOut}
 
-Es wäre sicherlich hilfreich, wenn wir die String-Ausgaben nach belieben formatieren könnten. Bisher haben wir den Seperator von \emph{print()} kennengelernt - dieser ist von seiner Funktionsweise jedoch stark beschränkt. Python bietet uns hierfür die \emph{format()}-Methode an, vorher betrachten wir aber die Modulo-Arithmetik und machen uns mit den Formatierungszeichen vertraut.
+Es wäre sicherlich hilfreich, wenn wir die String-Ausgaben nach belieben formatieren könnten. Bisher haben wir den Seperator von \lstinline$print()$ kennengelernt - dieser ist von seiner Funktionsweise jedoch stark beschränkt. Python bietet uns hierfür die \lstinline$format()$-Methode an, vorher betrachten wir aber die Modulo-Arithmetik und machen uns mit den Formatierungszeichen vertraut.
  
 Mittels Modulo-Arithmetik \randnotiz{Modulo-
 Arithmetik} leiten wir ein Formatierungszeichen ein. Dieses gilt als Platzhalter für einen Wert.
@@ -49,7 +49,7 @@ Mit Hilfe der Syntax der Modulo-Arithmetik können wir dieses Problem lösen.
  
  \warning{Es handelt sich hierbei um das Minimum der Gesamtlänge. Alle Ausgaben die größer sind, werden nicht beschränkt und in voller Länge ausgegeben!}
  
- Mittels Punkt können wir folgend die Präzision einstellen, was bei einem \emph{Float}-Datentyp die Nachkommastellen bestimmt. Alle Zahlen werden zu der angegebenen Nachkommastelle aufgerundet!
+ Mittels Punkt können wir folgend die Präzision einstellen, was bei einem \lstinline$Float$-Datentyp die Nachkommastellen bestimmt. Alle Zahlen werden zu der angegebenen Nachkommastelle aufgerundet!
  
  \begin{lstlisting}[language=Python, label=formatInOut:lst:precision]
  # Modulo-Arithmetik Präzision
@@ -64,7 +64,7 @@ print("Eine gerundete Zahl %.2f)
  
 \subsection{Formatierung mit format()}
 
-Python bietet uns für die Formatierung von String-Elementen die Methode \emph{format()}.
+Python bietet uns für die Formatierung von String-Elementen die Methode \lstinline$format()$.
 
  \begin{lstlisting}[language=Python, label=formatInOut:lst:formatMethod]
 # Syntax der format()-Methode 
@@ -72,7 +72,7 @@ Python bietet uns für die Formatierung von String-Elementen die Methode \emph{fo
 string.format(par0, par1, ..., key0=val0, key1=val1, ...)
 \end{lstlisting}
 
-\emph{format()} ersetzt markierte Stellen im gegebenen String durch angegebene Werte (Parameter in \emph{format()}) und liefert diesen zurück.
+\lstinline$format()$ ersetzt markierte Stellen im gegebenen String durch angegebene Werte (Parameter in \lstinline$format()$) und liefert diesen zurück.
 Die Stellen werden durch geschweifte Klammern markiert und mittels Modulo-Arithmetik präzisiert. In der geschweiften Klammer geben wir als erstes den Index (oder das Schlüsselwort) des Parameters an.
 
  \begin{lstlisting}[language=Python, label=formatInOut:lst:formatString]
@@ -116,7 +116,7 @@ print(str.format(r = "Rainer", d ="Denis"))
 
 \warning{Möchte man geschweifte Klammern ausgeben, dann werden diese doppelt geschrieben ("'\{\{"' und "'\}\}"')}
 
-Die \emph{format()}-Methode bietet uns außerdem Ausrichtungsoptionen, was zu besserer Lesbarkeit beitragen kann. Somit können wir bspw. Werte links- oder rechtsbündig ausgeben. Hierfür gibt man die Formatierungsanweisung an und den Wert des Abstandes bzw. der Größe des Platzhalters. Ist das Wort zu kurz, wird der restliche Platz mit Leerzeichen aufgefüllt.
+Die \lstinline$format()$-Methode bietet uns außerdem Ausrichtungsoptionen, was zu besserer Lesbarkeit beitragen kann. Somit können wir bspw. Werte links- oder rechtsbündig ausgeben. Hierfür gibt man die Formatierungsanweisung an und den Wert des Abstandes bzw. der Größe des Platzhalters. Ist das Wort zu kurz, wird der restliche Platz mit Leerzeichen aufgefüllt.
 
 \begin{tabular}{|c | p{8cm}|}
 	\hline
@@ -155,7 +155,7 @@ print(str.format("Sechseck", 6))
 #   Sechseck 6
 \end{lstlisting}
 
-Python bietet uns für \lstinline{Dictionaries} einen einfachen Weg, diese mittels \emph{format()} und der Nutzung von Schlüsselwort-Parametern, auszugeben. 
+Python bietet uns für \lstinline{Dictionaries} einen einfachen Weg, diese mittels \lstinline$format()$ und der Nutzung von Schlüsselwort-Parametern, auszugeben. 
 	
 \begin{lstlisting}[language=Python, label=formatInOut:lst:formatDict]
 # Formatierung eines Dictionarys

@@ -11,7 +11,7 @@ print(value1, value2, ..., sep=" ",
     end="\n", file=sys.stdout, flush= false))
 \end{lstlisting}
 
-In Listing (\ref{printInOut:lst:printDefault}) sind die Parameter von \emph{print()} zu sehen. Die auszugebenden Werte stehen an erster Stelle (value1, value2, ...), hierbei handelt es sich um eine beliebige Anzahl an Werten. Der Parameter \emph{sep} bildet den Seperator zwischen den Werten und hat als Standardwert das Leerzeichen.
+In Listing (\ref{printInOut:lst:printDefault}) sind die Parameter von \lstinline$print()$ zu sehen. Die auszugebenden Werte stehen an erster Stelle (value1, value2, ...), hierbei handelt es sich um eine beliebige Anzahl an Werten. Der Parameter \lstinline$sep$ bildet den Seperator zwischen den Werten und hat als Standardwert das Leerzeichen.
 \randnotiz{Seperator}
 In Listing \ref{printInOut:lst:printSeperator} können wir sehen, dass wir durch Angabe eines Seperators eine bessere Lesbarkeit erreichen können.
 
@@ -43,7 +43,7 @@ print("Nächster Satz)
 # Satz mit Punkt und Leerzeichen. Nächster Satz
 \end{lstlisting}
 
-Der \emph{file}-Parameter bestimmt den Datenstrom (\emph{Stream}) für den Output. In \emph{sys.stdout} steht für die Konsole. 
+Der \emph{file}-Parameter bestimmt den Datenstrom (\emph{Stream}) für den Output. In \lstinline$sys.stdout$ steht für die Konsole. 
 \randnotiz{Output-Stream}
 Möchten wir den Output bspw. in eine Textdatei schreiben, dann können wir diese als Ziel des Datenstroms festlegen.
 
@@ -61,8 +61,8 @@ txtFile.close()
 \end{lstlisting}
 
 \kontrollfrage{
-	\item[\kontroll] Was sind die Parameter der \emph{print()}-Funktion?
-	\item[\kontroll] Welche Funktionalität bietet uns die \emph{print()}-Funktion?
+	\item[\kontroll] Was sind die Parameter der \lstinline$print()$-Funktion?
+	\item[\kontroll] Welche Funktionalität bietet uns die \lstinline$print($)-Funktion?
 	\item[\kontroll] Was ist der Unterschied zwischen dem Seperator und dem \lstinline{end}-Parameter?
 }
 
