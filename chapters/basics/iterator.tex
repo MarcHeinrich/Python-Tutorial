@@ -25,14 +25,15 @@ Bei einem String hingegen werden als Elemente nacheinander die einzelnen Zeichen
 \subsection{Benutzung von Iteratoren}
 \label{iterator:sec:BenutzungVonIteratoren}
 Die Nutzung eines Iterators ist simpel. Folgende Schritte müssen absolviert werden:
-\begin{enumerate}
+\begin{enumerate}[label={\arabic*)}]
 	\item Erzeugen/Erhalten eines \lstinline$Iterable$-Objektes
 	\item Erzeugen des zugehörigen Iterators durch Übergabe des \lstinline$Iterable$-Objektes an \lstinline$iter()$
 	\item Erhalt des nächsten Elementes durch Übergabe des Iterators an die \lstinline$next()$-Methode
 	\item (Optional) Durchführung von Operationen, Ausgaben usw. mit dem erhaltenen Element
 	\item Wiederholung des letzten zwei Schrittes, bis Exception \lstinline$StopIteration$ geworfen wird (Fehlerbehandlung! siehe Kapitel \ref{kontrollstrukturen:section:fehlerundausnahmebehandlung})
 \end{enumerate}
-Hinweis: Es ist nicht notwendig, die durch \lstinline$next()$ erhaltenen Elemente zu benutzen, jedoch macht dies wenig Sinn, da der Zugriff auf die Elemente der Hauptgrund zur Nutzung eines Iterators sind.\\ 
+\tip{Es ist nicht notwendig, die durch \lstinline$next()$ erhaltenen Elemente zu benutzen, jedoch macht dies wenig Sinn, da der Zugriff auf die Elemente der Hauptgrund zur Nutzung eines Iterators sind.}\\ 
+\\
 Im Folgenden wir ein einfaches Beispiel vorgestellt:
 \lstinputlisting{chapters/basics/src/iterator/iterator_example01.py}
 \label{iterator:lst:iterator_example01}
@@ -51,10 +52,10 @@ Dabei kann direkt das \lstinline$Iterable$-Objekt an die Schleife übergeben werd
 Dieser erzeugt selbstständig den Iterator und liefert pro Durchlauf ein weiteres Element zurück.
 Auch die Fehlerbehandlung, nachdem der Iterator keine Elemente mehr besitzt, wird übernommen.
 Dabei wird folgende Syntax verwendet: \lstinline$for e in i$ mit:
-\begin{itemize}
-	\item e: Variable, welche bei jedem Durchlauf der Schleife mit dem Ergebnis des Aufrufes von \lstinline$next()$ belegt ist
-	\item i: \lstinline$Iterable$-Objekt, welches durchlaufen werden soll
-\end{itemize}
+\begin{description}
+	\item [e] Variable, welche bei jedem Durchlauf der Schleife mit dem Ergebnis des Aufrufes von \lstinline$next()$ belegt ist
+	\item [i] \lstinline$Iterable$-Objekt, welches durchlaufen werden soll
+\end{description}
  \lstinline$for $:
 Folgendes Beispiel zeigt die Anwendung einer \lstinline$for-Schleife$:
 \lstinputlisting{chapters/basics/src/iterator/iterator_example02.py}
