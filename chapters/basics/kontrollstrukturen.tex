@@ -217,8 +217,8 @@ print("error message: ", e)
 print("Das Programm wird beendet.")
 \end{lstlisting}
 
-\section {raise}
-\label{kontrollstrukturen:sec:raise}
+\subsection {raise}
+\label{kontrollstrukturen:subsec:raise}
 
 Die \lstinline$raise$-Anweisung ermöglicht uns das Generieren bzw. Auslösen einer Ausnahme. Dabei wird die Ausnahme angegeben, die ausgelöst werden soll. 
 
@@ -230,8 +230,8 @@ Somit ist es uns beispielsweise möglich eine \lstinline$ZeroDivisonError$ zu erz
 \lstinputlisting[language=Python, linerange={1-3,73-81}]{chapters/basics/src/fehler_und_ausnahmebehandlung/ExceptionHandling.py}
 \label{kontrollstrukturen:lst:raisemitaufruf}
 
-\section {Selbst definierte Ausnahmen}
-\label{kontrollstrukturen:sec:selbstdefinierteeausnahmen}
+\subsection {Selbst definierte Ausnahmen}
+\label{kontrollstrukturen:subsec:selbstdefinierteeausnahmen}
 
 Nachdem wir uns mit der \lstinline$raise$-Anweisung beschäftigt haben, widmen wir uns den selbst definierten Ausnahmen. 
 Diese werden in der Regel als eigenen Klassen definiert und müssen dabei von der Oberklasse \lstinline$Exception$ erben.
@@ -242,8 +242,8 @@ Durch die \lstinline$raise$-Anweisung können wir unsere selbst definierte Ausnah
 \lstinputlisting[language=Python, linerange={1-3,85-97}]{chapters/basics/src/fehler_und_ausnahmebehandlung/ExceptionHandling.py}
 \label{kontrollstrukturen:lst:eigeneaushamendefiniert}
 
-\section {Zusammenfassung}
-\label{kontrollstrukturen:sec:zusammenfassungfehlerundausnahmebehandlung}
+\subsection {Zusammenfassung}
+\label{kontrollstrukturen:subsec:zusammenfassungfehlerundausnahmebehandlung}
 
 In diesem Kapitel haben wir uns ausgiebig mit der Fehler- und Ausnahmebehandlung befasst.
 Zu Beginn haben wir uns einige mögliche Fehlerquellenszenarios, die durch fehlerhafte Benutzereingaben entstehen können näher angeschaut. Neben der Betrachtung der einzelnen \lstinline$try$, \lstinline$except$, \lstinline$else$, \lstinline$finally$, \lstinline$raise$ Anweisungen, haben wir uns am Ende auch mit der Implementierung von eigens definierten Ausnahmen beschäftigt. 
