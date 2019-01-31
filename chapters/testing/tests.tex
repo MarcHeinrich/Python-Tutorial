@@ -1,7 +1,7 @@
 % !TeX root = ../../pythonTutorial.tex
 \section{Grundlegende Testmöglichkeiten}
 \label{testing:sec:grundlegendeTestmoeglichkeiten}
-Zum Testen unter Python gibt es mehrere Module die das Testen unterstützen.
+Zum Testen unter Python gibt es mehrere Module, die das Testen unterstützen.
 Zum einen das Modul \lstinline$doctest$, welches als interaktive Dokumentation Testmuster bereitstellt.
 Zum anderen das Modul \lstinline$unittest$, welches den Unittests unter Java mit JUnit sehr ähnelt.
 Beide Module ermöglichen Regressionstests.
@@ -14,20 +14,20 @@ Danach wird die Funktion, die getestet werden soll, mit den gewünschten Testpara
 Diesem folgt dann entweder das Ergebnis oder eine Fehlerbehandlung im Falle einer zu prüfenden Exception.
 
 Das folgende Beispiel\randnotiz{Beispiel} zeigt, wie \lstinline$doctests$ in der Praxis Anwendung finden.
-Die Tests werden, sobald der Code ausgeführt, wird ebenfalls ausgeführt. 
-Dadurch das die Tests bei dem zu testenden Code stehen wird ein direkter Bezug zwischen beiden hergestellt.
+Die Tests werden, sobald der Programmcode ausgeführt wird, ebenfalls ausgeführt. 
+Dadurch, das die Tests bei dem zu testenden Code stehen, wird ein direkter Bezug zwischen beiden hergestellt.
 Sollte beim Ausführen kein Test fehlschlagen, kommt es zu keiner Ausgabe durch den Interpreter.
 Ist trotzdem eine Ausgabe erwünscht, ist diese mit dem Parameter \lstinline$-v$ (verbose) aktivierbar.
 
 \lstinputlisting[language=Python,lastline=37, label={tests:lst:SimpleDocTest}]{chapters/testing/src/simpleDocTest.py}
 
-Im nachfolgenden Beispiel ist die Ausgabe der Tests aus dem oben gezeigten Codebeispiel, zu sehen.
-Der Ablauf, der einzelnen Test, ist jedes Mal gleich.
-Zuerst wird der Test, mit den Versuchsparametern ausgegeben und im Anschluss der Erwartungswert gezeigt.
+Im nachfolgenden Beispiel ist die Ausgabe der Tests aus dem oben gezeigten Codebeispiel zu sehen.
+Der Ablauf der einzelnen Test ist jedes Mal gleich.
+Zuerst wird der Test mit den Versuchsparametern ausgegeben und im Anschluss der Erwartungswert gezeigt.
 Sollte der Rückgabewert der Funktion dem Erwartungswert entsprechen, wird der Test mit OK beendet.
 Gleiches gilt beim Testen auf Exceptions. 
 Zum Schluss werden die Ergebnisse in einer Auflistung zusammengefasst und nach Zugehörigkeit gruppiert.
-Hierbei handelt es sich um einen freien Test und drei innerhalb der Funktion.
+Hierbei handelt es sich um einen freien Testfall sowie drei Testfälle innerhalb der Funktion.
 Danach gibt es noch eine weitere Zusammenfassung, die die Tests nach Erfolg und Misserfolg gruppiert.
 Dies soll dem Anwender ermöglichen, alle Tests mit einem Blick zu erfassen.
 
@@ -42,20 +42,20 @@ Am Ende erfolgt wieder eine Zusammenfassung.
 
 \lstinputlisting[language=python,linerange={1-3,73-93}, label={tests:lst:SimpleDocTestPrintFailure}]{chapters/testing/src/simpleDocTest.py}
 
-Über \randnotiz{Strukturierung} das Modul \lstinline$doctest$ ist es einerseits möglich, Tests direkt an den Programmcode zu hängen und über den Docstring der Funktion Tests auszuführen.
+Über \randnotiz{Strukturierung} das Modul \lstinline$doctest$ ist es einerseits möglich, Tests direkt an den Programmcode zu hängen und über den Docstring der Funktion auszuführen.
 Diese Tests werden am Ende eines Moduls mit \lstinline$doctest.testmod()$ aufgerufen.
-Andererseits ist es Möglichkeit über \lstinline$doctest.testfile()$ separate Testdateien als Tests auszuführen.
-Es ist also möglich Tests zu einer Modul oder eine Klasse außerhalb der Klasse zu definieren.
-Damit der Python Interpreter weiß welches Modul hierbei getestet werden soll muss dies vorher über eine Importanweisung bekannt gemacht werden.
-Da sich der Befehl in einem Docstring befindet, muss dieser wie die Funktionsaufrufen über \lstinline$>>>$ eingeleitet werden.
-Bei dieser Möglichkeit der Strukturierung ist es darüber hinaus auch möglich, die Tests unabhängig vom Programmcode ablaufen zu lassen.
-Hierfür muss wie im folgenden Listing zu sehen, das Modul \lstinline$doctest$ angegeben und die Testdatei aufgerufen werden.
+Andererseits ist es möglich, über \lstinline$doctest.testfile()$ separate Testdateien als Tests auszuführen.
+Es ist also möglich, Tests zu einer Modul oder einer Klasse außerhalb der Klasse zu definieren.
+Damit der Python Interpreter weiß, welches Modul hierbei getestet werden soll, muss dies vorher über eine Importanweisung bekannt gemacht werden.
+Da sich der Befehl in einem Docstring befindet, muss dieser wie die Funktionsaufrufe über \lstinline$>>>$ eingeleitet werden.
+Bei dieser Art der Strukturierung ist es darüber hinaus auch möglich, die Tests unabhängig vom Programmcode ablaufen zu lassen.
+Hierfür muss, wie im folgenden Listing zu sehen, das Modul \lstinline$doctest$ angegeben und die Testdatei aufgerufen werden.
 Das Modul erkennt automatisch, dass es in diesem fall \lstinline$doctest.testfile()$ nutzen muss.
 \begin{lstlisting}[label=testing:lst:AusfuehrenVonDoctests,language=bash]
     python -m doctest exampleTest.txt
 \end{lstlisting}
 
-Die Textdatei für ausgelagerte Testfälle kann die wie folgt aussehen.
+Die Textdatei für ausgelagerte Testfälle kann die wie folgt aussehen:
 
 \lstinputlisting[label={tests:lst:docTestExtern}]{chapters/testing/src/doctest.txt}
 
