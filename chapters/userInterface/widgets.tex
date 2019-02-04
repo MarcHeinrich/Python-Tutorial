@@ -8,7 +8,7 @@ dahingehend erweitert wird.
 
 \subsection{Frame}
 \label{ui:widgets:subsection:frame}
-Frames fungieren, ähnlich wie die sogenannten divs in HTML, als Container um verschiedene
+Frames fungieren, ähnlich wie die sogenannten \lstinline$divs$ in HTML, als Container um verschiedene
 Widgets oder weitere Frames in einem bestimmten Bereich des Fensters zu gruppieren.
 Dabei wird ein Rechteck erstellt und dem Eltern-Element über den Layout-Manager hinzugefügt.
 In folgendem Beispiel werden drei Frames erzeugt, die sich untereinander befinden und
@@ -33,11 +33,11 @@ Diese lassen sich weiterhin auch dynamisch verändern (z.B. bei einem Klick auf e
 
 \subsection{Button}
 \label{ui:widgets:subsection:button}
-Mit dem Button hat der Nutzer die Möglichkeit mit dem Userinterface über einen Maus-Klick
+Mit dem Button hat der Nutzer die Möglichkeit, mit dem Userinterface über einen Maus-Klick
 zu interagieren. Buttons werden aus der Klasse \lstinline$Button$ erzeugt, dem Fenster oder Frame
 bekannt gemacht und mit einem Text versehen. Zusätzlich kann dem Button über \lstinline$command$
 noch eine Funktion zugewiesen werden, die ausgeführt wird, sobald der Button gedrückt wurde.
-In folgendem Beispiel wird bei Drücken des Buttons, in einem Label der Satz \lstinline$Hallo Python-World$
+In folgendem Beispiel wird bei Klick auf einen Button in einem Label der Satz \lstinline$Hallo Python-World$
 ausgegeben.
 
 \lstinputlisting[language=Python]{chapters/userInterface/src/GUI_ButtonLabelExample.py}
@@ -69,9 +69,9 @@ vom Entry entgegen genommen wird.
 
 \subsection{Listbox}
 \label{ui:widgets:subsection:listbox}
-Um verschiedene Elemente in einer Liste anzeigen zu können bietet sich die Listbox an.
-Der Text der vom Entry entgegengenommen wird soll nun einer solchen Listbox hinzugefügt werden.
-Dazu dient die Funktion \lstinline$insert()$. Der erste Parameter der übergeben wird bestimmt
+Um verschiedene Elemente in einer Liste anzeigen zu können, bietet sich die Listbox an.
+Der Text, der vom Entry entgegengenommen wird, soll nun einer solchen Listbox hinzugefügt werden.
+Dazu dient die Funktion \lstinline$insert()$. Der erste Parameter, der übergeben wird, bestimmt
 die Position in der Liste und der zweite das eigentliche Element.
 Zusätzlich wird der Anwendung ein zweiter Button hinzugefügt um das jeweilig angewählte Element
 der Listbox zu entfernen. Die Funktion \lstinline$curselection()$ gibt eine Liste der angewählten
