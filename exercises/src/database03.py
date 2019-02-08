@@ -6,7 +6,8 @@ cursor = connection.cursor()
 
 with connection:
 
-    cursor.execute("CREATE TABLE IF NOT EXISTS person(vname VARCHAR(20),nname VARCHAR(30))")
+    cursor.execute("CREATE TABLE IF NOT EXISTS \
+    person(vname VARCHAR(20),nname VARCHAR(30))")
 
     sql_insert = """INSERT INTO person (vname, nname)
     VALUES ("Peter", "Maffay")"""
