@@ -22,7 +22,7 @@ allerdings nicht gänzlich ausgeschlossen.
 Lediglich Aufgaben, die CPU-gebunden sind, sind hierdurch betroffen.
 I/O-gebundene Aufgaben, wie zum Beispiel die Anfragea von Daten aus einer Datenbank, oder
 die Abfrage von Benutzereingaben, können auch trotz des GILs parallel ausgeführt werden.
-Durch die Verwendung von mehreren Prozessen ist es auch möglich parallele
+Durch die Verwendung von mehreren Prozessen ist es auch möglich, parallele
 Ausführung von Python-Code zu erreichen.
 Dies funktioniert, da jeder Python-Prozess seinen eignen Python-Interpreter und somit
 auch ein eigenes GIL besitzt.
