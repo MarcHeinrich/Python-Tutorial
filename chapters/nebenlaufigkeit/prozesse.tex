@@ -100,7 +100,7 @@ Verwendet der Prozess \lstinline$Locks$, \lstinline$Semaphoren$, \lstinline$Queu
 so kann ein Aufruf der beiden Methoden dazu führen, dass die verwendeten Objekte unnutzbar werden 
 und andere Prozesse in einen Deadlock geraten.
 Unter Windows wird zum Beenden der Prozesse \lstinline$TerminateProcess()$ aufgerufen.
-Unter Unix-Systemen sendet \lstinline$terminate()$ das \lstinline$SIGTERM$ Signal, während
+Unter Unix-Systemen sendet die Methode \lstinline$terminate()$ das \lstinline$SIGTERM$ Signal, während
 \lstinline$kill()$ das Signal \lstinline$SIGKKILL$ sendet.
 Durch Aufruf der \lstinline$close()$-Methode werden alle Resourcen des jeweiligen Prozesses freigegeben,
 falls er bereits beendet ist.
@@ -164,8 +164,8 @@ immer kompatibel mit Prozessen sind, welche mit einem anderen \lstinline$Context
 So ist ein \lstinline$Lock$-Objekt, welches mit einem \lstinline$fork Context$ erzeugt wurde, nicht mit
 Prozessen kompatibel, die mittels der \lstinline$spawn$ oder der \lstinline$forkserver$ Startmethode 
 erzeugt wurde.
-Wie ein Prozess mit einer bestimmten Startmethode durch ein \lstinline$Context$-Objekt erzeugt wird,
-ist im folgenden \hyperref[prozesse:lst:prozess_start_methode_context]{Beispiel} gezeigt.
+Im folgenden \hyperref[prozesse:lst:prozess_start_methode_context]{Beispiel} ist gezeigt,
+wie ein Prozess mit einer bestimmten Startmethode durch ein \lstinline$Context$-Objekt erzeugt wird.
 
 \label{prozesse:lst:prozess_start_methode_context}
 \lstinputlisting[language=Python,linerange={1-2,17-22}]{chapters/nebenlaufigkeit/src/prozess_start_methode.py}
@@ -243,9 +243,9 @@ werden, dass alle Arbeiterprozesse beendet wurden.
 \subsubsection{Prozess-Kommunikation}
 \label{prozesse:subsubsection:prozess-kommunikation}
 
-Um Daten zwischen Prozessen auszutauschen bietet Python die \lstinline$Queue$-Klasse und die
-\lstinline$Pipe$-Funktion an.
-Diese \lstinline$Queue$ aus dem \lstinline$multiprocessing$-Modul ist der bereits bekannten
+Um Daten zwischen Prozessen auszutauschen bietet Python die \lstinline$Pipe$- Funktion und die
+\lstinline$Queue$-Klasse an.
+Diese \lstinline$Queue$ aus dem \lstinline$multiprocessing$- Modul ist der bereits bekannten
 \lstinline$Queue$ aus dem \lstinline$queue$-Modul sehr ähnlich.
 Intern wird eine Pipe genutzt, welche durch \lstinline$Locks$ und \lstinline$Semaphoren$ 
 geschützt wird.
