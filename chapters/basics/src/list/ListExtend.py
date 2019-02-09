@@ -1,4 +1,4 @@
-# listings/ListExtend.py
+# chapters/basics/src/list/ListExtend.py
 # Verwendung der extend-Methode
 
 liste1 = [1, 2, 3]

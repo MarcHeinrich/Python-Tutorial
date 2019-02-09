@@ -1,4 +1,4 @@
-# listings/SetInit.py
+# chapters/basics/src/set/SetInit.py
 # Die Initialisierung eines Sets
 
 set1 = {1, 2, 3}

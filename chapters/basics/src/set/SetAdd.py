@@ -1,4 +1,4 @@
-# listings/SetAdd.py
+# chapters/basics/src/set/SetAdd.py
 # Verwendung der add-Methode
 
 set1 = {1, 2, 3}

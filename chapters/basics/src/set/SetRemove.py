@@ -1,4 +1,4 @@
-# listings/SetRemove.py
+# chapters/basics/src/set/SetRemove.py
 # Verwendung der remove-Methode
 
 set1 = {1, 2, 3}

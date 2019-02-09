@@ -1,4 +1,4 @@
-# listings/SetIntersection.py
+# chapters/basics/src/set/SetIntersection.py
 # Verwendung der intersection-Methode
 
 setX = {1, 2, 3, 4, 5}
