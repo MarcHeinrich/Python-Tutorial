@@ -1,4 +1,5 @@
-# chapters/inputOutput/src/dateienLesenUndSchreiben/FileHandlingAttributes.py
+# chapters/inputOutput/src/dateienLesenUndSchreiben
+# /FileHandlingAttributes.py
 # Attribute des Datei-Objekts
 
 with open("datei.txt", "r") as file:
