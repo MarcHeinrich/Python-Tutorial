@@ -1,4 +1,4 @@
-# listings/SetPrint.py
+# chapters/basics/src/set/SetPrint.py
 # Ausgabe des Inhalts eines Set auf der Konsole
 
 set1 = {1, 2, 3}

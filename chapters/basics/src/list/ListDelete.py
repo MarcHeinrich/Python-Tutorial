@@ -1,4 +1,4 @@
-# listings/ListDelete.py
+# chapters/basics/src/list/ListDelete.py
 # Beispiel zur Verwendung des del-Operators
 
 liste = [1, 2, 3]

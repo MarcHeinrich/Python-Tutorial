@@ -1,4 +1,4 @@
-# listings/DictInit.py
+# chapters/basics/src/dictionary/DictInit.py
 # Initialisierung eines Dictionary
 
 dictionary = {

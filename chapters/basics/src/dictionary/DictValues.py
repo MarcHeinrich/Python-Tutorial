@@ -1,4 +1,4 @@
-# listings/DictValues.py
+# chapters/basics/src/dictionary/DictValues.py
 # Verwendung der values-Methode
 
 dictionary = {

@@ -1,4 +1,4 @@
-# listings/SetIsDisJoint.py
+# chapters/basics/src/set/SetIsDisJoint.py
 # Verwendung der isdisjoint-Methode
 
 setX = {1, 2, 3, 4, 5}

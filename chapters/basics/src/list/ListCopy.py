@@ -1,4 +1,4 @@
-# listings/ListCopy.py
+# chapters/basics/src/list/ListCopy.py
 # Verwendung der copy-Methode
 
 liste = [1, 2, 3]

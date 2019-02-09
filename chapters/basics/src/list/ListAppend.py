@@ -1,4 +1,4 @@
-# listings/ListAppend.py
+# chapters/basics/src/list/ListAppend.py
 # Verwendung der append-Methode
 
 liste = [1, 2, 3]
