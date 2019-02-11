@@ -1,4 +1,4 @@
-# listings/DictKeys.py
+# chapters/basics/src/dictionary/DictKeys.py
 # Verwendung der keys-Methode
 
 dictionary = {

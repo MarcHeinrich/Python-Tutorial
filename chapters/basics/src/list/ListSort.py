@@ -1,4 +1,4 @@
-# listings/ListSort.py
+# chapters/basics/src/list/ListSort.py
 # Verwendung der sort-Methode
 
 # Lexikographisches Sortieren

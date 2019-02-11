@@ -1,4 +1,4 @@
-# listings/ListNegativeIndex.py
+# chapters/basics/src/list/ListNegativeIndex.py
 # Beispiel fuer die Verwendung eines negativen Index
 
 liste = [1, 2, 3]

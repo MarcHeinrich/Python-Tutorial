@@ -1,4 +1,4 @@
-# listings/DictPopItem.py
+# chapters/basics/src/dictionary/DictPopItem.py
 # Verwendung der popitem-Methode
 
 dictionary = {

@@ -1,4 +1,4 @@
-# listings/ListIndex.py
+# chapters/basics/src/list/ListIndex.py
 # Beispiel fuer das Ueberschreiben und Ausgeben eines 
 # einzelnen Elements einer List
 

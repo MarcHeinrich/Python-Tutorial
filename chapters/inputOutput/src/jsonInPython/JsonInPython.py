@@ -1,4 +1,4 @@
-# src/jsonInPython/JsonInPython.py
+# chapters/inputOutput/src/jsonInPython/JsonInPython.py
 
 # JSON Package
 
