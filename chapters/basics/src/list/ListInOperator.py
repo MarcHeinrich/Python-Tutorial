@@ -1,4 +1,4 @@
-# listings/ListInOperator.py
+# chapters/basics/src/list/ListInOperator.py
 # Verwendung des in-Operators
 
 liste = [1, 2, 3]

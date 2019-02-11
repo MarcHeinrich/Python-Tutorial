@@ -184,14 +184,14 @@ Hierbei wird die Fehlerbehandlung mit der Klasse \lstinline$ZeroDivisonError$ ab
 Dabei wird die nachfolgende \lstinline$else-klausel$ durch das Auftreten und Abfangen des Fehlers nicht ausgeführt.
 
 \lstinputlisting[language=Python,
-firstline=1,lastline=16]{chapters/basics/src/fehler_und_ausnahmebehandlung/ExceptionHandling.py}
+firstline=1,lastline=16]{chapters/basics/src/ExceptionHandling.py}
 \label{kontrollstrukturen:lst:zerodivisonerror}
 
 Die \lstinline$else$-Anweisung \randnotiz{else}kann im Code optional mit angegeben werden und wird nur ausgeführt, 
 falls es zu keiner Ausnahme in dem \lstinline$try-Block$ kommt.
 Somit wird nach der Ausführung des \lstinline$try-Blocks$ auch der in \lstinline$else$ stehende Code ausgeführt, wie es das nachfolgende Listing demonstriert:
 
-\lstinputlisting[language=Python, linerange={1-3,20-32}]{chapters/basics/src/fehler_und_ausnahmebehandlung/ExceptionHandling.py}
+\lstinputlisting[language=Python, linerange={1-3,20-32}]{chapters/basics/src/ExceptionHandling.py}
 \label{kontrollstrukturen:lst:else}
 
 
@@ -204,7 +204,7 @@ Anschließend wird das Ergebnis in die Datei geschrieben.
 Ungeachtet dessen ob im \lstinline$try-Block$ eine Fehlerbehandlung eintritt oder nicht, wird zum Schluss garantiert die \lstinline$finally$-Anweisung durchlaufen. 
 Damit ist die Schließung der Datei garantiert.
 
-\lstinputlisting[language=Python, linerange={1-3,36-58}]{chapters/basics/src/fehler_und_ausnahmebehandlung/ExceptionHandling.py}
+\lstinputlisting[language=Python, linerange={1-3,36-58}]{chapters/basics/src/ExceptionHandling.py}
 \label{kontrollstrukturen:lst:finally}
 
 Anstatt die beiden Fehlerklassen \lstinline$ZeroDivisonError$ und \lstinline$FileNotFoundError$ mit demselben Code individuell zu behandeln, 
@@ -222,12 +222,12 @@ print("Das Programm wird beendet.")
 
 Die \lstinline$raise$-Anweisung ermöglicht uns das Generieren bzw. Auslösen einer Ausnahme. Dabei wird die Ausnahme angegeben, die ausgelöst werden soll. 
 
-\lstinputlisting[language=Python, linerange={1-3,61-70}]{chapters/basics/src/fehler_und_ausnahmebehandlung/ExceptionHandling.py}
+\lstinputlisting[language=Python, linerange={1-3,61-70}]{chapters/basics/src/ExceptionHandling.py}
 \label{kontrollstrukturen:lst:raise}
 
 Somit ist es uns beispielsweise möglich eine \lstinline$ZeroDivisonError$ zu erzwingen, wie das folgende Beispiel demonstriert:
 
-\lstinputlisting[language=Python, linerange={1-3,73-81}]{chapters/basics/src/fehler_und_ausnahmebehandlung/ExceptionHandling.py}
+\lstinputlisting[language=Python, linerange={1-3,73-81}]{chapters/basics/src/ExceptionHandling.py}
 \label{kontrollstrukturen:lst:raisemitaufruf}
 
 \subsection {Selbst definierte Ausnahmen}
@@ -239,7 +239,7 @@ Das nachfolgende Listing zeigt ein entsprechendes Szenario.
 Dabei wird zunächst eine eigene Klasse \lstinline$MyException$ definiert, die von Exception erbt. 
 Durch die \lstinline$raise$-Anweisung können wir unsere selbst definierte Ausnahme auslösen.
 
-\lstinputlisting[language=Python, linerange={1-3,85-97}]{chapters/basics/src/fehler_und_ausnahmebehandlung/ExceptionHandling.py}
+\lstinputlisting[language=Python, linerange={1-3,85-97}]{chapters/basics/src/ExceptionHandling.py}
 \label{kontrollstrukturen:lst:eigeneaushamendefiniert}
 
 \subsection {Zusammenfassung}

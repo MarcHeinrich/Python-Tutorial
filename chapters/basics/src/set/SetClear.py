@@ -1,4 +1,4 @@
-# listings/SetClear.py
+# chapters/basics/src/set/SetClear.py
 # Verwendung der clear-Methode
 
 set1 = {1, 2, 3}

@@ -1,4 +1,4 @@
-# listings/DictUpdate.py
+# chapters/basics/src/dictionary/DictUpdate.py
 # Verwendung der update-Methode
 
 dictionary = {

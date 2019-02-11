@@ -1,4 +1,4 @@
-# listings/SetSymDiff.py
+# chapters/basics/src/set/SetSymDiff.py
 # Verwendung der symetric_difference-Methode
 
 set1 = {1, 2, 3, 4, 5}

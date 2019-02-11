@@ -1,4 +1,4 @@
-# listings/DictPrint.py
+# chapters/basics/src/dictionary/DictPrint.py
 # Ausgabe des, dem Schluessel k1 zugeordneten, Objekts
 
 dictionary = {
