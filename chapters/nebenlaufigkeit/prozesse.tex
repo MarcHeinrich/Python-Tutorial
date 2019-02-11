@@ -6,13 +6,20 @@ Die bisher betrachteten Beispiele und Aufgabe waren nicht CPU-gebunden, weshalb 
 in Abschnit \ref{parallelität_in_python:subsection:parallelität_in_python} angesprochenen GILs nicht
 ersichtlich wurden. 
 Wird nun aber das folgende Beispiel betrachtet, in dem die Anzahl der Primzahlen im Zahlenbereich 1
-bis 10 Millionen gesucht wird, ist dies nicht mehr der Fall:
+bis 10 Millionen gesucht wird, ist dies nicht mehr der Fall.
+Hierzu wird die \hyperref[prozesse:lst:count_primes]{Methode \lstinline$countPrims()$} betrachtet,
+die eine Liste an Zahlen entgegen nimmt und die Anzahl der enthaltenen Primzahlen ausgibt.
+
+\label{prozesse:lst:count_primes}
+\lstinputlisting[language=Python,linerange={1-2,8-23}]{chapters/nebenlaufigkeit/src/primzahlen_threads.py}
+
+Es werden nun 10 Threads erzeugt, die jeweils für 1 Millionen Zahlen prüfen, ob es sich bei ihnen um
+eine Primzahl handelt.
+Zusätzlich wird die Zeit gemessen, die die Threads benötigen, um die Primzahlen zu zählen.
 
 \label{prozesse:lst:primzahlen_threads}
-\lstinputlisting[language=Python]{chapters/nebenlaufigkeit/src/primzahlen_threads.py}
+\lstinputlisting[language=Python, linerange={1-2,25-42}]{chapters/nebenlaufigkeit/src/primzahlen_threads.py}
 
-Jeder Thread bekommt hierbei einen Bereich aus 1 Milliionen Zahlen.
-Es wird auch die Zeit gemessen, die die Threads benötigen, um die Primzahlen zu zählen.
 Wird diese Programm ausgeführt, kann eine mögliche Ausgabe wie folgt aussehen:
 \label{prozesse:lst:thread_ausgabe}
 \begin{lstlisting}
