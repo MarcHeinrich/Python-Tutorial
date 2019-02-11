@@ -17,7 +17,8 @@ for i in range(1, 21):
     queue.put(i)
 
 for _ in range(3):
-    worker = threading.Thread(target=square, args=(queue,), daemon=True)
+    worker = threading.Thread(target=square, args=(queue,),
+                daemon=True)
     worker.start()
 
 queue.join()

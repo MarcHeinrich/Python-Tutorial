@@ -18,14 +18,14 @@ werden.
 \item Die neue \lstinline$check_condition()$-Methode gibt den Wert des Ausdrucks 
 \lstinline$self.counter.count % 10 == self.digit$ zurück.
 
-\lstinputlisting[language=Python,linerange={1-2,37-40}]{exercises/src/nebenlaufigkeit06.py}
+\lstinputlisting[language=Python,linerange={1-2,38-42}]{exercises/src/nebenlaufigkeit06.py}
 
 \item In der \lstinline$for$-Schleife innerhalb von \lstinline$run()$ wird ein \lstinline$with$-Statement 
 ergänzt.
 Es beinhaltet die Aufrufe von \lstinline$wait_for()$ und \lstinline$increment()$.
 Hierbei bekommt \lstinline$wait_for()$ die \lstinline$check_condition()$-Methode übergeben.
 
-\lstinputlisting[language=Python,linerange={1-2,27-36}]{exercises/src/nebenlaufigkeit06.py}
+\lstinputlisting[language=Python,linerange={1-2,27-37}]{exercises/src/nebenlaufigkeit06.py}
 
 \item Eine Ausgabe in \lstinline$check_condition()$ und eine Ausgabe vor \lstinline$increment()$ genügen,
 um das Geschehen nachzuvollziehen. Es sollten die Werte des \lstinline$Counters$ und des Attibuts
