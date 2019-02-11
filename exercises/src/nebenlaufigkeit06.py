@@ -1,3 +1,6 @@
+# exercises/src/nebenlaufigkeit06.py
+# Lösung zur Aufgabe
+
 import threading
 
 
@@ -23,7 +26,7 @@ class IncrementerThread(threading.Thread):
         self.digit = digit
 
     def run(self):
-        for i in range(1000000):
+        for _ in range(1000000):
             with self.counter.cv:
                 self.counter.cv.wait_for(self.check_condition)
                 print(

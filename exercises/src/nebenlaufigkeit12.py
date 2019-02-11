@@ -1,3 +1,6 @@
+# exercises/src/nebenlaufigkeit12.py
+# Lösung zur Aufgabe
+
 import multiprocessing
 import time
 import math

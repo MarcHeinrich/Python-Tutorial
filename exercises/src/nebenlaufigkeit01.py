@@ -1,3 +1,6 @@
+# exercises/src/nebenlaufigkeit01.py
+# Lösung zur Aufgabe
+
 import threading
 import time
 

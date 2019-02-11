@@ -1,3 +1,6 @@
+# exercises/src/nebenlaufigkeit10.py
+# Lösung zur Aufgabe
+
 import threading
 import queue
 
@@ -13,7 +16,7 @@ queue = queue.Queue(20)
 for i in range(1, 21):
     queue.put(i)
 
-for i in range(3):
+for _ in range(3):
     worker = threading.Thread(target=square, args=(queue,), daemon=True)
     worker.start()
 
