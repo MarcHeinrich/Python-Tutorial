@@ -1,4 +1,5 @@
-# src/dateienLesenUndSchreiben/FileHandlingReadWrite.py
+# chapters/inputOutput/src/dateienLesenUndSchreiben
+# /FileHandlingReadWrite.py
 
 # Erstellen, Oeffnen und Schliessen der datei.txt
 

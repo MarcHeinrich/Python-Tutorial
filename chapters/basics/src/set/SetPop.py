@@ -1,4 +1,4 @@
-# listings/SetPop.py
+# chapters/basics/src/set/SetPop.py
 # Verwendung der pop-Methode
 
 set1 = {1, 2, 3}

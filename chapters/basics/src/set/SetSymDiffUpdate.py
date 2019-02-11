@@ -1,4 +1,4 @@
-# listings/SetSymDiffUpdate.py
+# chapters/basics/src/set/SetSymDiffUpdate.py
 # Verwendung der symmetric_difference_update-Methode
 
 set1 = {1, 2, 3, 4, 5}

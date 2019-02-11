@@ -1,4 +1,4 @@
-# listings/SetIsSubSet.py
+# chapters/basics/src/set/SetIsSubSet.py
 # Verwendung der issubset-Methode
 
 setX = {3, 4, 5}

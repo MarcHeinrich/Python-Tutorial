@@ -1,4 +1,4 @@
-# listings/DictClear.py
+# chapters/basics/src/dictionary/DictClear.py
 # Verwendung der clear-Methode
 
 dictionary = {

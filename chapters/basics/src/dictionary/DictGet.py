@@ -1,4 +1,4 @@
-# listings/DictGet.py
+# chapters/basics/src/dictionary/DictGet.py
 # Verwendung der get-Methode
 
 dictionary = {

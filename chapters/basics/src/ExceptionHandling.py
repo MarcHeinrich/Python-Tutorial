@@ -1,4 +1,4 @@
-# src/ExceptionHandling.py
+# chapters/basics/src/ExceptionHandling.py
 # Fehler- und Ausnahmebehandlung
 
 # Abfangen des ZeroDivisionError
