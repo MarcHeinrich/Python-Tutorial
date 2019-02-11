@@ -105,7 +105,7 @@ Nach der Eingabe der ersten Zeile werden die Zeichen $...$ ausgegeben, was bedeu
 Auf Dauer ist die direkte Übergabe des Codes an den Interpreter sehr unpraktisch. 
 Um Code erneut nutzen zu können und zu speichern, kann dieser in Dateien abgelegt werden.
 Dies kann mit einem simplen Texteditor erfolgen.
-Dateien, welche Python Code enthalten, werden mit der Dateiendung ''.py'' gekennzeichnet. 
+Dateien, die Python Code enthalten, werden mit der Dateiendung ''.py'' gekennzeichnet. 
 Sie können direkt mit dem der Konsole ausgeführt werden.
 Dazu muss Python der relative Pfad der Pythondatei (.py-Endung) übergeben werden.  
 \begin{lstlisting}[language=BASH, label={grundlagen:lst:BashStartPython1}]
@@ -114,18 +114,18 @@ python <Relativer Dateipfad der Pythondatei>
 Da nur der relative Pfad angegeben werden muss, muss lediglich der Dateiname angegeben werden, falls die Konsole sich bereits im selben Verzeichnis wie die zu öffnende Datei befindet.
 \section{Syntax}
 \label{grundlagen:sec:Syntax}
-Im \randnotiz{Syntax} Folgenden werden wichtige Grundkonzepte der Programmiersprache Python erläutert.
+Im \randnotiz{Syntax} Folgenden werden wichtige Grundkonzepte der Programmiersprache\\ \mbox{Python} erläutert.
+%Benoetigt um korrekten Zeilenumbruch zu erzwingen
 \subsection{Allgemeine Strukturen}
 \label{grundlagen:sec:AllgemeineStrukturen}
 Anders als bei anderen Programmiersprachen wie beispielsweise Java oder C++, benötigt Python keine Klassenkonstrukte oder main-Methoden zur Ausführung. 
-Dies bedeutet, dass einzelne Anweisungen in Python korrekt ausgeführt werden können. 
+Das bedeutet, dass einzelne Anweisungen in Python korrekt ausgeführt werden können. 
 Sollten für die Bearbeitung von komplexeren Problemen objektorientierte Ansätze benötigt werden, kann auch dies mit Python umgesetzt werden. 
 Weitere Informationen zur Objektorientierung mit Python finden sich im weiteren Verlauf des Python Tutorials.
 Für den Moment reicht es für den Leser zu wissen, dass Anweisungen bereits zeilenweise ausgeführt werden können. 
-Dies kann sehr simpel getestet werden, indem der Python Interpreter als einfacher Taschenrechner genutzt wird. 
+Das kann sehr simpel getestet werden, indem der Python Interpreter als einfacher Taschenrechner genutzt wird. 
 In Abbildung \ref{grundlagen:img:AusdrueckeInInterpreter} wird dies gezeigt. Einfache Ausdrücke wie Summen, Subtraktionen, Multiplikationen und Divisionen können direkt eingegeben werden. 
-Nach Betätigung der Eingabe-Taste liefert Python das Ergebnis des Ausdruckes.\\
-
+Nach Betätigung der Eingabe-Taste liefert Python das Ergebnis des Ausdrucks.\\
 \begin{figure}
 	\centering
 	\includegraphics[width=1\textwidth]{images/AusdrueckeInInterpreter.png} 
@@ -140,8 +140,8 @@ Hierfür sind entweder der Tabulator oder vier aufeinander folgende Leerzeichen v
 \subsection{Kommentare}
 \label{grundlagen:sec:Kommentare}
 Innerhalb der Programmiersprache Python wird zwischen Zeilen- und Blockkommentaren unterschieden.
-Zeilenweise Kommentare werden durch das Rautensymbol (\#) eingeleitet.
-Blockkommentare hingegen werden durch drei aufeinander folgende Anführungszeichen ( \lstinline$"""$) jeweils zu Beginn und am Ende des Kommentars markiert.
+Zeilenweise Kommentare werden durch das Rautensymbol \lstinline$\#$ eingeleitet.
+Blockkommentare hingegen werden durch drei aufeinander folgende Anführungszeichen \lstinline$"""$ jeweils zu Beginn und am Ende des Kommentars markiert.
 Hier wird jeweils ein Beispiel gezeigt:
 
 \lstinputlisting[language=Python,label={grundlagen:lst:Kommentare}]{chapters/basics/src/comment.py}
@@ -151,7 +151,7 @@ Anders als bei Java und C++ ist Python eine nur schwach typisierte Sprache.
 Somit ist bei der Initialisierung keine Typangabe erforderlich.
 Der Datentyp wird beim Initialisieren dynamisch ermittelt und automatisch zugewiesen.
 Um einer Variable trotzdem einen gewünschten Typ zuzuweisen, kann man sie einfach mit dem entsprechenden Typ initialisieren.
-Weitere Informationen zu Datentypen werden in Abschnitt \ref{grundlagen:sec:ElementareDatentypen} erläutert.
+Weitere Informationen zu Datentypen werden in Abschnitt \ref{basicdatatypes:sec:ElementareDatentypen} erläutert.
 \section{Beispiel \glqq Hello World!\grqq}
 \label{grundlagen:sec:HalloWorld}
 Einfache \randnotiz{Beispiel} Ausgaben können mit der print()- Anweisung gemacht werden. 
@@ -161,7 +161,7 @@ Der Einfachheit halber, wird hier noch auf die genaue Erklärung der einzelnen Be
 Ein einfaches ''Hello-World!''-Programm benötigt in Python nur eine Zeile: 
 \lstinputlisting[language=python, label={grundlagen:lst:HalloWorld}]{chapters/basics/src/helloworld.py} 
 Es handelt sich dabei um ein vollständiges Python-Programm, das in dieser Form ausgeführt werden kann. 
-Wie bereits erläutert werden anders als bei Java oder C++ keine Klassenkonstrukte oder main-Methoden benötigt.
+Wie bereits erläutert, werden anders als bei Java oder C++ keine Klassenkonstrukte oder main-Methoden benötigt.
 
 %\uebung
 %\aufgabe{grundlagen01} 

@@ -1,4 +1,4 @@
-# listings/SetUnion.py
+# chapters/basics/src/set/SetUnion.py
 # Verwendung der union-Methode
 
 set1 = {1, 2, 3, 4, 5}

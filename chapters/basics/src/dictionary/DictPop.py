@@ -1,4 +1,4 @@
-# listings/DictPop.py
+# chapters/basics/src/dictionary/DictPop.py
 # Verwendung der pop-Methode
 
 dictionary = {

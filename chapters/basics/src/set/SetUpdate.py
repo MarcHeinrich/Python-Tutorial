@@ -1,4 +1,4 @@
-# listings/SetUpdate.py
+# chapters/basics/src/set/SetUpdate.py
 # Verwendung der update-Methode
 
 set1 = {1, 2, 3, 4, 5}

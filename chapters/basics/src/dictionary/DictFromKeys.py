@@ -1,4 +1,4 @@
-# listings/DictFromKeys.py
+# chapters/basics/src/dictionary/DictFromKeys.py
 # Verwendung der fromkeys-Methode
 
 x = ("k1", "k2", "k3")

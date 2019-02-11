@@ -1,4 +1,4 @@
-# listings/SetCopy.py
+# chapters/basics/src/set/SetCopy.py
 # Verwendung der copy-Methode
 
 set1 = {1, 2, 3}

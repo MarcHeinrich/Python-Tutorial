@@ -1,4 +1,4 @@
-# listings/DictZip.py
+# chapters/basics/src/dictionary/DictZip.py
 # Verwendung der zip-Methode
 
 sprache = ["englisch", "deutsch", "franzoesisch"]

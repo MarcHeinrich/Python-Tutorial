@@ -1,4 +1,4 @@
-# listings/DictItems.py
+# chapters/basics/src/dictionary/DictItems.py
 # Verwendung der items-Methode
 
 dictionary = {

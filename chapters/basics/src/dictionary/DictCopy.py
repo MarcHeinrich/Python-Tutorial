@@ -1,4 +1,4 @@
-# listings/DictCopy
+# chapters/basics/src/dictionary/DictCopy
 # Verwendung der copy-Methode
 
 dictionary = {

@@ -1,4 +1,4 @@
-# listings/ListReverse.py
+# chapters/basics/src/list/ListReverse.py
 # Verwendung der reverse-Methode
 
 liste = [1, 2, 3]

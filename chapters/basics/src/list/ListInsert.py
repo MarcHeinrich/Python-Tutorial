@@ -1,4 +1,4 @@
-# listings/ListInsert.py
+# chapters/basics/src/list/ListInsert.py
 # Verwendung der insert-Methode
 
 liste = ["1", "2", "3"]
