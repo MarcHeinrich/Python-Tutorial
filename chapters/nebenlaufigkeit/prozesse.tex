@@ -175,6 +175,7 @@ wie ein Prozess mit einer bestimmten Startmethode durch ein \lstinline$Context$-
 
 Häufig wird eine Aufgabe in kleinere Schritte unterteilt und dann an mehrere Arbeiterprozesse aufgeteilt.
 Ein Beispiel hierfür ist das vorherige \hyperref[prozesse:lst:primzahlen_prozesse]{Zählen von Primzahlen}.
+\randnotiz{Prozess-Pools}
 Für solche Fälle existiert in Python die \lstinline$Pool$-Klasse, welche das Auslagern von Aufgaben an 
 Arbeiterprozesse erleichtert.
 Wird ein neuer \lstinline$Pool$ erzeugt, kann seinem Konstruktor über den Parameter \lstinline$processes$
@@ -253,6 +254,7 @@ Wird von einem Prozess zum ersten Mal ein Element hinzugefügt, wird ein neuer Th
 Element aus einem Puffer in die Pipe schreibt.
 Die \lstinline$Queue$-Klasse implementiert alle bekannten Methoden, bis auf \lstinline$join()$ und 
 \lstinline$task_done()$.
+\randnotiz{Queues}
 Darüber hinaus werden auch neue Methoden implementiert.
 Durch \lstinline$close()$  wird der \lstinline$Queue$ signalisiert, dass der aufrufende Prozesse keine neuen
 Daten mehr hinzufügt.
@@ -269,6 +271,7 @@ Sie erbt von \lstinline$Queue$ und erweitert diese Funktionalität um die beiden 
 \lstinline$task_done()$ und \lstinline$join()$, welche sich wie die bereits bekannten Methoden verhalten.
 Die \lstinline$Pipe()$-Funktion gibt zwei \lstinline$Connection$-Objekte zurück, welche über eine Pipe
 verbunden sind.
+\randnotiz{Pipes}
 Jedes Ende der Pipe wird durch eines der beiden \lstinline$Connection$-Objekte repräsentiert.
 Sollten zwei Prozesse oder Threads gleichzeitig versuchen von einem Ende der Pipe zu lesen oder hinein zu
 schreiben, so können die Daten in der Pipe korrupiert werden.
