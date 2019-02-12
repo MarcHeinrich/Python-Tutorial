@@ -494,7 +494,8 @@ Diese blockiert solange, bis \lstinline$set()$ aufgerufen wurde.
 Wurde \lstinline$set()$ bereits vor \lstinline$wait()$ aufgerufen, wird nicht blockiert, und \lstinline$wait()$
 kehrt sofort zurück.
 Es kann wieder der \lstinline$timeout$-Parameter an \lstinline$wait()$ übergeben werden.
-Nur falls dieser Timeout ausläuft, bevor \lstinline$set()$ aufgerufen wurde, gibt \lstinline$False$ zurück.
+Nur falls dieser Timeout ausläuft, bevor \lstinline$set()$ aufgerufen wurde, gibt \lstinline$wait()$ 
+\lstinline$False$ zurück.
 Andernfalls ist der Rückgabewert immer \lstinline$True$.
 
 \uebung
@@ -516,7 +517,7 @@ Der \lstinline$PriorityQueue$ hält seine hinzugefügten Elemente sortiert und gib
 niedrigste Element zurück.
 Zur Sortierung wird hierbei der Heap-Queue-Algorithmus, auch bekannt als Priority-Queue-Algorithmus,
 aus dem \lstinline$heapq$-Modul (vgl. \cite{pythondokuheapq}) verwendent.
-Diese drei Klassen nutzen intern \lstinline$Lock$- Objekte, weshalb Threads bei gleichzeitigen zugriffen
+Diese drei Klassen nutzen intern \lstinline$Lock$- Objekte, weshalb Threads bei gleichzeitigen Zugriffen
 blockiert werden.
 Den Konstruktoren aller Queues kann der optionale Parameter \lstinline$maxsize$ übergeben werden, um 
 die maximale Anzahl an Elementen zu setzen.
@@ -543,16 +544,16 @@ zurück und wirft die \lstinline$Full$-Exception, wenn in der Queue kein Platz fr
 Es wird auch die Methode \lstinline$put_nowait()$ angeboten. 
 Sie verhält sich wie ein Aufruf von \lstinline$put()$, wenn \lstinline$block$ den Wert
 \lstinline$False$ besitzt.
-Um eine Element aus der Queue heraus zu holen, wird \lstinline$get()$ aufgerufen.
-Sollte zum Zeitpunkt des Aufrufs keine Element in der Queue enthalten sein, wird so lange blockiert,
-bei ein anderer Thread eines hinzufügt.
+Um ein Element aus der Queue heraus zu holen, wird \lstinline$get()$ aufgerufen.
+Sollte zum Zeitpunkt des Aufrufs kein Element in der Queue enthalten sein, wird so lange blockiert,
+bis ein anderer Thread eines hinzufügt.
 Es kann wieder ein optionaler Parameter \lstinline$timeout$ angegeben werden.
 Läuft dieser ab, bevor ein Element in den leeren Queue eingefügt wurde, kehrt \lstinline$get()$ zurück
 und wirft die \lstinline$Empty$-Exception.
 Wird der optionale Paramert \lstinline$block$ mit \lstinline$False$ angegeben, wirft \lstinline$get()$ 
 sofort die \lstinline$Empty$-Exception, falls kein Element vorhanden ist.
 Das selbe Verhalten tritt auch beim Aufruf der Methode \lstinline$get_nowait()$ auf.
-Neben dieser grundlegenden Funktionalität für eine Queue implementieren die drei vorgestellten 
+Neben dieser grundlegenden Funktionalität für einen Queue implementieren die drei vorgestellten 
 Implementationen noch eine weitere Funktionalität.
 So kann geprüft werden, ob alle Elemente vollständig abgearbeitet wurden.
 Hierfür werden zwei weitere Methoden angeboten.
@@ -573,7 +574,7 @@ welche auf Kosten von geringerer Funktionalität kommen.
 Für einen \lstinline$SimpleQueue$ kann keine maximale Größe definiert werden, er ist somit immer 
 unbegrenzt Groß.
 Aufrufe von \lstinline$put()$ blockieren garantiert nie.
-Die beiden optionalen Parameter \lstinline$block$ und \lstinline$timeout$ werden ignoriert und werden 
+Die beiden optionalen Parameter \lstinline$block$ und \lstinline$timeout$ werden ignoriert und sind 
 nur aufgeführt, um kompatibel zur \lstinline$Queue$-Klasse zu sein.
 Die Funktionalität der anderen Klassen, die von \lstinline$SimpleQueue$ nicht unterstützt wird, ist das 
 Warten auf die vollständinge Abarbeitung aller Elemente.
