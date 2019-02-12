@@ -100,14 +100,14 @@ Beim Attribut \lstinline$authkey$ handelt es sich um einen Byte-String, welcher 
 Authentifizierungen genutzt wird und standardmäßig den Wert des Elternprozesses übernimmt.
 Genauere Informationen zur Verwendung von \lstinline$authkey$ sind in \cite{pythondokuprozesse}
  zu finden.
-Die beiden Methoden \lstinline$terminate()$ und \lstinline$kill()$ beenden den jeweiligen Prozess, nicht
+Die beiden Methoden \lstinline$kill()$ und \lstinline$terminate()$ beenden den jeweiligen Prozess, nicht
 aber dessen Kindprozesse.
 Verwendet der Prozess \lstinline$Locks$, \lstinline$Semaphoren$, \lstinline$Queues$ oder \lstinline$Pipes$,
 so kann ein Aufruf der beiden Methoden dazu führen, dass die verwendeten Objekte unnutzbar werden 
 und andere Prozesse in einen Deadlock geraten.
 Unter Windows wird zum Beenden der Prozesse \lstinline$TerminateProcess()$ aufgerufen.
-Unter Unix-Systemen sendet die Methode \lstinline$terminate()$ das \lstinline$SIGTERM$ Signal, während
-\lstinline$kill()$ das Signal \lstinline$SIGKKILL$ sendet.
+Unter Unix-Systemen sendet die Methode \lstinline$terminate()$ das \lstinline$SIG-$ \lstinline$TERM$
+Signal, während \lstinline$kill()$ das Signal \lstinline$SIGKKILL$ sendet.
 Durch Aufruf der \lstinline$close()$-Methode werden alle Resourcen des jeweiligen Prozesses freigegeben,
 falls er bereits beendet ist.
 Andernfalls wird ein \lstinline$ValueError$ geworfen.

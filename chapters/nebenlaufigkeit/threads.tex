@@ -517,8 +517,8 @@ Der \lstinline$PriorityQueue$ hält seine hinzugefügten Elemente sortiert und gib
 niedrigste Element zurück.
 Zur Sortierung wird hierbei der Heap-Queue-Algorithmus, auch bekannt als Priority-Queue-Algorithmus,
 aus dem \lstinline$heapq$-Modul (vgl. \cite{pythondokuheapq}) verwendent.
-Diese drei Klassen nutzen intern \lstinline$Lock$- Objekte, weshalb Threads bei gleichzeitigen Zugriffen
-blockiert werden.
+Diese drei Klassen verwenden intern \lstinline$Lock$- Objekte, weshalb Threads bei gleichzeitigen
+Zugriffen blockiert werden.
 Den Konstruktoren aller Queues kann der optionale Parameter \lstinline$maxsize$ übergeben werden, um 
 die maximale Anzahl an Elementen zu setzen.
 Wird der Parameter nicht angegeben oder Werte kleiner 1 angegeben, so ist die Größe des Queues 
@@ -578,8 +578,8 @@ Die beiden optionalen Parameter \lstinline$block$ und \lstinline$timeout$ werden
 nur aufgeführt, um kompatibel zur \lstinline$Queue$-Klasse zu sein.
 Die Funktionalität der anderen Klassen, die von \lstinline$SimpleQueue$ nicht unterstützt wird, ist das 
 Warten auf die vollständinge Abarbeitung aller Elemente.
-Die beiden Methoden \lstinline$task_done()$ und \lstinline$join()$ werden von \lstinline$SimpleQueue$ 
-nicht angeboten.
+Die beiden Methoden \lstinline$task_done()$ und \lstinline$join()$ werden von \lstinline$Simple-$
+\lstinline$Queue$ nicht angeboten.
 
 \uebung
 \aufgabe{nebenlaufigkeit10}
