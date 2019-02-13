@@ -1,3 +1,6 @@
+# exercises/src/nebenlaufigkeit03.py
+# Lösung zur Aufgabe
+
 import threading
 
 
@@ -17,13 +20,13 @@ class IncrementerThread(threading.Thread):
         self.counter = counter
 
     def run(self):
-        for i in range(1000000):
+        for _ in range(1000000):
             self.counter.increment()
 
 
 counter = Counter()
 threads = []
-for i in range(10):
+for _ in range(10):
     thread = IncrementerThread(counter)
     thread.start()
     threads.append(thread)

@@ -1,3 +1,6 @@
+# exercises/src/nebenlaufigkeit11.py
+# Lösung zur Aufgabe
+
 import multiprocessing
 
 class MyProcess(multiprocessing.Process):
@@ -7,6 +10,6 @@ class MyProcess(multiprocessing.Process):
 
 if __name__ == "__main__":
     multiprocessing.set_start_method("spawn")
-    for i in range(10):
+    for _ in range(10):
         process = MyProcess()
         process.start()

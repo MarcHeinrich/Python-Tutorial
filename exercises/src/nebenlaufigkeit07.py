@@ -1,3 +1,6 @@
+# exercises/src/nebenlaufigkeit07.py
+# Lösung zur Aufgabe
+
 import threading
 import time
 import random
@@ -30,7 +33,7 @@ class Car(threading.Thread):
 
     def run(self):
         while True:
-            # Fahre eine zufÃ¤llige Zeit umher
+            # Fahre eine zufällige Zeit umher
             time.sleep(random.uniform(0, 10))
 
             # Fahren in das Parkhaus
@@ -38,7 +41,7 @@ class Car(threading.Thread):
             self.carPark.enter()
             print("Car", self.id, " entered the car park")
 
-            # Parke eine zufÃ¤llige Zeit
+            # Parke eine zufällige Zeit
             print("Car", self.id, " is parking")
             time.sleep(random.uniform(0, 15))
 

@@ -1,3 +1,6 @@
+# exercises/src/nebenlaufigkeit13.py
+# Lösung zur Aufgabe
+
 import multiprocessing
 
 
@@ -13,7 +16,7 @@ if __name__ == "__main__":
     for i in range(1, 21):
         queue.put(i)
 
-    for i in range(3):
+    for _ in range(3):
         worker = multiprocessing.Process(
             target=square, args=(queue,), daemon=True)
         worker.start()

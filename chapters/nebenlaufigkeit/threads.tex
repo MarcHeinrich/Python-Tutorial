@@ -4,12 +4,13 @@
 
 In Python werden zwei APIs zur Verwendung von Threads angeboten, die Low-Level
 API aus dem \_thread-Modul und die Higher-Level API aud dem threading-Modul.
-Es wird sich an dieser Stelle auf das threading-Modul beschränkt, da es Intern auf
-dem \_thread-Modul basiert und eine Schnittstelle anbietet, welche das Programmieren
+Es wird sich an dieser Stelle auf das threading-Modul beschränkt, da es intern auf
+dem \_thread-Modul basiert und eine Schnittstelle anbietet, die das Programmieren
 von Multithreaded-Programmen erleichert.
 Diese Schnittstelle ist an der Thread-Schnittstelle von Java angelehnt und sollte daher für
 Java-Entwickler leicht zu verwenden sein.
-Allerdings gibt es einige Unterschiede zwischen dem Python-Modul und der Java-Implementierung.
+Allerdings gibt es einige Unterschiede zwischen dem Python-Modul und der entsprechenden
+Implementierung in Java.
 So sind Bedingungsvariablen und Locks seperate Objekte in Python und es ist auch
 nur eine Teilmenge des Verhaltens eines Java-Threads in Python verfügbar.
 Ein Python-Thread kennt keine Prioritäten und Thread-Gruppen und er kann nicht zerstört,
@@ -44,7 +45,7 @@ Der Konstruktor  der \lstinline$Thread$-Klasse bietet noch weitere Parameter an:
 
 Es ist anzumerken, dass ein \lstinline$Thread$-Objekt bei seiner Erzeugung noch nicht gestartet wird.
 Hierzu muss explizit die \lstinline$start()$-Methode aufgerufen werden.
-Wurde ein Thread gestartet wird er als \glqq lebendig\grqq{} angesehen. 
+Wurde ein Thread gestartet, wird er als \glqq lebendig\grqq{} angesehen. 
 Dies bleibt er solange, bis seine \lstinline$run()$-Methode verlassen wurde.
 Hierbei macht es keinen Unterschied, ob sie regulär verlassen wurde oder Aufgrund einer Exception.
 Der aktuelle Status eines Threads kann mittels der \lstinline$is_alive()$-Methode abgefragt werden.
@@ -62,12 +63,12 @@ der Thread tatsächlich beendet wurde, oder nur der Timeout abgelaufen ist.
 \item[\kontroll] Wie kann auf das Ende der Ausführung eines Threads gewartet werden?
 }
 
-Jeder Thread besitzt einen Namen, welcher initial über den Konstruktor oder direkt über das
+Jeder Thread besitzt einen Namen, der initial über den Konstruktor oder direkt über das
 \lstinline$name$-Attribut gesetzt werden kann. 
 Threads können als Dämon gekennzeichnet werden.
 Sobald nur noch Dämon-Threads aktiv sind, wird das Python-Programm beendet.
 Die Dämon-Eigenschaft kann initial über den Konstruktor gesetzt werden.
-Wird kein Wert übergeben, übernimmt der Thread standardmäßig den Werte des erzeugenden Threads.
+Wird kein Wert übergeben, übernimmt der Thread standardmäßig den Wert des erzeugenden Threads.
 Über das \lstinline$deamon$-Attribut eines Threads kann die Eigenschaft abgefragt und gesetzt werden.
 Hierbei ist es wichtig, dass die Eigenschaft immer vor dem Aufruf der \lstinline$start()$-Methode
 gesetzt wird.
@@ -75,7 +76,7 @@ Wird sie nach dem Starten des Threads geändert, so wird ein \lstinline$RuntimeEr
 
 \warning{
 	Dämon-Threads werden sofort beendet, wenn keine normalen Threads mehr aktiv sind.
-	Das heißt, dass ihre Ressourcen wie zum Beispiel geöffnete Dateien oder Datenbanktransaktionen
+	Das heißt, dass ihre Ressourcen, wie zum Beispiel geöffnete Dateien oder Datenbanktransaktionen,
 	gegebenenfalls nicht ordentlich freigegeben werden.
 	Um dies zu verhindern, sollten die betroffenen Threads nicht die Dämon-Eigenschaft besitzen und
 	es sollten geeignete Signalisierungsmechanismen eingesetzt werden (siehe Abschnitt
@@ -94,9 +95,9 @@ Die meisten Anwendungen, in denen mehrere Threads zum Einsatz kommen, erfordern 
 Mechanismus, der die Zugriffe der einzelnen Threads auf gewisse Daten synchronisiert.
 Hierdurch wird unteranderem vermieden, dass auf invaliden Datensätzen gearbeitet wird, oder ein
 Datenupdate verloren geht.
-Im Folgenden wird ein Beispiel betrachtet, bei dem es zu Fehlern Aufgrund von fehlender
+Im Folgenden wird ein Beispiel betrachtet, bei dem es zu Fehlern aufgrund von fehlender
 Synchronisationsmechanismen kommt.
-Es werden anschließend neue Konstrukte eingeführt, welche die Fehler beheben werden.
+Es werden anschließend neue Konstrukte eingeführt, die die Fehler beheben werden.
 
 Betrachtet wird nun die folgende \hyperref[threads:lst:counter_example]{\lstinline$Counter$-Klasse}.
 Sie besitzt das Attribut \lstinline$count$, welches durch Aufruf von \lstinline$increment()$
@@ -127,7 +128,7 @@ mal inkrementieren?
 
 Dieser Programmcode würde vermuten lassen, dass bei jeder Ausführung der Wert 10000000 ausgegeben
 wird, da jeder der 10 Threads den \lstinline$Counter$ eine Millionen mal inkrementiert.
-Erstaunlicherweiße werden allerdings bei mehrmaliger Ausführung unterschiedliche Werte ausgegeben.
+Erstaunlicherweise werden allerdings bei mehrmaliger Ausführung unterschiedliche Werte ausgegeben.
 Diese können zum Beispiel wie folgt aussehen:
 
 \label{threads:lst:beispiel_ausgabe}
@@ -146,12 +147,12 @@ Somit kann es vorkommen, dass zum Beispiel der erste Thread den aktuellen \lstin
 und dann die aktive Ausführung an einen anderen Thread abgeben muss.
 Dieser zweite Thread liest nun den selben \lstinline$count$-Wert wie der erste Thread, inkrementiert ihn
 und schreibt den neuen Wert zurück in das Attribut.
-Nun wechselt die aktive Ausfürhung zurück zum ersten Thread, welcher noch den alten \lstinline$count$-Wert gelesen hat.
+Nun wechselt die aktive Ausführung zurück zum ersten Thread, welcher noch den alten
+\lstinline$count$-Wert gelesen hat.
 Dieser alte Wert wird nun erneut inkrementiert und zurückgeschrieben. 
 Somit wurde der \lstinline$Counter$ effektiv nicht zweimal, sondern nur einmal inkrementiert.
 Um dieses Verhalten zu verhindern, muss sichergestellt werden, dass die drei einzelnen Operationen
-atomar ausgeführt werden.
-Das heißt, dass sie entweder ganz oder garnicht ausgeführt werden.
+atomar ausgeführt werden, sprich, dass sie entweder ganz oder gar nicht ausgeführt werden.
 
 Als unterste Synchronisationsebene bietet Python die Klasse \lstinline$Lock$ an.
 \randnotiz{Locks}
@@ -170,7 +171,7 @@ Wird auf einem offenen \lstinline$Lock$ die \lstinline$release()$-Methode aufger
 \lstinline$RuntimeError$ geworfen.
 Falls mehrere Threads durch \lstinline$aquire()$ blockiert werden, wird nur ein Thread fortgesetzt, sobald
 \lstinline$release()$ aufgerufen wurde.
-Welcher der blockierten Threads fortgesetzt wird ist hierbei nicht definiert.
+Welcher der blockierten Threads fortgesetzt wird, ist hierbei nicht definiert.
 
 Wurde \lstinline$aquire()$ aufgerufen, sollte garantiert sein, dass auch \lstinline$release()$
 aufgerufen wird.
@@ -182,23 +183,21 @@ einen \lstinline$try$-Block zu schreiben und den Aufruf von \lstinline$release()
 \label{threads:lst:try_aquire_lock}
 \lstinputlisting[language=Python,linerange={1-2,7-12}]{chapters/nebenlaufigkeit/src/lock_aquire_release.py}
 
-Diese Variante ist allerdings etwas lang und unschön.
-Da die \lstinline$Lock$-Klasse das Context-Management-Protokoll unterstützt, kann das Gleiche mit dem
-\lstinline$with$-Statement erreicht werden.
-Hierbei werden \lstinline$aquire()$ und \lstinline$release()$ automatisch aufgerufen:
+Das Gleiche kann mit dem \lstinline$with$-Statement erreicht werden, da die \lstinline$Lock$-Klasse
+das Context-Management-Protokoll unterstützt.
+Hierbei werden die beiden Methoden \lstinline$aquire()$ und \lstinline$release()$ automatisch aufgerufen:
 
 \label{threads:lst:with_aquire_lock}
 \lstinputlisting[language=Python,linerange={1-2,13-15}]{chapters/nebenlaufigkeit/src/lock_aquire_release.py}
 
-Wird \lstinline$aquire()$ ohne Parameter aufgerufen, blockiert sie solange, bis \lstinline$release()$ 
-aufgerufen wird.
-Ist dies nicht gewünscht, so kann auch der optionale Parameter \lstinline$blocking=False$ angegeben
-werden. 
+Ist es nicht gewünscht, dass \lstinline$aquire()$ blockiert, wenn sie mehrmals aufgerufen wird, ohne 
+dass das \lstinline$Lock$ freigegeben wurde, so kann ihr auch der optionale Parameter
+\lstinline$blocking=False$ übergegeben werden. 
 In diesem Fall kehrt \lstinline$aquire()$ sofort zurück, egal in welchem Zustand sich das \lstinline$Lock$
 befindet.
 Es muss nun der Rückgabewert von \lstinline$aquire()$ betrachtet werden, um zu erfahren, ob das 
 \lstinline$Lock$ offen oder geschlossen ist.
-Ist das \lstinline$Lock$ bereits geschlossen wird der Wert \lstinline$False$ zurückgegeben.
+Ist das \lstinline$Lock$ bereits geschlossen, wird der Wert \lstinline$False$ zurückgegeben.
 Andernfalls wird \lstinline$True$ zurückgegeben und das \lstinline$Lock$ ändert seinen Zustand zu
 geschlossen.
 Weiterhin ist es möglich, einen Timeout mittels des optionalen Parametes \lstinline$timeout$ zu 
@@ -214,11 +213,11 @@ Die Angabe eines Timeouts ist nur erlaubt, wenn der Parameter \lstinline$blockin
 \aufgabe{nebenlaufigkeit03}
 \aufgabe{nebenlaufigkeit04}
 
-Um das Problem aus Aufgabe \ref{nebenlaufigkeit04} zu lösen bietet Python eine weitere Möglichkeit
+Um das Problem aus Aufgabe \ref{nebenlaufigkeit04} zu lösen, bietet Python eine weitere Möglichkeit
 zur Synchronisation an.
 \randnotiz{Reentrant Locks}
 Hierbei handelt es sich um die \lstinline$RLock$-Klasse.
-Das \lstinline$R$ steht für \lstinline$reentrant$, was auf deutsch Wiedereintritt bedeutet.
+Das \lstinline$R$ steht für \lstinline$reentrant$, was Wiedereintritt bedeutet.
 Im Gegensatz zu Objekten der \lstinline$Lock$-Klasse, die nie einem Thread zugeordnet werden, werden
 Objekte der \lstinline$RLock$-Klasse an den Thread gebunden, der zuerst die \lstinline$aquire()$-Methode
 aufruft.
@@ -226,13 +225,13 @@ Neben den beiden Zuständen, die die \lstinline$Lock$-Klasse besitzt, merkt sich 
 nun auch, wie oft die \lstinline$aquire()$-Methode aufgerufen wurde.
 Beim ersten Aufruf von \lstinline$aquire()$ merkt sich das \lstinline$RLock$-Objekt, welcher Thread die
 Methode aufgerufen hat und setzt einen internen Zähler auf 1.
-Bei jedem weiteren Aufruf von \lstinline$aquire()$ des selben Threads wird der Zähler inkrementiert.
+Bei jedem weiteren Aufruf von \lstinline$aquire()$ desselben Threads wird der Zähler inkrementiert.
 Wird \lstinline$release()$ aufgerufen, so wird der Zähler wieder dekrementiert.
-Das \lstinline$RLock$ ist erst dann wieder offen, wenn \lstinline$release()$ genau so oft aufgerufen
-wurde, wie \lstinline$aquire()$, und der interne Zähler wieder auf 0 steht.
+Das \lstinline$RLock$ ist erst dann wieder offen, wenn die Methode \lstinline$release()$ genau so oft
+aufgerufen wurde, wie \lstinline$aquire()$, und der interne Zähler wieder auf 0 steht.
 Ruft ein zweiter Thread die \lstinline$aquire()$-Methode auf, während der erste Thread das
 \lstinline$RLock$ besitzt, so muss er warten, bis der Zähler wieder auf 0 steht.
-Es ist nun also möglich einen gewissen Codeabschnitt auch rekursiv vor konkurrierenden Zugriffen 
+Es ist nun also möglich, einen gewissen Codeabschnitt auch rekursiv vor konkurrierenden Zugriffen 
 zu schützen.
 Wie auch schon beim \lstinline$Lock$, können der \lstinline$aquire()$-Methode des \lstinline$RLocks$ 
 die beiden optionalen Paramter \lstinline$blocking$ und \lstinline$timeout$ übergegeben werden.
@@ -243,7 +242,7 @@ die beiden optionalen Paramter \lstinline$blocking$ und \lstinline$timeout$ über
 Im Folgenden wird das Beispiel mit dem \lstinline$Counter$ und dem \lstinline$Incrementer-$
 \lstinline$Thread$ etwas angepasst.
 Der \lstinline$IncrementerThread$ soll nun den \lstinline$Counter$ wieder nur um eins erhöhen.
-Weiterhin wird dem \lstinline$IncrementerThread$ ein Wert übergeben, mit welchem gesteuert wird,
+Weiterhin wird dem \lstinline$IncrementerThread$ ein Wert übergeben, mit dem gesteuert wird,
 wann der Thread den \lstinline$Counter$ erhöht. Den 10 erstellten \lstinline$IncrementerThreads$ 
 wird nun eine Zahl von 0 bis 9 übergeben. Der \lstinline$Counter$ soll von den einzelnen Threads immer
 nur dann erhöht werden, wenn der aktuelle Wert des \lstinline$Counters$ auf die Ziffer endet, die dem
@@ -256,7 +255,7 @@ Der Mechanismus, der hierdurch implementiert wird, ist allgemein als Condition V
 (deutch Bedingungsvariable) bekannt.
 Objekte der \lstinline$Condition$-Klasse sind immer einem \lstinline$Lock$- oder einem
 \lstinline$RLock$-Objekt zugeordnet.
-Dieses kann dem Konstruktor eines \lstinline$Condition$-Objektes übergeben werden.
+Dieses kann dem Konstruktor eines \lstinline$Condition$-Objekts übergeben werden.
 Wird kein Lock-Objekt übergeben, erzeugt der Konstruktor ein neues.
 Das so erzeugte \lstinline$Condition$-Objekt kann nun überall wie das Lock-Objekt
 verwendet werden, das Lock-Objekt muss nicht weiterhin zusätzlich verwaltet werden.
@@ -269,8 +268,8 @@ dann wie folgt aus:
 \lstinputlisting[language=Python,linerange={1-2,6-18}]{chapters/nebenlaufigkeit/src/condition_variable.py}
 
 Eine Condition Variable kann also wie ein einfaches Lock verwendet werden.
-Die \lstinline$aquire()$- und \lstinline$release()$-Methoden verhalten sich hierbei, wie die des hinterlegten
-Lock-Objektes.
+Die \lstinline$aquire()$- und \lstinline$release()$-Methoden verhalten sich hierbei wie die des hinterlegten
+Lock-Objekts.
 Darüber hinaus bietet die \lstinline$Condition$-Klasse noch weitere Methoden an.
 Diese Methoden dürfen nur aufgerufen werden, wenn zuvor \lstinline$aquire()$ aufgerufen wurde.
 Wurde von einem Thread \lstinline$aquire()$ aufgerufen, aber der aktuelle geteilte Zustand
@@ -286,7 +285,7 @@ dann zurück.
 Nachdem \lstinline$wait()$ zurückgekehrt ist, sollten die Bedingungen an den geteilten Zustand auf 
 jeden Fall wieder geprüft werden, da eine unbestimmte Zeit zwischen dem Aufruf von \lstinline$notify()$
 oder \lstinline$notify_all()$ und dem Zurückkehren von \lstinline$wait()$ vergehen kann.
-Weiterhin ist es möglich \lstinline$wait()$ den optionalen Parameter \lstinline$timeout$ mitzugeben.
+Weiterhin ist es möglich, \lstinline$wait()$ den optionalen Parameter \lstinline$timeout$ mitzugeben.
 Läuft diese Zeit ab, bevor ein anderer Thread \lstinline$notify()$ oder \lstinline$notify_all()$ aufruft,
 kehrt \lstinline$wait()$ mit dem Rückgabewert \lstinline$False$ zurück.
 
@@ -337,7 +336,7 @@ Der Consumer ruft \lstinline$wait()$ innerhalb der \lstinline$while$-Schleife au
 jedes mal seine Bedingung.
 Dies ist notwendig, da sich der Zustand zwischen dem Aufruf von \lstinline$notify()$ und dem 
 Zurückkehren von \lstinline$wait()$ erneut ändern kann. 
-Diese Problematik ist inhärent in der Multithreaded-Programmierung.
+Diese Problematik ist in der Multithreaded-Programmierung inhärent.
 Die \lstinline$Condition$-Klasse bietet neben \lstinline$wait()$ eine weitere Methode an, die das Testen
 der Bedingung automatisieren kann.
 Bei dieser Methode handelt es sich um \lstinline$wait_for()$.
@@ -373,8 +372,8 @@ Um eine zufällige Zeit im Intervall von \lstinline$x$ bis \lstinline$y$ zu schla
 \label{threads:lst:auto}
 \lstinputlisting[language=Python,linerange={1-2,34-57}]{chapters/nebenlaufigkeit/src/parkhaus.py}
 
-Es wird nun ein neues \lstinline$CarPark$-Objekt erzeugt, das 5 Parkplätze besitzt.
-Anschließend werden 10 \lstinline$Car$-Objekte initialisiert und gestartet.
+Es wird nun ein neues \lstinline$CarPark$-Objekt erzeugt, das fünf Parkplätze besitzt.
+Anschließend werden zehn \lstinline$Car$-Objekte initialisiert und gestartet.
 Wird das folgende \hyperref[threads:lst:parkhaus_ausführung]{Programm} ausgeführt, kann über die
 Ausgaben nachvollzogen werden, welches Auto gerade in das Parkhaus einfahren möcht, einen
 Parkplatz gefunden hat und wieder ausfährt.
@@ -420,9 +419,9 @@ bevorzugt verwendet werden, da andernfalls der Fehler unbemerkt bleibt.
 
 Wie eine \lstinline$Semaphore$ den gleichzeitigen Zugriff auf eine Datenbankverbindung beschränken
 kann ist im folgenden Beispiel gezeigt (vgl. \cite{pythondokuthreads}).
-Hier wird eine beschränkung von maximal 5 gleichzeitigen Zugriffen gesetzt.
+Hier wird eine beschränkung von maximal fünf gleichzeitigen Zugriffen gesetzt.
 Das \lstinline$with$-Statement ruft wieder automatisch \lstinline$aquire()$ und \lstinline$release()$ auf.
-Somit ist garantiert, dass sich immer maximal 5 Threads innerhalb des \lstinline$with$-Statements 
+Somit ist garantiert, dass sich immer maximal fünf Threads innerhalb des \lstinline$with$-Statements 
 befinden.
 
 \label{threads:lst:semaphore}
@@ -457,7 +456,7 @@ In diesem Fall hat der in \lstinline$wait()$ definierte Timeout vorrang.
 Durch den \lstinline$action$-Parameter kann ein Callable-Objekt definiert werden, dass aufgerufen wird,
 sobald alle Threads \lstinline$wait()$ aufgerufen haben und bevor sie ihre Ausführung fortsetzen.
 Der Rückgabewert von \lstinline$wait()$ ist ein Integer im Intervall [0, \lstinline$parties$). 
-Hierüber kann zum Beispiel ein Thread ausgewählt werden, um eine Besondere Aufgabe auszuführen.
+Hierüber kann zum Beispiel ein Thread ausgewählt werden, um eine besondere Aufgabe auszuführen.
 Wurde die \lstinline$Barrier$ genutzt, kann sie über \lstinline$reset()$ in ihren Initialzustand versetzt
 werden und erneut verwendet werden.
 Durch Aufruf von \lstinline$abort()$ wird die \lstinline$Barrier$ in einen \glqq zerstörten\grqq{}
@@ -468,7 +467,7 @@ Das Attribut \lstinline$broken$ gibt an, ob sich die \lstinline$Barrier$ im \glq
 Zustand befindet.
 
 \tip{
-Tritt in einem Thread ein Problem auf, und er kann nicht ordnugsgemäß fortgesetzt werden, kann
+Wenn in einem Thread ein Problem auftritt, und er nicht ordnugsgemäß fortgesetzt werden kann, kann
 \lstinline$abort()$ genutzt werden, um so die bereits wartenden Threads aufzuwecken und einen
 Deadlock zu vermeiden.
 }
@@ -495,7 +494,8 @@ Diese blockiert solange, bis \lstinline$set()$ aufgerufen wurde.
 Wurde \lstinline$set()$ bereits vor \lstinline$wait()$ aufgerufen, wird nicht blockiert, und \lstinline$wait()$
 kehrt sofort zurück.
 Es kann wieder der \lstinline$timeout$-Parameter an \lstinline$wait()$ übergeben werden.
-Nur falls dieser Timeout ausläuft, bevor \lstinline$set()$ aufgerufen wurde, gibt \lstinline$False$ zurück.
+Nur falls dieser Timeout ausläuft, bevor \lstinline$set()$ aufgerufen wurde, gibt \lstinline$wait()$ 
+\lstinline$False$ zurück.
 Andernfalls ist der Rückgabewert immer \lstinline$True$.
 
 \uebung
@@ -517,8 +517,8 @@ Der \lstinline$PriorityQueue$ hält seine hinzugefügten Elemente sortiert und gib
 niedrigste Element zurück.
 Zur Sortierung wird hierbei der Heap-Queue-Algorithmus, auch bekannt als Priority-Queue-Algorithmus,
 aus dem \lstinline$heapq$-Modul (vgl. \cite{pythondokuheapq}) verwendent.
-Diese drei Klassen nutzen intern \lstinline$Lock$- Objekte, weshalb Threads bei gleichzeitigen zugriffen
-blockiert werden.
+Diese drei Klassen verwenden intern \lstinline$Lock$- Objekte, weshalb Threads bei gleichzeitigen
+Zugriffen blockiert werden.
 Den Konstruktoren aller Queues kann der optionale Parameter \lstinline$maxsize$ übergeben werden, um 
 die maximale Anzahl an Elementen zu setzen.
 Wird der Parameter nicht angegeben oder Werte kleiner 1 angegeben, so ist die Größe des Queues 
@@ -544,16 +544,16 @@ zurück und wirft die \lstinline$Full$-Exception, wenn in der Queue kein Platz fr
 Es wird auch die Methode \lstinline$put_nowait()$ angeboten. 
 Sie verhält sich wie ein Aufruf von \lstinline$put()$, wenn \lstinline$block$ den Wert
 \lstinline$False$ besitzt.
-Um eine Element aus der Queue heraus zu holen, wird \lstinline$get()$ aufgerufen.
-Sollte zum Zeitpunkt des Aufrufs keine Element in der Queue enthalten sein, wird so lange blockiert,
-bei ein anderer Thread eines hinzufügt.
+Um ein Element aus der Queue heraus zu holen, wird \lstinline$get()$ aufgerufen.
+Sollte zum Zeitpunkt des Aufrufs kein Element in der Queue enthalten sein, wird so lange blockiert,
+bis ein anderer Thread eines hinzufügt.
 Es kann wieder ein optionaler Parameter \lstinline$timeout$ angegeben werden.
 Läuft dieser ab, bevor ein Element in den leeren Queue eingefügt wurde, kehrt \lstinline$get()$ zurück
 und wirft die \lstinline$Empty$-Exception.
 Wird der optionale Paramert \lstinline$block$ mit \lstinline$False$ angegeben, wirft \lstinline$get()$ 
 sofort die \lstinline$Empty$-Exception, falls kein Element vorhanden ist.
 Das selbe Verhalten tritt auch beim Aufruf der Methode \lstinline$get_nowait()$ auf.
-Neben dieser grundlegenden Funktionalität für eine Queue implementieren die drei vorgestellten 
+Neben dieser grundlegenden Funktionalität für einen Queue implementieren die drei vorgestellten 
 Implementationen noch eine weitere Funktionalität.
 So kann geprüft werden, ob alle Elemente vollständig abgearbeitet wurden.
 Hierfür werden zwei weitere Methoden angeboten.
@@ -574,12 +574,12 @@ welche auf Kosten von geringerer Funktionalität kommen.
 Für einen \lstinline$SimpleQueue$ kann keine maximale Größe definiert werden, er ist somit immer 
 unbegrenzt Groß.
 Aufrufe von \lstinline$put()$ blockieren garantiert nie.
-Die beiden optionalen Parameter \lstinline$block$ und \lstinline$timeout$ werden ignoriert und werden 
+Die beiden optionalen Parameter \lstinline$block$ und \lstinline$timeout$ werden ignoriert und sind 
 nur aufgeführt, um kompatibel zur \lstinline$Queue$-Klasse zu sein.
 Die Funktionalität der anderen Klassen, die von \lstinline$SimpleQueue$ nicht unterstützt wird, ist das 
 Warten auf die vollständinge Abarbeitung aller Elemente.
-Die beiden Methoden \lstinline$task_done()$ und \lstinline$join()$ werden von \lstinline$SimpleQueue$ 
-nicht angeboten.
+Die beiden Methoden \lstinline$task_done()$ und \lstinline$join()$ werden von \lstinline$Simple-$
+\lstinline$Queue$ nicht angeboten.
 
 \uebung
 \aufgabe{nebenlaufigkeit10}

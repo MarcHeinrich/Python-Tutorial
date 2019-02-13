@@ -6,13 +6,20 @@ Die bisher betrachteten Beispiele und Aufgabe waren nicht CPU-gebunden, weshalb 
 in Abschnit \ref{parallelität_in_python:subsection:parallelität_in_python} angesprochenen GILs nicht
 ersichtlich wurden. 
 Wird nun aber das folgende Beispiel betrachtet, in dem die Anzahl der Primzahlen im Zahlenbereich 1
-bis 10 Millionen gesucht wird, ist dies nicht mehr der Fall:
+bis 10 Millionen gesucht wird, ist dies nicht mehr der Fall.
+Hierzu wird die \hyperref[prozesse:lst:count_primes]{Methode \lstinline$countPrims()$} betrachtet,
+die eine Liste an Zahlen entgegen nimmt und die Anzahl der enthaltenen Primzahlen ausgibt.
+
+\label{prozesse:lst:count_primes}
+\lstinputlisting[language=Python,linerange={1-2,8-23}]{chapters/nebenlaufigkeit/src/primzahlen_threads.py}
+
+Es werden nun 10 Threads erzeugt, die jeweils für 1 Millionen Zahlen prüfen, ob es sich bei ihnen um
+eine Primzahl handelt.
+Zusätzlich wird die Zeit gemessen, die die Threads benötigen, um die Primzahlen zu zählen.
 
 \label{prozesse:lst:primzahlen_threads}
-\lstinputlisting[language=Python]{chapters/nebenlaufigkeit/src/primzahlen_threads.py}
+\lstinputlisting[language=Python, linerange={1-2,25-42}]{chapters/nebenlaufigkeit/src/primzahlen_threads.py}
 
-Jeder Thread bekommt hierbei einen Bereich aus 1 Milliionen Zahlen.
-Es wird auch die Zeit gemessen, die die Threads benötigen, um die Primzahlen zu zählen.
 Wird diese Programm ausgeführt, kann eine mögliche Ausgabe wie folgt aussehen:
 \label{prozesse:lst:thread_ausgabe}
 \begin{lstlisting}
@@ -54,7 +61,7 @@ Found  62090  primes
 Finished in  29.6911255  seconds
 \end{lstlisting}
 
-Beide Varianten erhalten das selbe Ergebniss, allerdings sind die Prozesse kanpp 70 Sekunden schneller.
+Beide Varianten erhalten das selbe Ergebniss, allerdings sind die Prozesse knapp 70 Sekunden schneller.
 Ein größerer unterschied der beiden Varianten ist die Zeile \lstinline$if __name__ == ''__main__''$.
 Diese Zeile ist im \hyperref[prozesse:lst:primzahen_prozesse]{Prozess-Beispiel} notwendig, da der
 Programmcode innerhalb des \lstinline$if$-Statements ansonsten jedesmal ausgeführt wird, wenn das
@@ -63,7 +70,7 @@ Wird ein neuer Prozess gestartet, lädt der neue Python-Interpreter das Modul ein
 Sobald er nun die Codezeile erreicht, in der der neue Prozess gestartet wurde, wird ein dritter Prozesse
 gestartet, dessen Python-Interpreter das Modul ein drittes mal lädt.
 Somit werden solange Prozesse erzeugt, bis das System keine Ressourcen mehr zur Verfügung hat.
-Durch angabe des \lstinline$if$-Statements ist es garantiert, dass der enthaltene Code nur einmal
+Durch Angabe des \lstinline$if$-Statements ist es garantiert, dass der enthaltene Code nur einmal
 ausgeführt wird, wenn das Programm gestartet wird.
 
 \subsubsection{Prozess Objekte}
@@ -75,7 +82,7 @@ Genau genommen gibt es jede Methode von \lstinline$Thread$ auch in \lstinline$Pr
 Sogar die Konstruktoren sind identisch.
 Der \lstinline$group$-Parameter des \lstinline$Process$-Konstruktors existert allerdings nur zur
 Kompatibilität zum Konstruktor der \lstinline$Thread$-Klasse.
-Der Aufruf von \lstinline$join()$ gibt immer \lstinline$Non$ zurück, auch falls der optionale Timeout
+Der Aufruf von \lstinline$join()$ gibt immer \lstinline$None$ zurück, auch wenn der optionale Timeout
 abgelaufen ist.
 Um zu prüfen, ob der entsprechende Prozess tatsächlich beendet wurde, ist über seinen
 \lstinline$exitcode$
@@ -84,8 +91,7 @@ Es ist zu bemerken, dass ein Dämon-Prozess keine weiteren Kindprozesse starten k
 Sobald sich sein Elternprozess beendet, wird er terminiert.
 Zusäztlich bietet die \lstinline$Process$-Klasse noch weitere Attribute und Methoden an.
 Über das \lstinline$pid$-Attribut kann die ID des jeweiligen Prozesses abgefragt werden. 
-Durch \lstinline$exitcode$ kann der entsprechende abgefragt werden, mit welchem Status sich der Prozess
-beendet hat.
+Durch \lstinline$exitcode$ kann abgefragt werden, mit welchem Status sich der Prozess beendet hat.
 Wurde er noch nicht beendet, hat \lstinline$exitcode$ den Wert \lstinline$None$.
 Trägt \lstinline$exitcode$ einen negativen Wert, so bedeutet das, dass der Prozess durch ein Signal
 beendet wurde.
@@ -94,14 +100,14 @@ Beim Attribut \lstinline$authkey$ handelt es sich um einen Byte-String, welcher 
 Authentifizierungen genutzt wird und standardmäßig den Wert des Elternprozesses übernimmt.
 Genauere Informationen zur Verwendung von \lstinline$authkey$ sind in \cite{pythondokuprozesse}
  zu finden.
-Die beiden Methoden \lstinline$terminate()$ und \lstinline$kill()$ beenden den jeweiligen Prozess, nicht
+Die beiden Methoden \lstinline$kill()$ und \lstinline$terminate()$ beenden den jeweiligen Prozess, nicht
 aber dessen Kindprozesse.
 Verwendet der Prozess \lstinline$Locks$, \lstinline$Semaphoren$, \lstinline$Queues$ oder \lstinline$Pipes$,
 so kann ein Aufruf der beiden Methoden dazu führen, dass die verwendeten Objekte unnutzbar werden 
 und andere Prozesse in einen Deadlock geraten.
 Unter Windows wird zum Beenden der Prozesse \lstinline$TerminateProcess()$ aufgerufen.
-Unter Unix-Systemen sendet \lstinline$terminate()$ das \lstinline$SIGTERM$ Signal, während
-\lstinline$kill()$ das Signal \lstinline$SIGKKILL$ sendet.
+Unter Unix-Systemen sendet die Methode \lstinline$terminate()$ das \lstinline$SIG-$ \lstinline$TERM$
+Signal, während \lstinline$kill()$ das Signal \lstinline$SIGKKILL$ sendet.
 Durch Aufruf der \lstinline$close()$-Methode werden alle Resourcen des jeweiligen Prozesses freigegeben,
 falls er bereits beendet ist.
 Andernfalls wird ein \lstinline$ValueError$ geworfen.
@@ -109,8 +115,8 @@ Nachdem \lstinline$close()$ erfolgreich zurückgekehrt ist, wird beim Zugriff auf
 und Attributen von \lstinline$Process$ ebenfalls ein \lstinline$ValueError$ geworfen.
 
 \warning{
-Die Methoden \lstinline$start()$, \lstinline$join()$, \lstinline$is_alive()$, \lstinline$terminate()$ und
-\lstinline$exitcode$ sollten immer nur vom erzeugenden Prozess aufgerufen werden.
+Die Methoden \lstinline$start()$, \lstinline$join()$, \lstinline$is_alive()$, \lstinline$terminate()$ und das
+Attribut \lstinline$exitcode$ sollten immer nur vom erzeugenden Prozess verwendet werden.
 }
 
 Das \lstinline$multiprocessing$-Modul unterstützt, je nach Betriebssystem, drei verschiedene Arten einen
@@ -131,7 +137,7 @@ Durch diese Startmethode wird ein Fork des aktuellen Python Interpreters durch d
 \lstinline$os.fork()$ erstellt.
 Das heißt, dass der erzeugte Kindprozess effektiv identisch zum Elternprozess ist. 
 Alle Resourcen werden vom Elternprozess geerbt.
-Werden erzeugen Multithreaded-Prozesse mit dieser Startmethode Kindprozesse, kann es sehr schnell
+Erzeugen Multithreaded-Prozesse mit dieser Startmethode Kindprozesse, kann es sehr schnell
 problematisch werden.
 Unter Windows ist diese Startmethode nicht verfügbar, unter Unix Systemen ist sie die Standardvariante.
 
@@ -147,11 +153,11 @@ Diese Variante wird nur von Unix Systemen unterstützt, die auch das übergeben vo
 über Unix-Pipes unterstützen.
 \end{enumerate}
 
-Um eine der drei Startmethoden zu wählen kann die \lstinline$set_start_methode()$-Methode aufgerufen 
+Um eine der drei Startmethoden zu wählen, kann die \lstinline$set_start_method()$-Methode aufgerufen 
 werden.
 Sie sollte nur innerhalb von \lstinline$if __name__ ==$ \lstinline$''__main__''$ aufgerufen werden und nie mehrmals
 in einem Programm.
-Die \lstinline$spwan$ Startmethode wird also wie im
+Die \lstinline$spawn$ Startmethode wird also wie im
 \hyperref[prozesse:lst:prozess_start_methode]{folgenden Beispiel} gezeigt ausgewählt.
 
 \label{prozesse:lst:prozess_start_methode}
@@ -161,11 +167,11 @@ Sollen mehrere Prozesse mit unterschiedlichen Startmethoden gestartet werden, so
 \lstinline$get_context()$ aufgrufen werden, um ein \lstinline$Context$-Objekt zu erhalten.
 Hierbei ist darauf zu achten, dass Objekte, welche mit einem \lstinline$Context$ erzeugt wurden, nicht
 immer kompatibel mit Prozessen sind, welche mit einem anderen \lstinline$Context$ gestartet wurden.
-So ist ein \lstinline$Lock$-Objekt, welches mit einem \lstinline$fork Context$ erzeugt wurde, nicht mit
+So ist ein \lstinline$Lock$-Objekt, welches mit einem \lstinline$fork-Context$ erzeugt wurde, nicht mit
 Prozessen kompatibel, die mittels der \lstinline$spawn$ oder der \lstinline$forkserver$ Startmethode 
-erzeugt wurde.
-Wie ein Prozess mit einer bestimmten Startmethode durch ein \lstinline$Context$-Objekt erzeugt wird,
-ist im folgenden \hyperref[prozesse:lst:prozess_start_methode_context]{Beispiel} gezeigt.
+erzeugt wurden.
+Im folgenden \hyperref[prozesse:lst:prozess_start_methode_context]{Beispiel} ist gezeigt,
+wie ein Prozess mit einer bestimmten Startmethode durch ein \lstinline$Context$-Objekt erzeugt wird.
 
 \label{prozesse:lst:prozess_start_methode_context}
 \lstinputlisting[language=Python,linerange={1-2,17-22}]{chapters/nebenlaufigkeit/src/prozess_start_methode.py}
@@ -175,16 +181,17 @@ ist im folgenden \hyperref[prozesse:lst:prozess_start_methode_context]{Beispiel}
 
 Häufig wird eine Aufgabe in kleinere Schritte unterteilt und dann an mehrere Arbeiterprozesse aufgeteilt.
 Ein Beispiel hierfür ist das vorherige \hyperref[prozesse:lst:primzahlen_prozesse]{Zählen von Primzahlen}.
+\randnotiz{Prozess-Pools}
 Für solche Fälle existiert in Python die \lstinline$Pool$-Klasse, welche das Auslagern von Aufgaben an 
 Arbeiterprozesse erleichtert.
 Wird ein neuer \lstinline$Pool$ erzeugt, kann seinem Konstruktor über den Parameter \lstinline$processes$
 die Anzahl der Arbeiterthreads mitgegeben werden.
 Werden die Parameter \lstinline$initializer$ und \lstinline$initargs$ angeben, so wird das Callable-Objekt,
-welches an \lstinline$initializer$ übergeben wurde von jedem der Arbeiterprozesse mit \lstinline$initargs$
+welches an \lstinline$initializer$ übergeben wurde, von jedem der Arbeiterprozesse mit \lstinline$initargs$
 als Parameter aufgerufen, wenn die Arbeiterprozesse gestartet werden.
 Durch \lstinline$maxtasksperchild$ wird die maximale Anzahl an Aufgaben, welche die Arbeiterprozesse 
-abarbeitern, bevor sie beendet und von einem neuen Arbeiterprozess ersetzt werden. 
-Dies hat zur Folge, dass ungenutze Resourcen wieder freigegeben werden.
+abarbeitern, angegeben, bevor sie beendet und von einem neuen Arbeiterprozess ersetzt werden. 
+Dies hat zur Folge, dass ungenutzte Resourcen wieder freigegeben werden.
 Der letzte Parameter ist \lstinline$context$.
 Wird er angegeben, so werden die Arbeiterprozesse mit dem angegebenen \lstinline$Context$-Objekt 
 erzeugt.
@@ -193,14 +200,14 @@ Methoden an.
 Diese sollten immer nur von dem Prozess aufgerufen werden, der auch den \lstinline$Pool$ erzeugt hat.
 Durch \lstinline$apply()$  wird von einem der Arbeiterprozesse das Callable-Objekt, welches über den
 Parameter \lstinline$func$ angegeben wird, mit den Parametern, welche durch \lstinline$args$ angegeben
-wurden, auf.
+wurden, aufgerufen.
 Es ist auch möglich Schlüsselwort-Parameter über \lstinline$kwds$ anzugeben.
 Der Aufruf von \lstinline$apply$ blockiert, bis die Aufgabe abgearbeitet wurde.
 Die beiden Methoden \lstinline$map()$ und \lstinline$imap()$ nehmen ebenfalls ein Callable-Objekt
 mit dem \lstinline$func$ Parameter entgegen.
 Durch den Parameter \lstinline$iterable$ kann ein Iterable-Objekt übergeben werden, welches 
-aufgeteilt wird und den Arbeiterprozessen als seperate Aufgabe übergeben wird.
-Der Aufruf der beiden Methoden bockiert, bis die Aufgaben abgearbeitet wurden.
+aufgeteilt wird und den Arbeiterprozessen als seperate Aufgaben übergeben wird.
+Der Aufruf der beiden Methoden blockiert, bis die Aufgaben abgearbeitet wurden.
 Bei sehr langen Iterable-Objekten ist \lstinline$imap()$ effizienter.
 Ist die Reihenfolge der Ergebnisse irrelevant, kann auch \lstinline$imap_unordered()$ genutzt werden,
 welche sich andernfalls genau wie \lstinline$imap()$ verhält.
@@ -228,13 +235,13 @@ werden.
 Um das Ergebnis der Aufgaben zu erhalten, kann \lstinline$get()$ aufgerufen werden.
 Für \lstinline$wait()$ und \lstinline$get()$ kann ein optionaler Timeout angegeben werden.
 Wurden alle Aufgaben an den \lstinline$Pool$ übergeben, kann \lstinline$close()$ aufgerufen werden.
-Nachdem diese Methode aufgerufen wurde, kann dem \lstinline$Pool$ keine neue Aufgabe mehr
+Nachdem diese Methode aufgerufen wurde, kann dem \lstinline$Pool$ keine neue Aufgabe
 übergeben werden.
 Sobald alle Aufgaben abgearbeitet wurden, werden die Arbeiterprozesse beendet.
 Durch den Aufruf von \lstinline$terminate()$ werden die Arbeiterprozesse sofort beendet, ohne dass sie
 ihre Aufgaben fertig bearbeiten.
 Nachdem einer dieser beiden Methoden aufgerufen wurde, kann durch \lstinline$join()$ darauf gewartet
-werden, dass alle Arbeiterprozesse beendet wurden.
+werden, dass sich alle Arbeiterprozesse beenden.
 
 \uebung
 \aufgabe{nebenlaufigkeit12}
@@ -243,9 +250,9 @@ werden, dass alle Arbeiterprozesse beendet wurden.
 \subsubsection{Prozess-Kommunikation}
 \label{prozesse:subsubsection:prozess-kommunikation}
 
-Um Daten zwischen Prozessen auszutauschen bietet Python die \lstinline$Queue$-Klasse und die
-\lstinline$Pipe$-Funktion an.
-Diese \lstinline$Queue$ aus dem \lstinline$multiprocessing$-Modul ist der bereits bekannten
+Um Daten zwischen Prozessen auszutauschen bietet Python die \lstinline$Pipe$- Funktion und die
+\lstinline$Queue$-Klasse an.
+Dieser \lstinline$Queue$ aus dem \lstinline$multiprocessing$- Modul ist dem bereits bekannten
 \lstinline$Queue$ aus dem \lstinline$queue$-Modul sehr ähnlich.
 Intern wird eine Pipe genutzt, welche durch \lstinline$Locks$ und \lstinline$Semaphoren$ 
 geschützt wird.
@@ -253,6 +260,7 @@ Wird von einem Prozess zum ersten Mal ein Element hinzugefügt, wird ein neuer Th
 Element aus einem Puffer in die Pipe schreibt.
 Die \lstinline$Queue$-Klasse implementiert alle bekannten Methoden, bis auf \lstinline$join()$ und 
 \lstinline$task_done()$.
+\randnotiz{Queues}
 Darüber hinaus werden auch neue Methoden implementiert.
 Durch \lstinline$close()$  wird der \lstinline$Queue$ signalisiert, dass der aufrufende Prozesse keine neuen
 Daten mehr hinzufügt.
@@ -269,23 +277,24 @@ Sie erbt von \lstinline$Queue$ und erweitert diese Funktionalität um die beiden 
 \lstinline$task_done()$ und \lstinline$join()$, welche sich wie die bereits bekannten Methoden verhalten.
 Die \lstinline$Pipe()$-Funktion gibt zwei \lstinline$Connection$-Objekte zurück, welche über eine Pipe
 verbunden sind.
+\randnotiz{Pipes}
 Jedes Ende der Pipe wird durch eines der beiden \lstinline$Connection$-Objekte repräsentiert.
 Sollten zwei Prozesse oder Threads gleichzeitig versuchen von einem Ende der Pipe zu lesen oder hinein zu
 schreiben, so können die Daten in der Pipe korrupiert werden.
 Die beiden \lstinline$Connection$-Objekte bieten die \lstinline$send()$-Methode an, welche das 
 übergebene Objekt an das andere Ende der \lstinline$Connection$ überträgt.
 Wird auf der anderen Seite \lstinline$recv()$ aufgerufen, wird das übertragene Objekt empfangen.
-Wenn noch keine Objekt gesendet wurde, so blockiert \lstinline$recv()$ bis ein Objekt zum Empfang 
+Wenn noch keine Objekt gesendet wurde, blockiert \lstinline$recv()$ bis ein Objekt zum Empfang 
 bereit ist.
 Um eine \lstinline$Connection$ zu schließen, muss \lstinline$close()$ aufgerufen werden.
 Die Methode \lstinline$poll()$ gibt an, ob aktuell Daten zum Empfangen bereit sind.
-Es ist möglich, einen optionalen Timeout anzugeben, blockiert \lstinline$poll()$ maximal die spezifizierte
-Zeit in Sekund.
+Es ist möglich, einen optionalen Timeout anzugeben.
+Die \lstinline$poll()$-Methode blockiert dann maximal die spezifizierte Zeit in Sekunden.
 Wurde kein Timeout angegeben, kehrt die Methode sofort zurück.
 Sollen Byte-Daten versendet werden, kann die Methode \lstinline$send_bytes()$ aufgerufen werden.
-Sie nimmt ein Objekt entgegen, das das Buffer Protokoll (vgl. \cite{bufferproto} unterstützt,
+Sie nimmt ein Objekt entgegen, das das Buffer Protokoll (vgl. \cite{bufferproto}) unterstützt,
 und einen optionalen Offset.
-Durch \lstinline$recv_bytes()$ kann ein dieses Objekt empfangen werden.
+Durch \lstinline$recv_bytes()$ kann dieses Objekt empfangen werden.
 Sollte aktuell nichts zu empfangen sein, blockiert \lstinline$recv_bytes()$.
 Es kann optional eine maximale Länge über \lstinline$maxlength$ angegeben werden.
 

@@ -1,3 +1,6 @@
+# exercises/src/nebenlaufigkeit06.py
+# L?sung zur Aufgabe
+
 import threading
 
 
@@ -23,9 +26,10 @@ class IncrementerThread(threading.Thread):
         self.digit = digit
 
     def run(self):
-        for i in range(1000000):
-            with self.counter.cv:
-                self.counter.cv.wait_for(self.check_condition)
+        cv = self.counter.cv
+        for _ in range(1000000):
+            with cv:
+                cv.wait_for(self.check_condition)
                 print(
                     "digit is: ",
                     self.digit,
@@ -33,7 +37,8 @@ class IncrementerThread(threading.Thread):
                 self.counter.increment()
 
     def check_condition(self):
-        print("digit is: ", self.digit, ", counter is: ", self.counter.count)
+        print("digit is: ", self.digit, ", counter is: ",
+                self.counter.count)
         return self.counter.count % 10 == self.digit
 
 
