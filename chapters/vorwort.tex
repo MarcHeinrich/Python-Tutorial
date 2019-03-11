@@ -1,13 +1,15 @@
 % !TeX root = ../pythonTutorial.tex
 \chapter*{Vorwort}
+
 Das vom Stifterverband geförderte Projekt \glqq Informatik studieren in der digitalen Gesellschaft (InfoStuDi)\grqq{}
 erprobt und evaluiert neue Lehr-, Lern- und Prüfungsformen in den Informatik-Studiengängen im Fachbereich Informatik und Mikrosystemtechnik der Hochschule Kaiserslautern.
+
 Studiengänge an einer Hochschule für
 angewandte Wissenschaften bereiten die Studierenden auf die spätere Arbeitswelt vor.
 Diese Arbeitswelt
 wird von zeitlich und örtlich ungebundenem Tätigkeiten geprägt sein.
-
-Im Teilprojekt \glqq Collaborative Writing\grqq{} wurde eine neue Form einer Lehrveranstaltung erprobt.
+Im Teilprojekt \glqq Collaborative Writing\grqq{} wurde eine neue Form einer Lehrveranstaltung erprobt,
+die die Studierenden auf diese spätere Arbeitswelt vorbereiten soll.
 Ein Team aus Studierenden und Lehrenden verfasst ein Dokument zu einem Thema der Informatik.
 Dabei wird neben der Produktion von Texten auch Software entstehen.
 Die Produktion des vorliegenden Dokuments
@@ -16,14 +18,24 @@ Drei Sprints wurden durchgeführt, das Team organisierte sich selbst. Werkzeuge w
 Die Studierenden waren nicht nur Autoren, sondern auch Fachlektoren, Software-Entwickler und für die Qualität des Gesamtergebnisses mit verantwortlich.
 
 Dieses Projekt wäre nicht zustande gekommen ohne die Studierenden, die sich auf dieses Abenteuer im Rahmen
-der Lehrveranstaltung \glqq Aktuelle Themen aus Forschung und Praxis\grqq{} im Masterstudiengang Informatik eingelassen haben. An dieser Stelle ein herzliches \glqq Danke Schön!\grqq{} für das Vertrauen und den Mut, sich auf diese Form einer
+der Lehrveranstaltung \glqq Aktuelle Themen aus Forschung und Praxis\grqq{} des Masterstudiengangs Informatik im Wintersemester~2018/19 eingelassen haben. An dieser Stelle ein herzliches \glqq Danke Schön!\grqq{} für das Vertrauen und den Mut, sich auf diese Form einer
 Lehrveranstaltung einzulassen.
-Miriam Lohmüller brachte ihre Erfahrung aus dem Verlagswesen ein und hat die von den Studierenden verfassten
-Texte lektoriert. Fabian Kalweit hat das fachliche Lektorat unterstützt und insbesondere das Backend in GitHub
+Frau Miriam Lohmüller, als wissenschaftliche Mitarbeiterin im Projekt InfoStuDi tätig, brachte ihre Erfahrung aus dem Verlagswesen ein und hat die von den Studierenden verfassten
+Texte lektoriert. Fabian Kalweit, Mitarbeiter des Projektleiters im Fachbereich Informatik und Mikrosystemtechnik, hat das fachliche Lektorat unterstützt und insbesondere das Backend in GitHub
 organisiert und gestaltet.
+
+Der vorliegende Text stellt den Stand im März 2019, nach Abschluss der Lehrveranstaltung, dar. Natürlich
+ist das Python-Tutorial nicht fertig. Das komplette Projekt steht in Form eines Git-Repositories öffentlich
+zur Verfügung und kann von interessierten Studierenden verwendet und vor allem weiterentwickelt werden. 
+Alle Autoren hoffen, dass unsere Leser den Text für gut befinden. 
+
+Die Texte wurden nach bestem Wissen und
+Gewissen verfasst. Sollte der Text trotzdem Fehler enthalten liegen diese in der alleinigen Verantwortung
+des Projektleiters!
+
 \vspace{\baselineskip}
 \begin{flushright}\noindent
-Zweibrücken, im Februar 2019\hfill
+Zweibrücken, im März 2019\hfill
 
 \hfill {\it Manfred  Brill}
 \end{flushright}
@@ -33,17 +45,17 @@ Zweibrücken, im Februar 2019\hfill
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=16cm]{images/theTeam}% Rotieren mit rotate=90
+\includegraphics[width=\textwidth]{images/theTeam}% Rotieren mit rotate=90
 %\caption{\label{vorwort:team}Das Projektteam}
 \end{figure}
-\begin{tabular}{ll}\hline
+\begin{tabular}{ll}
 \centering
 &Das Projektteam nach dem letzten Sprint Meeting\\
-&von links nach rechts:\\\hline
+&von links nach rechts:\\
 Hintere Reihe&Fabian Kalweit, Matthias Haselmaier, Marc Zintel,\\
                    &Robin Guth, Anatoli Schäfer, Denis Schlusche,\\
-                   &Kevin Konrad, Miriam Lohmüller \\\hline
-Vordere Reihe&Mathias Fedder, Rainer Haffner, \ldots, Sebastian Morsch,\\
-                   &Julian Bernhart, Phillip Lauer, Christoph Seibel\\\hline
-Ganz vorne&Manfred Brill\\\hline
+                   &Kevin Konrad, Miriam Lohmüller \\
+Vordere Reihe&Mathias Fedder, Rainer Haffner, Lukas Kuhn, Sebastian Morsch,\\
+                   &Julian Bernhart, Phillip Lauer, Christoph Seibel\\
+Ganz vorne&Manfred Brill
 \end{tabular}

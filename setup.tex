@@ -26,8 +26,6 @@
 \input{variablen}
 % Farben
 \input{colors}
-% Koordinatensysteme und andere Makros
-\input{coordinateSystems}
 % Standardverzeichnis für das Basisverzeichnis der Bilder
 %
 \newcommand{\imagePath}{./images}
@@ -103,8 +101,8 @@
 
 %Achtung in einer Box
 \newcommand{\warning}[1]{%
-	\par\vspace{4pt}\fboxsep 1mm \framebox[140mm]%
-	{\parbox{135mm}{{\textbf{Achtung}}:\\ #1}}\vspace{4pt}%
+    \par\vspace{4pt}\fboxsep 1mm \framebox[140mm]%
+    {\parbox{135mm}{{\textbf{Achtung}}:\\ #1}}\vspace{4pt}%
 }
 %
 
@@ -266,7 +264,7 @@
 \centering%
 \vspace*{2cm}%
 
-\Huge{#1}\\\vspace*{0.5cm}%
+\Huge{\textbf{#1}}\\\vspace*{0.5cm}%
 
 \vspace*{10cm}%
 
@@ -296,7 +294,7 @@
 \centering%
 \vspace*{0.5cm}%
 
-\Huge{#2}\\\vspace*{0.5cm}%
+\Huge{\textbf{#2}}\\\vspace*{0.5cm}%
 
 \vspace*{2.0cm}%
 \includegraphics[height=6cm]{#1}%
@@ -314,7 +312,7 @@
 
 %\makeatletter
 %\newcommand{\shoppinglist}[1]{%
-%	Shopping list: #1\checknextarg}
+%   Shopping list: #1\checknextarg}
 %\newcommand{\checknextarg}{\@ifnextchar\bgroup{\gobblenextarg}{ and that's all!}}
 %\newcommand{\gobblenextarg}[1]{ and also #1\@ifnextchar\bgroup{\gobblenextarg}{ and that's all!}}
 %\makeatother
@@ -322,13 +320,13 @@
 \makeatletter
 \newcommand{\templabel}{xxx}
 \newcommand{\uebungTutorial}[1]{%
-	\vspace*{11pt}%
-	\begin{tabular}{@{}p{2.25cm}@{}p{11.7cm}}%
-		\huge{\ding{45}}&\Large{\textbf{Übungsaufgaben}}%
-	\end{tabular}%
-	\aufgabe{#1}
-	\renewcommand{\templabel}{#1sol}
-	\checknextarg{#1}
+    \vspace*{11pt}%
+    \begin{tabular}{@{}p{2.25cm}@{}p{11.7cm}}%
+        \huge{\ding{45}}&\Large{\textbf{Übungsaufgaben}}%
+    \end{tabular}%
+    \aufgabe{#1}
+    \renewcommand{\templabel}{#1sol}
+    \checknextarg{#1}
 }
 \newcommand{\checknextarg}[1]{\@ifnextchar\bgroup{\gobblenextarg}{ \leavevmode \\ \\ Die Lösungen zu den Aufgaben finden Sie im Anhang \ref{#1sol}. }}
 \newcommand{\gobblenextarg}[1]{  \aufgabe{#1}\@ifnextchar\bgroup{\gobblenextarg}{ \leavevmode \\ \\  Die Lösungen zu den Aufgaben finden Sie im Anhang \ref{\templabel}.}}

@@ -23,12 +23,12 @@ print("Hallo, " + userName)
 \end{lstlisting}
 
 \warning{Der Eingabewert des Nutzer liefert immer einen String zurück.
-Bei gewünschtem Datentyp, muss \emph{gecasted} werden!}
+Bei gewünschtem Datentyp muss \emph{gecasted} werden!}
 
 \kontrollfrage{
-	\item[\kontroll] Wie verhält sich das Programm bei Aufruf der \lstinline$input()$-Methode?
-	\item[\kontroll] Welchen Wert liefert \lstinline$input()$ zurück? Um was für einen Datentyp handelt es sich?
-	\item [\kontroll] Welchen Effekt hat die Angabe des \lstinline{prompt}-Parameters?
+    \item[\kontroll] Wie verhält sich das Programm bei Aufruf der \lstinline$input()$-Methode?
+    \item[\kontroll] Welchen Wert liefert \lstinline$input()$ zurück? Um was für einen Datentyp handelt es sich?
+    \item [\kontroll] Welchen Effekt hat die Angabe des \lstinline{prompt}-Parameters?
 }
 
 Bei primitiven Datentypen ist das Umwandeln recht einfach. Bei nicht-primitiven kann es jedoch zu Überraschungen kommen.
@@ -42,14 +42,14 @@ print(summe, type(summe), sep=" - ")
 # Ausgabe: 5 - <class 'int'>
 
 geoKoerper = list(input("Geben Sie einige" +
-			"geometrische Körper an"))
+            "geometrische Körper an"))
 print(geoKoerper)
 # Eingabe: ["Dreieck", "Viereck"]
-# Ausgabe: [' ', '[', '"', 'D', 'r', 'e', 
-	'i', 'e', 'c', 'k', '"', ',', 
-	' ', '"', 'V', 'i', 'e', 'r', 
-	'e', 'c', 'k', '"', ']']
-			
+# Ausgabe: [' ', '[', '"', 'D', 'r', 'e',
+    'i', 'e', 'c', 'k', '"', ',',
+    ' ', '"', 'V', 'i', 'e', 'r',
+    'e', 'c', 'k', '"', ']']
+
 print(type(geoKoerper[0]))
 # Ausgabe: <class 'str'>
 
@@ -72,6 +72,6 @@ print(geoKoerper)
 
 
 \kontrollfrage{
-	\item[\kontroll] Wie verhält sich der Rückgabewert von \lstinline$input()$, wenn man ihn zu einer Liste umwandelt?
-	\item[\kontroll] Welche Methode bietet uns Python an, um den Rückgabewert wie gewünscht zu erhalten?
+    \item[\kontroll] Wie verhält sich der Rückgabewert von \lstinline$input()$, wenn man ihn zu einer Liste umwandelt?
+    \item[\kontroll] Welche Methode bietet uns Python an, um den Rückgabewert wie gewünscht zu erhalten?
 }
