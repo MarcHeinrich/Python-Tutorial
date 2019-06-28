@@ -1,20 +1,28 @@
-# \exercises\src\classesandobjects02.py
 class Kreis:
     def __init__(self, radius, farbe):
         self.radius = radius
         self.farbe = farbe
 
-    def getKreis(self):
-        return self.radius, self.farbe
+    def getRadius(self):
+        return self.radius
 
-class Erweiterung:
+    def setRadius(self, radius):
+        self.radius = radius
+
+    def getFarbe(self):
+        return self.farbe
+
+    def setFarbe(self, farbe):
+        self.farbe = farbe
+
+    def getKreis(self):
+        print(self.radius, self.farbe)
+
+class Erweiterung(Kreis):
     def __init__(self, radius, farbe, xposition):
         Kreis.__init__(self, radius, farbe)
         self.xposition = xposition
 
-    def getKreis(self):
-        print(Kreis.getKreis(self), self.xposition)
-        return Kreis.getKreis(self), self.xposition
-
-kreis1 = Erweiterung(3, "weiß", 4)
-kreis1.getKreis()
+    def getErweiterung(self):
+        Kreis.getKreis(self)
+        print(self.xposition)
