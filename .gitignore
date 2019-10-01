@@ -246,3 +246,6 @@ TSWLatexianTemp*
 
 # generated if using elsarticle.cls
 *.spl
+
+# Winedt project files
+*.prj
