@@ -1,4 +1,4 @@
-Um SymPy nutzen zu können muss zunächst das Modul\lstinline!sympy! importiert werden.
+Um SymPy nutzen zu können muss zunächst das Modul \lstinline!sympy! importiert werden.
 \begin{lstlisting}
 from sympy import *
 \end{lstlisting}
@@ -20,7 +20,7 @@ Die Symbole können wie folgt erstellt werden.
 False
 \end{lstlisting}
 	\item Zum Substituieren wird die \lstinline!subs!-Methode verwendet.
-	Dabei ist zu beachten dass dabei nicht der bestehende Ausdruck geändert wird sondern ein neuer erstellt wird.
+	Dabei ist zu beachten dass dabei nicht der bestehende Ausdruck geändert wird sondern ein Neuer erstellt wird.
 \begin{lstlisting}
 >>> expr3 = expr1.subs(x**2, x)
 >>> simplify(expr3 - expr2) == 0
@@ -32,7 +32,9 @@ True
 >>> expr4
 (x - 1)(x + 1)
 \end{lstlisting}	
-	\item Die Umkehrung der Faktorisierung ist das aus multiplizieren welche durch die  \lstinline!simplify!-Funktion erreicht wird.
+	\item Die in der Aufgabe davor durchgefürte Akjtion ist das Faktorisieren.
+	Um diese Aktion umzukehren muss der Term wieder Ausmultipliziert werden.
+	Diese Operation kann durch das ausführen der \lstinline!simplify!-Funktion erreicht werden.
 \begin{lstlisting}[mathescape]
 >>> expr5 = simplify(expr4)
 >>> expr5
